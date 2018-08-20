@@ -30,7 +30,7 @@ public class AuthorRepositoryJpaTest {
         entityManager.persist(author);
         entityManager.flush();
 
-        Author gotAuthor = authorRepositoryJpa.getByName(author.getName());
+        Author gotAuthor = authorRepositoryJpa.findByName(author.getName());
 
 //        System.out.println(gotAuthor.getName());
 

@@ -34,23 +34,26 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void addBook(String name, String authorName, String genreName) {
-        Author author = authorRepository.getByName(authorName);
+        Author author = authorRepository.findByName(authorName);
         if (author == null) {
             author = new Author(authorName);
-            authorRepository.insert(author);
+//            authorRepository.insert(author);
+            authorRepository.save(author);
         }
-        Genre genre = genreRepository.getByName(genreName);
+        Genre genre = genreRepository.findByName(genreName);
         if (genre == null) {
             genre = new Genre(genreName);
-            genreRepository.insert(genre);
+//            genreRepository.insert(genre);
+            genreRepository.save(genre);
         }
         Book book = new Book(name, author, genre);
-        bookRepository.insert(book);
+//        bookRepository.insert(book);
+        bookRepository.save(book);
     }
 
     @Override
     public void listBooks() {
-        List<Book> books = bookRepository.getAll();
+        List<Book> books = bookRepository.findAll();
         for (Book book : books) {
             System.out.println("ID:" + book.getId() + " название: \"" + book.getName() + "\", автор: "
                     + book.getAuthor().getName() + ", жанр: " + book.getGenre().getName());
@@ -69,12 +72,12 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void printAuthorId(String name) {
-        System.out.println("id: " + authorRepository.getByName(name).getId());
+        System.out.println("id: " + authorRepository.findByName(name).getId());
     }
 
     @Override
     public void listAuthors() {
-        List<Author> authors = authorRepository.getAll();
+        List<Author> authors = authorRepository.findAll();
         for (Author author : authors) {
             System.out.println("ID:" + author.getId() + " автор: " + author.getName());
         }

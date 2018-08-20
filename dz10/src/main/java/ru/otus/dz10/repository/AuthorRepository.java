@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface AuthorRepository extends CrudRepository<Author, Integer> {
 
-    Author getByName(String name);
+    Author findByName(String name);
 
-    void insert(Author author);
+//    void insert(Author author);
 
-    List<Author> getAll();
+    List<Author> findAll();
 }

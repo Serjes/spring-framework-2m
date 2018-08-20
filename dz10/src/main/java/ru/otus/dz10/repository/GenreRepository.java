@@ -5,7 +5,7 @@ import ru.otus.dz10.domain.Genre;
 
 public interface GenreRepository extends CrudRepository<Genre, Integer> {
 
-    Genre getByName(String name);
+    Genre findByName(String name);
 
-    void insert(Genre genre);
+//    void insert(Genre genre);
 }

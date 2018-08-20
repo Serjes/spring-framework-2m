@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CommentRepository extends CrudRepository<Comment, Integer> {
 
-    void insert(Comment c);
+//    void insert(Comment c);
 
     List<Comment> getAllByBook(Book book);
 }

@@ -28,7 +28,7 @@ public class GenreRepositoryJpaTest {
         entityManager.persist(genre);
         entityManager.flush();
 
-        Genre gotGenre = genreRepositoryJpa.getByName(genre.getName());
+        Genre gotGenre = genreRepositoryJpa.findByName(genre.getName());
 
         assertThat(gotGenre.getName())
                 .isEqualTo(genre.getName());

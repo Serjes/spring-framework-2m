@@ -38,17 +38,17 @@ public class BookRepositoryJpaTest {
     public void whenGetById_thenReturnBook(){
 
         Author author = new Author("Б.Эккель");
-        authorRepositoryJpa.insert(author);
+//        authorRepositoryJpa.insert(author);
 //        entityManager.persist(author);
         Genre genre = new Genre("Информационные технологии");
-        genreRepositoryJpa.insert(genre);
+//        genreRepositoryJpa.insert(genre);
 //        entityManager.persist(genre);
 
         Book book = new Book("Филиософия Java", author, genre);
         entityManager.persist(book);
         entityManager.flush();
 
-        Book gotBook = bookRepositoryJpa.getById(1);
+        Book gotBook = bookRepositoryJpa.findById(1);
 //        Book gotBook = bookRepositoryJpa.getByName(book.getName());
         System.out.println(gotBook.getName());
 

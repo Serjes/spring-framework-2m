@@ -20,14 +20,15 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void add(String content, int bookId) {
-        Book book = bookRepository.getById(bookId);
+        Book book = bookRepository.findById(bookId);
         Comment comment = new Comment(content, book);
-        commentRepository.insert(comment);
+//        commentRepository.insert(comment);
+        commentRepository.save(comment);
     }
 
     @Override
     public void listByBook(int bookId) {
-        Book book = bookRepository.getById(bookId);
+        Book book = bookRepository.findById(bookId);
         List<Comment> comments = commentRepository.getAllByBook(book);
         if (comments.isEmpty()) {
             System.out.println("нет комментариев к книге \"" + book.getName() + "\"");

@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface BookRepository extends CrudRepository<Book, Integer> {
 
-    List<Book> getAll();
+    List<Book> findAll();
 
     long count();
 
-    Book getById(int id);
+    Book findById(int id);
 
-    void insert(Book b);
+//    void insert(Book b);
 
     void deleteById(int id);
 }
