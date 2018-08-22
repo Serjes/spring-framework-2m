@@ -24,7 +24,6 @@ public class CommentServiceImpl implements CommentService {
     public void add(String content, int bookId) {
         Book book = bookRepository.findById(bookId);
         Comment comment = new Comment(content, book);
-//        commentRepository.insert(comment);
         commentRepository.save(comment);
     }
 
@@ -46,24 +45,6 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void listAllPages() {
-//        Page<Comment> allComments = commentRepository.findAll(PageRequest.of(0, 5));
-//        int pageNumber = 1;
-//        System.out.println("Страница номер " + pageNumber);
-//        for (Comment comment: allComments
-//        ) {
-//            System.out.println(comment);
-//        }
-//        int totalPages = allComments.getTotalPages();
-////        long totalElements = allComments.getTotalElements();
-//        while(--totalPages != 0 ){
-//            allComments = commentRepository.findAll(PageRequest.of(pageNumber, 5));
-//            pageNumber++;
-//            System.out.println("Страница номер " + pageNumber);
-//            for (Comment comment: allComments
-//            ) {
-//                System.out.println(comment);
-//            }
-//        }
 
         Page<Comment> allComments = commentRepository.findAll(PageRequest.of(0, 5));
         int totalPages = allComments.getTotalPages();
@@ -78,12 +59,5 @@ public class CommentServiceImpl implements CommentService {
             pageNumber++;
             allComments = commentRepository.findAll(PageRequest.of(pageNumber, 5));
         }while(totalPages != 0);
-//        System.out.println("Число страниц: " + totalPages + ", число элементов: " + totalElements);
-//
-////        allComments.getTotalElements()
-//        for (Comment comment: allComments
-//             ) {
-//            System.out.println(comment);
-//        }
     }
 }

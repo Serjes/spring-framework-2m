@@ -1,6 +1,5 @@
 package ru.otus.dz10.repository;
 
-//import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import ru.otus.dz10.domain.Book;

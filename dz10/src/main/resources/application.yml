@@ -3,8 +3,8 @@ application:
 spring:
   datasource:
     url: jdbc:postgresql://188.227.18.141:5432/lib_spring_data
-    username: sergya
-    password: otus
+    username: temp_user
+    password: temp_pas
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
