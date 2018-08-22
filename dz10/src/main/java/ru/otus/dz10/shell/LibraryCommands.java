@@ -17,14 +17,14 @@ public class LibraryCommands {
         this.commentService = commentService;
     }
 
-    @ShellMethod("Добавить книгу в библиотеку: add book_name --author author_name --genre genre_name")
+    @ShellMethod("Добавить книгу в библиотеку: add book_tittle --author author_name --genre genre_name")
     public void add(
-            @ShellOption String bookName,
+            @ShellOption String bookTittle,
             @ShellOption String author,
             @ShellOption String genre){
 
-        System.out.println("Добавляем книгу: \"" + bookName + "\" " + author + " " + genre);
-        libraryService.addBook(bookName, author, genre);
+        System.out.println("Добавляем книгу: \"" + bookTittle + "\" " + author + " " + genre);
+        libraryService.addBook(bookTittle, author, genre);
     }
 
     @ShellMethod("Добавить шаблонную книгу")

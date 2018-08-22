@@ -33,7 +33,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void addBook(String name, String authorName, String genreName) {
+    public void addBook(String tittle, String authorName, String genreName) {
         Author author = authorRepository.findByName(authorName);
         if (author == null) {
             author = new Author(authorName);
@@ -44,7 +44,7 @@ public class LibraryServiceImpl implements LibraryService {
             genre = new Genre(genreName);
             genreRepository.save(genre);
         }
-        Book book = new Book(name, author, genre);
+        Book book = new Book(tittle, author, genre);
         bookRepository.save(book);
     }
 
