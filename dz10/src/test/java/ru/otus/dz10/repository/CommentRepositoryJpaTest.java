@@ -3,6 +3,8 @@ package ru.otus.dz10.repository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 @ComponentScan("ru.otus.dz10.repository")
 @RunWith(SpringRunner.class)
 public class CommentRepositoryJpaTest {
@@ -41,7 +44,7 @@ public class CommentRepositoryJpaTest {
         entityManager.persist(comment);
         entityManager.flush();
 
-        ArrayList<Comment> gotComments = (ArrayList<Comment>) commentRepositoryJpa.getAllByBook(book);
+        ArrayList<Comment> gotComments = (ArrayList<Comment>) commentRepositoryJpa.findAllByBook(book);
         assertThat(gotComments.get(0).getContent())
                 .isEqualTo(comment.getContent());
     }

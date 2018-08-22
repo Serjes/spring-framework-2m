@@ -3,6 +3,8 @@ package ru.otus.dz10.repository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,8 +19,8 @@ import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.*;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 @ComponentScan("ru.otus.dz10")
-//@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 @RunWith(SpringRunner.class)
 public class BookRepositoryJpaTest {
 
@@ -38,9 +40,11 @@ public class BookRepositoryJpaTest {
     public void whenGetById_thenReturnBook(){
 
         Author author = new Author("Б.Эккель");
+        authorRepositoryJpa.save(author);
 //        authorRepositoryJpa.insert(author);
 //        entityManager.persist(author);
         Genre genre = new Genre("Информационные технологии");
+        genreRepositoryJpa.save(genre);
 //        genreRepositoryJpa.insert(genre);
 //        entityManager.persist(genre);
 
@@ -49,12 +53,12 @@ public class BookRepositoryJpaTest {
         entityManager.flush();
 
         Book gotBook = bookRepositoryJpa.findById(1);
-//        Book gotBook = bookRepositoryJpa.getByName(book.getName());
-        System.out.println(gotBook.getName());
+//        Book gotBook = bookRepositoryJpa.getByName(book.getTittle());
+        System.out.println(gotBook.getTittle());
 
-        assertEquals(gotBook.getName(), book.getName());
-//        assertThat(gotBook.getName())
-//                .isEqualTo(book.getName());
+        assertEquals(gotBook.getTittle(), book.getTittle());
+//        assertThat(gotBook.getTittle())
+//                .isEqualTo(book.getTittle());
 
     }
 

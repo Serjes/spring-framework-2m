@@ -3,6 +3,8 @@ package ru.otus.dz10.repository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 //import static org.junit.Assert.*;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 @ComponentScan("ru.otus.dz10.repository")
 @RunWith(SpringRunner.class)
 public class AuthorRepositoryJpaTest {
@@ -32,7 +35,7 @@ public class AuthorRepositoryJpaTest {
 
         Author gotAuthor = authorRepositoryJpa.findByName(author.getName());
 
-//        System.out.println(gotAuthor.getName());
+//        System.out.println(gotAuthor.getTittle());
 
         assertThat(gotAuthor.getName())
                 .isEqualTo(author.getName());

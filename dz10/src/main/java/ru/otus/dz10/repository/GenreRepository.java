@@ -7,5 +7,4 @@ public interface GenreRepository extends CrudRepository<Genre, Integer> {
 
     Genre findByName(String name);
 
-//    void insert(Genre genre);
 }

@@ -34,4 +34,12 @@ public class Comment {
     public Book getBook() {
         return book;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "content='" + content + '\'' +
+                ", book=" + book +
+                '}';
+    }
 }

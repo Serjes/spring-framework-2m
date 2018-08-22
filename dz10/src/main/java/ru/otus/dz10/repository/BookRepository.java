@@ -10,11 +10,9 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
 
     List<Book> findAll();
 
-    long count();
+//    long count();
 
     Book findById(int id);
-
-//    void insert(Book b);
 
     void deleteById(int id);
 }

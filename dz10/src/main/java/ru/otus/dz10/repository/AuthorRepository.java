@@ -10,7 +10,5 @@ public interface AuthorRepository extends CrudRepository<Author, Integer> {
 
     Author findByName(String name);
 
-//    void insert(Author author);
-
     List<Author> findAll();
 }

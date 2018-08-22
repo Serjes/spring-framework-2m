@@ -37,17 +37,14 @@ public class LibraryServiceImpl implements LibraryService {
         Author author = authorRepository.findByName(authorName);
         if (author == null) {
             author = new Author(authorName);
-//            authorRepository.insert(author);
             authorRepository.save(author);
         }
         Genre genre = genreRepository.findByName(genreName);
         if (genre == null) {
             genre = new Genre(genreName);
-//            genreRepository.insert(genre);
             genreRepository.save(genre);
         }
         Book book = new Book(name, author, genre);
-//        bookRepository.insert(book);
         bookRepository.save(book);
     }
 
@@ -55,7 +52,7 @@ public class LibraryServiceImpl implements LibraryService {
     public void listBooks() {
         List<Book> books = bookRepository.findAll();
         for (Book book : books) {
-            System.out.println("ID:" + book.getId() + " название: \"" + book.getName() + "\", автор: "
+            System.out.println("ID:" + book.getId() + " название: \"" + book.getTittle() + "\", автор: "
                     + book.getAuthor().getName() + ", жанр: " + book.getGenre().getName());
         }
     }

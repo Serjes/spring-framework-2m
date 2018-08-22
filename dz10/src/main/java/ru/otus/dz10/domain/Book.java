@@ -10,7 +10,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private String tittle;
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
@@ -25,8 +25,8 @@ public class Book {
     public Book() {
     }
 
-    public Book(String name, Author author, Genre genre) {
-        this.name = name;
+    public Book(String tittle, Author author, Genre genre) {
+        this.tittle = tittle;
         this.author = author;
         this.genre = genre;
     }
@@ -39,12 +39,19 @@ public class Book {
         return genre;
     }
 
-    public String getName() {
-        return name;
+    public String getTittle() {
+        return tittle;
     }
 
     public int getId() {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", tittle='" + tittle + '\'' +
+                '}';
+    }
 }
