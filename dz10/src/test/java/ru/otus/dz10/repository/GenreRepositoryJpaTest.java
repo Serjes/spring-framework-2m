@@ -18,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 //@Transactional(propagation = Propagation.NOT_SUPPORTED)
+@Transactional
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class GenreRepositoryJpaTest {
 

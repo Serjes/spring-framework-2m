@@ -22,6 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@Transactional
 //@Transactional(propagation = Propagation.NOT_SUPPORTED)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class CommentRepositoryJpaTest {

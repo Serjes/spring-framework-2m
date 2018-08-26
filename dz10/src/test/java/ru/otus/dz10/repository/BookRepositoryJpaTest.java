@@ -15,15 +15,19 @@ import ru.otus.dz10.domain.Author;
 import ru.otus.dz10.domain.Book;
 import ru.otus.dz10.domain.Genre;
 
+import javax.persistence.PersistenceContext;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@Transactional
 //@Transactional(propagation = Propagation.NOT_SUPPORTED)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class BookRepositoryJpaTest {
 
     @Autowired
+//    @PersistenceContext
     private TestEntityManager entityManager;
 
     @Autowired

@@ -13,11 +13,14 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.dz10.domain.Author;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 //@Transactional(propagation = Propagation.NOT_SUPPORTED)
+@Transactional
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class AuthorRepositoryJpaTest {
 
@@ -33,9 +36,7 @@ public class AuthorRepositoryJpaTest {
         entityManager.persist(author);
         entityManager.flush();
 
-        Author gotAuthor = authorRepositoryJpa.findByName(author.getName());
-
-//        System.out.println(gotAuthor.getTittle());
+        Author gotAuthor = authorRepositoryJpa.findByName(author.getName()).get();
 
         assertThat(gotAuthor.getName())
                 .isEqualTo(author.getName());
