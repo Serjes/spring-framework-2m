@@ -1,6 +1,10 @@
 package ru.otus.dz12.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.dz12.domain.Book;
@@ -83,12 +87,30 @@ public class CommentServiceImpl implements CommentService {
 //            pageNumber++;
 //            allComments = commentRepository.findAll(PageRequest.of(pageNumber, 5));
 //        }while(totalPages != 0);
-        List<Comment> comments = commentRepository.findAll();
-        int num = 0;
-        for (Comment comment : comments
-        ) {
-            num++;
-            System.out.println( num + ")" + comment.getContent());
-        }
+
+//        List<Comment> comments = commentRepository.findAll();
+//        int num = 0;
+//        for (Comment comment : comments
+//        ) {
+//            num++;
+//            System.out.println( num + ") " + comment.getContent());
+//        }
+
+//        Pageable pageableRequest = new PageRequest(0,5);
+        Page<Comment> page = commentRepository.findAll(PageRequest.of(0, 5));
+//        List<Comment> comments = page.getContent();
+        int totalPages = page.getTotalPages();
+        int pageNumber = 0;
+        do{
+            System.out.println("Страница номер " + (pageNumber + 1));
+            for (Comment comment : page
+            ) {
+                System.out.println(comment);
+            }
+            totalPages--;
+            pageNumber++;
+            page = commentRepository.findAll(PageRequest.of(pageNumber, 5));
+        }while(totalPages != 0);
+
     }
 }

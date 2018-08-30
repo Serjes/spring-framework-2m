@@ -11,7 +11,7 @@ public interface BookRepository extends MongoRepository<Book, String> {
 
     List<Book> findAll();
 
-    Optional<Book> findById(String id);
+//    Optional<Book> findById(String id);
 
 //    void deleteById(String id);
 }
