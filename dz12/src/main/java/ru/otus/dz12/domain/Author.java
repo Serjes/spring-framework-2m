@@ -15,6 +15,8 @@ public class Author {
 
     @Field("name")
     private String name;
+//    private String firstName;
+//    private String secondName;
 
     private Set<Book> books;
 

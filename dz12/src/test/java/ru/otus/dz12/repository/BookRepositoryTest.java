@@ -27,15 +27,10 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFOR
 @RunWith(SpringRunner.class)
 @DataMongoTest
 //@DirtiesContext(classMode = BEFORE_EACH_TEST_METHOD)
-//@SpringBootTest
-//@EnableMongoRepositories(basePackages = "ru.otus.dz12.repository")
-//@DataJpaTest
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
-//@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class BookRepositoryTest {
 
     @Autowired
-//    private TestEntityManager entityManager;
     private MongoTemplate mongoTemplate;
 
     @Autowired
@@ -57,7 +52,6 @@ public class BookRepositoryTest {
 
         Book book = new Book("Филиософия Java", author, genre);
         mongoTemplate.save(book);
-//        mongoTemplate.flush();
 
         List<Book> gotBooks = bookRepository.findAll();//.findById(1);
 //        System.out.println(gotBooks.get(0).getTittle());

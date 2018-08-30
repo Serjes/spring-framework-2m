@@ -19,14 +19,10 @@ import ru.otus.dz12.domain.Genre;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD;
 
-//@Ignore
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 @DirtiesContext(classMode = BEFORE_EACH_TEST_METHOD)
-//@DataJpaTest
-//@Transactional(propagation = Propagation.NOT_SUPPORTED)
-//@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class GenreRepositoryTest {
 //
     @Autowired

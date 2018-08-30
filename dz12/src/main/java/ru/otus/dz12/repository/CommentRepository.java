@@ -9,10 +9,8 @@ import ru.otus.dz12.domain.Comment;
 import java.util.List;
 
 public interface CommentRepository extends MongoRepository<Comment, String> {
-//public interface CommentRepository extends PagingAndSortingRepository<Comment, Integer> {
 
     List<Comment> findAllByBook(Book book);
 
-//    Page<Comment> findAll();
     List<Comment> findAll();
 }

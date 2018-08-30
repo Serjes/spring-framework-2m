@@ -31,14 +31,8 @@ public class CommentServiceImpl implements CommentService {
         List<Book> books = bookRepository.findAll();
         Book book = books.get(bookNumber - 1);
 
-//        Optional<Book> optionalBook = bookRepository.findById(bookId);
-//        if (optionalBook.isPresent()){
-//        Comment comment = new Comment(content, optionalBook.get());
         Comment comment = new Comment(content, book);
         commentRepository.save(comment);
-//        } else {
-//            System.out.println("Ошибка, нет такой книги");
-//        }
     }
 
     @Override
@@ -57,36 +51,10 @@ public class CommentServiceImpl implements CommentService {
             i++;
         }
 
-//        Book book = bookRepository.findById(bookId);
-//        List<Comment> comments = commentRepository.findAllByBook(book);
-//        if (comments.isEmpty()) {
-//            System.out.println("нет комментариев к книге \"" + book.getTittle() + "\"");
-//            return;
-//        }
-//        System.out.println("Комментарии к книге \"" + book.getTittle() + "\":");
-//        int i = 1;
-//        for (Comment comment : comments) {
-//            System.out.println(i + ") " + comment.getContent());
-//            i++;
-//        }
     }
 
     @Override
     public void listAllPages() {
-
-//        Page<Comment> allComments = commentRepository.findAll(PageRequest.of(0, 5));
-//        int totalPages = allComments.getTotalPages();
-//        int pageNumber = 0;
-//        do{
-//            System.out.println("Страница номер " + (pageNumber + 1));
-//            for (Comment comment : allComments
-//            ) {
-//                System.out.println(comment);
-//            }
-//            totalPages--;
-//            pageNumber++;
-//            allComments = commentRepository.findAll(PageRequest.of(pageNumber, 5));
-//        }while(totalPages != 0);
 
 //        List<Comment> comments = commentRepository.findAll();
 //        int num = 0;

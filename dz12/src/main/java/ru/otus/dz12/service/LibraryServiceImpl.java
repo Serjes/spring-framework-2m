@@ -57,7 +57,6 @@ public class LibraryServiceImpl implements LibraryService {
         int number = 0;
         for (Book book : books) {
             number ++;
-//            System.out.println("ID:" + book.getId() + " название: \"" + book.getTittle() + "\", автор: "
             System.out.println("№ " + number + ", название: \"" + book.getTittle() + "\", автор: "
                     + book.getAuthor().getName() + ", жанр: " + book.getGenre().getName());
         }

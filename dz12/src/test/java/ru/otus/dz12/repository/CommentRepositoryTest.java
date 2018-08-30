@@ -17,13 +17,9 @@ import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-//@Ignore
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
-//@DataJpaTest
-//@Transactional(propagation = Propagation.NOT_SUPPORTED)
-//@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class CommentRepositoryTest {
 
     @Autowired
@@ -44,7 +40,6 @@ public class CommentRepositoryTest {
 
         Comment comment = new Comment("Написана профессиональным языком. Много кода.", book);
         mongoTemplate.save(comment);
-//        entityManager.flush();
 
         ArrayList<Comment> gotComments = (ArrayList<Comment>) commentRepository.findAllByBook(book);
         assertThat(gotComments.get(0).getContent())

@@ -17,13 +17,9 @@ import ru.otus.dz12.domain.Author;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-//@Ignore
 @RunWith(SpringRunner.class)
 @DataMongoTest
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
-//@DataJpaTest
-//@Transactional(propagation = Propagation.NOT_SUPPORTED)
-//@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class AuthorRepositoryTest {
 
     @Autowired
@@ -37,11 +33,8 @@ public class AuthorRepositoryTest {
     public void whenGetByName_thenReturnAuthor(){
         Author author = new Author("Б.Эккель");
         mongoTemplate.save(author);
-//        entityManager.flush();
 
         Author gotAuthor = authorRepository.findByName(author.getName());
-
-//        System.out.println(gotAuthor.getTittle());
 
         assertThat(gotAuthor.getName())
                 .isEqualTo(author.getName());
