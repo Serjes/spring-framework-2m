@@ -4,7 +4,7 @@ public interface LibraryService {
 
     void addTemplateBook();
 
-    void addBook(String name, String author, String genre);
+    void addBook(String name, String author, String authorLastname, String genre);
 
     void listBooks();
 
@@ -12,7 +12,7 @@ public interface LibraryService {
 
     void delBook(int id);
 
-    void printAuthorId(String name);
+    void printAuthorId(String name, String lastName);
 
     void listAuthors();
 }

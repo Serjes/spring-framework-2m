@@ -40,7 +40,7 @@ public class Comment {
     public String toString() {
         return "Comment{" +
                 "content='" + content + '\'' +
-                ", book=" + book +
+                ", " + book +
                 '}';
     }
 }

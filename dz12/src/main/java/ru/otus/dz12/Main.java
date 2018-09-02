@@ -15,9 +15,5 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         SpringApplication.run(Main.class, args);
-//        SpringApplication.run(MongoConfig.class, args);
-//        ApplicationContext context = SpringApplication.run(Main.class, args);
-//        ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class);
-//        MongoOperations mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
     }
 }

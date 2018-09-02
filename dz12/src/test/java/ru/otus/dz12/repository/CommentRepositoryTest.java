@@ -31,7 +31,7 @@ public class CommentRepositoryTest {
     @Test
     public void whenGetAllByBook_thenReturnComment(){
 
-        Author author = new Author("Б.Эккель");
+        Author author = new Author("Брюс", "Эккель");
         mongoTemplate.save(author);
         Genre genre = new Genre("Информационные технологии");
         mongoTemplate.save(genre);

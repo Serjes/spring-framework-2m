@@ -31,15 +31,15 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void addTemplateBook() {
-        addBook("Азазель", "Б.Акунин", "детектив");
+        addBook("Азазель", "Борис","Акунин", "детектив");
     }
 
     @Override
     @Transactional
-    public void addBook(String tittle, String authorName, String genreName) {
-        Author author = authorRepository.findByName(authorName);
+    public void addBook(String tittle, String authorName, String authorLastName, String genreName) {
+        Author author = authorRepository.findByFirstNameAndLastName(authorName, authorLastName);
         if (author == null) {
-            author = new Author(authorName);
+            author = new Author(authorName, authorLastName);
             authorRepository.save(author);
         }
         Genre genre = genreRepository.findByName(genreName);
@@ -57,8 +57,9 @@ public class LibraryServiceImpl implements LibraryService {
         int number = 0;
         for (Book book : books) {
             number ++;
-            System.out.println("№ " + number + ", название: \"" + book.getTittle() + "\", автор: "
-                    + book.getAuthor().getName() + ", жанр: " + book.getGenre().getName());
+            System.out.println("№ " + number + ", название: \"" + book.getTittle() +
+                    "\", автор: " + book.getAuthor().getFirstName() + " " + book.getAuthor().getLastName() +
+                    ", жанр: " + book.getGenre().getName());
         }
     }
 
@@ -75,15 +76,15 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void printAuthorId(String name) {
-        System.out.println("id: " + authorRepository.findByName(name).getId());
+    public void printAuthorId(String name, String lastName) {
+        System.out.println("id: " + authorRepository.findByFirstNameAndLastName(name, lastName).getId());
     }
 
     @Override
     public void listAuthors() {
         List<Author> authors = authorRepository.findAll();
         for (Author author : authors) {
-            System.out.println("Автор: " + author.getName());
+            System.out.println("Автор: " + author.getFirstName() + " " + author.getLastName());
         }
     }
 

@@ -17,21 +17,21 @@ public class LibraryCommands {
         this.commentService = commentService;
     }
 
-    @ShellMethod("Добавить книгу в библиотеку: add book_tittle --author author_name --genre genre_name")
+    @ShellMethod("Добавить книгу в библиотеку: add book_tittle --author-name author_name author_last_name --genre genre_name")
     public void add(
             @ShellOption String bookTittle,
-            @ShellOption String author,
-            @ShellOption String genre){
-
-        System.out.println("Добавляем книгу: \"" + bookTittle + "\" " + author + " " + genre);
-        libraryService.addBook(bookTittle, author, genre);
+            @ShellOption String authorName,
+            @ShellOption String authorLastName,
+            @ShellOption String genre
+    ){
+        System.out.println("Добавляем книгу: \"" + bookTittle + "\" " + authorName + " " + authorLastName + " " + genre);
+        libraryService.addBook(bookTittle, authorName, authorLastName, genre);
     }
 
     @ShellMethod("Добавить шаблонную книгу")
-//    @ShellMethod("Add one template book")
     public void addtemp() {
         libraryService.addTemplateBook();
-        System.out.println("Добавляем книгу: \"Азазель\", Б.Акунин, детектив");
+        System.out.println("Добавляем книгу: \"Азазель\", Борис Акунин, детектив");
         return;
     }
 
@@ -66,11 +66,12 @@ public class LibraryCommands {
         libraryService.listAuthors();
     }
 
-    @ShellMethod("Показать ID автора по имени: showaid author_name")
+    @ShellMethod("Показать ID автора по имени и фамилии: showaid name last_name")
     public void showaid(
-            @ShellOption String name
+            @ShellOption String name,
+            @ShellOption String lastName
     ){
-        libraryService.printAuthorId(name);
+        libraryService.printAuthorId(name, lastName);
     }
 
     @ShellMethod("Показать все комментарии по номеру книги: listc book_number")

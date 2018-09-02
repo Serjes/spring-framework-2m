@@ -31,12 +31,12 @@ public class AuthorRepositoryTest {
 
     @Test
     public void whenGetByName_thenReturnAuthor(){
-        Author author = new Author("Б.Эккель");
+        Author author = new Author("Брюс", "Эккель");
         mongoTemplate.save(author);
 
-        Author gotAuthor = authorRepository.findByName(author.getName());
+        Author gotAuthor = authorRepository.findByFirstNameAndLastName(author.getFirstName(), author.getLastName());
 
-        assertThat(gotAuthor.getName())
-                .isEqualTo(author.getName());
+        assertThat(gotAuthor.getLastName())
+                .isEqualTo(author.getLastName());
     }
 }

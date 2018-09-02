@@ -45,7 +45,7 @@ public class BookRepositoryTest {
     @Test
     public void whenGetById_thenReturnBook(){
 
-        Author author = new Author("Б.Эккель");
+        Author author = new Author("Брюс", "Эккель");
         authorRepository.save(author);
         Genre genre = new Genre("Информационные технологии");
         genreRepository.save(genre);
@@ -54,7 +54,6 @@ public class BookRepositoryTest {
         mongoTemplate.save(book);
 
         List<Book> gotBooks = bookRepository.findAll();//.findById(1);
-//        System.out.println(gotBooks.get(0).getTittle());
 
         assertEquals(gotBooks.get(0).getTittle(), book.getTittle());
 

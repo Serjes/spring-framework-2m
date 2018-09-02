@@ -55,30 +55,23 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void listAllPages() {
-
-//        List<Comment> comments = commentRepository.findAll();
-//        int num = 0;
-//        for (Comment comment : comments
-//        ) {
-//            num++;
-//            System.out.println( num + ") " + comment.getContent());
-//        }
-
-//        Pageable pageableRequest = new PageRequest(0,5);
         Page<Comment> page = commentRepository.findAll(PageRequest.of(0, 5));
-//        List<Comment> comments = page.getContent();
-        int totalPages = page.getTotalPages();
-        int pageNumber = 0;
-        do{
-            System.out.println("Страница номер " + (pageNumber + 1));
-            for (Comment comment : page
-            ) {
-                System.out.println(comment);
-            }
-            totalPages--;
-            pageNumber++;
-            page = commentRepository.findAll(PageRequest.of(pageNumber, 5));
-        }while(totalPages != 0);
+        if (page.getTotalElements() != 0) {
+            int totalPages = page.getTotalPages();
+            int pageNumber = 0;
+            do {
+                System.out.println("Страница номер " + (pageNumber + 1));
+                for (Comment comment : page
+                ) {
+                    System.out.println(comment);
+                }
+                totalPages--;
+                pageNumber++;
+                page = commentRepository.findAll(PageRequest.of(pageNumber, 5));
+            } while (totalPages != 0);
+        } else {
+            System.out.println("Нет комментариев");
+        }
 
     }
 }
