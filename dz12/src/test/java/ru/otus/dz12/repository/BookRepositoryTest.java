@@ -53,7 +53,7 @@ public class BookRepositoryTest {
         Book book = new Book("Филиософия Java", author, genre);
         mongoTemplate.save(book);
 
-        List<Book> gotBooks = bookRepository.findAll();//.findById(1);
+        List<Book> gotBooks = bookRepository.findAll();
 
         assertEquals(gotBooks.get(0).getTittle(), book.getTittle());
 

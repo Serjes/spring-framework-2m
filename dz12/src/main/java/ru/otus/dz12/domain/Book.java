@@ -15,14 +15,10 @@ public class Book {
     private String id;
     @Field("tittle")
     private String tittle;
-    //@Field("author")
     @DBRef
     private Author author;
-    //@Field("genre")
     @DBRef
     private Genre genre;
-//    @DBRef
-//    private List<Comment> comments;
 
     public Book() {
     }

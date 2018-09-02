@@ -49,7 +49,6 @@ public class LibraryServiceImpl implements LibraryService {
         }
         Book book = new Book(tittle, author, genre);
         bookRepository.save(book);
-
         authorRepository.addBook(author,book);
     }
 
@@ -62,7 +61,6 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public void listBooksByAuthorLastName(String authorLastName) {
-//        List<Book> books = bookRepository.findAllByAuthorLastName(authorLastName);
         List<Book> books = authorRepository.findAllBooksByAuthorLastName(authorLastName);
         System.out.println("Все книги автора " + authorLastName + " находящиеся в библиотеке:");
         printBooks(books);

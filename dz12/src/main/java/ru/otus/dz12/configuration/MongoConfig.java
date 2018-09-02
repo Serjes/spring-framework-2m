@@ -14,8 +14,6 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import java.util.*;
 
 @Configuration
-//@ConfigurationProperties("spring.data.mongodb")
-//@ConfigurationProperties("application")
 public class MongoConfig extends AbstractMongoConfiguration {
 
     @Autowired
