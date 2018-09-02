@@ -41,13 +41,19 @@ public class LibraryCommands {
             @ShellOption String content
     ){
         System.out.println("Добавляем комментарий: \"" + content + "\"" );
-//        commentService.add(content, String.valueOf(id));
         commentService.add(content, number);
     }
 
     @ShellMethod("Показать все книги в библиотеке")
     public void list(){
         libraryService.listBooks();
+    }
+
+    @ShellMethod("Показать все книги одного автора: listba author_last_name")
+    public void listba(
+            @ShellOption String lastName
+    ){
+        libraryService.listBooksByAuthorLastName(lastName);
     }
 
     @ShellMethod("Вывести количество книг в библитеке")
@@ -57,7 +63,8 @@ public class LibraryCommands {
 
     @ShellMethod("Удалить книгу по номеру: del book_number")
     public void del(
-            @ShellOption int number){
+            @ShellOption int number
+    ){
         libraryService.delBook(number);
     }
 

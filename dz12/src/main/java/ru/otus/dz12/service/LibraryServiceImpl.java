@@ -49,11 +49,26 @@ public class LibraryServiceImpl implements LibraryService {
         }
         Book book = new Book(tittle, author, genre);
         bookRepository.save(book);
+
+        authorRepository.addBook(author,book);
     }
 
     @Override
     public void listBooks() {
         List<Book> books = bookRepository.findAll();
+        System.out.println("Все книги находящиеся в библиотеке:");
+        printBooks(books);
+    }
+
+    @Override
+    public void listBooksByAuthorLastName(String authorLastName) {
+//        List<Book> books = bookRepository.findAllByAuthorLastName(authorLastName);
+        List<Book> books = authorRepository.findAllBooksByAuthorLastName(authorLastName);
+        System.out.println("Все книги автора " + authorLastName + " находящиеся в библиотеке:");
+        printBooks(books);
+    }
+
+    private void printBooks(List<Book> books){
         int number = 0;
         for (Book book : books) {
             number ++;

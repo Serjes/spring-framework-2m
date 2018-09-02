@@ -21,8 +21,8 @@ public class Book {
     //@Field("genre")
     @DBRef
     private Genre genre;
-    @DBRef
-    private List<Comment> comments;
+//    @DBRef
+//    private List<Comment> comments;
 
     public Book() {
     }

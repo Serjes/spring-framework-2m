@@ -1,6 +1,7 @@
 package ru.otus.dz12.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -11,9 +12,9 @@ public class Comment {
 
     @Id
     private String id;
-
     @Field("content")
     private String content;
+    @DBRef
     private Book book;
 
     public Comment() {

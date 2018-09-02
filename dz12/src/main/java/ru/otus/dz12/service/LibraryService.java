@@ -8,6 +8,8 @@ public interface LibraryService {
 
     void listBooks();
 
+    void listBooksByAuthorLastName(String authorLastName);
+
     void count();
 
     void delBook(int id);
