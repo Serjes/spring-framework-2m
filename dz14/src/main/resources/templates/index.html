@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+        .persons, .persons td {
+            border: 1px solid lightgray;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Библиотека</h1>
+<a th:href="@{books}">Функционал по книгам</a>
+<br>
+<a th:href="@{authors}">/authors</a>
+<br>
+<a th:href="@{genres}">/genres</a>
+<br>
+<a th:href="@{comments}">/comments</a>
+</body>
+</html>
