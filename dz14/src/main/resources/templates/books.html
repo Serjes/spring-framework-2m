@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <style type="text/css">
@@ -18,23 +18,31 @@
 <table class="books">
     <thead>
     <tr>
+        <!--<th>ID</th>-->
+        <!--<th>Title</th>-->
+        <!--<th>Author first name</th>-->
+        <!--<th>Author last name</th>-->
+        <!--<th>Genre</th>-->
         <th>ID</th>
-        <th>Title</th>
-        <th>Author first name</th>
-        <th>Author last name</th>
-        <th>Genre</th>
+        <th>Название</th>
+        <th>Имя автора</th>
+        <th>Фамилия автора</th>
+        <th>Жанр</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="book : ${books}">
-        <td th:text="${book.id}">1</td>
-        <td th:text="${book.title}">Foo</td>
-        <td th:text="${book.author.firstName}">John</td>
-        <td th:text="${book.author.lastName}">Doe</td>
-        <td th:text="${book.genre.name}">fantasy</td>
+        <td width="30" th:text="${book.id}">1</td>
+        <td width="150 "th:text="${book.title}">Foo</td>
+        <td width="150 "th:text="${book.author.firstName}">John</td>
+        <td width="150" th:text="${book.author.lastName}">Doe</td>
+        <td width="150" th:text="${book.genre.name}">fantasy</td>
     </tr>
     </tbody>
 </table>
-<a href="edit.html">Edit</a>
+<br>
+<a th:href="@{addbook}" href="addbook.html">Добавить книгу</a>
+<!--addbook.html">Добавить книгу</a>-->
+<a href="addbook.html">Edit</a>
 </body>
 </html>
