@@ -12,6 +12,14 @@ public class BookDto {
     public BookDto() {
     }
 
+    public BookDto(Integer id, String bookTitle, String authorName, String authorLastName, String genre) {
+        this.id = id;
+        this.bookTitle = bookTitle;
+        this.authorName = authorName;
+        this.authorLastName = authorLastName;
+        this.genre = genre;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -50,5 +58,9 @@ public class BookDto {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public static BookDto toDto(Book book){
+        return new BookDto(book.getId(), book.getTitle(), book.getAuthor().getFirstName(), book.getAuthor().getLastName(), book.getGenre().getName());
     }
 }

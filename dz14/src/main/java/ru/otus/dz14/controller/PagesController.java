@@ -10,6 +10,7 @@ import ru.otus.dz14.repository.BookRepository;
 import ru.otus.dz14.service.LibraryService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PagesController {
@@ -31,29 +32,20 @@ public class PagesController {
     }
 
     @GetMapping("/books")
-//    public String booksPage(Model model, Integer id) {
     public String booksPage(Model model) {
-//        Integer id = 0;
         List<Book> books = bookRepository.findAll();
         model.addAttribute("books", books);
         BookDto bookDto = new BookDto();
         model.addAttribute("bookDto", bookDto);
-//        model.addAttribute("id", id);
         return "books";
     }
 
-//    @PostMapping("/books/delete/{id}")
     @PostMapping("/books/delete/")
     public String delete(
-//            @PathVariable("id") Integer id)
-//            @RequestParam("id") Integer id,
-//            @ModelAttribute("id") Integer id,
             @ModelAttribute("bookDto") BookDto bookDto,
-//            @RequestAttribute("id") Integer id,
             Model model)
     {
         libraryService.delBook(bookDto.getId());
-//        libraryService.delBook(id);
         return "redirect:/books";
     }
 
@@ -64,6 +56,29 @@ public class PagesController {
         model.addAttribute("bookDto", bookDto);
 //        List<Book> books = bookRepository.findAll();
 //        model.addAttribute("books", books);
+        return "addbook";
+    }
+
+    @GetMapping("/addbook/id={id}")
+    public String editBookPage(
+//            @ModelAttribute("bookDto") BookDto bookDto,
+//            @RequestParam("bookDto") BookDto bookDto,
+//            @RequestParam("id") Integer id,
+            @PathVariable("id") Integer id,
+            Model model
+    ) {
+
+        //BookDto bookDto = new BookDto();
+//        model.addAttribute("bookDto", bookDto);
+//        List<Book> books = bookRepository.findAll();
+        Optional<Book> bookOptional = bookRepository.findById(id);
+        if (bookOptional.isPresent()){
+            BookDto bookDto = BookDto.toDto(bookOptional.get());
+            model.addAttribute("bookDto", bookDto);
+        }
+//        bookOptional.ifPresent(book -> model.addAttribute("book", book));
+//        model.addAttribute("books", books);
+//        return "redirect:/books";
         return "addbook";
     }
 
@@ -83,6 +98,22 @@ public class PagesController {
                 bookDto.getAuthorName(),
                 bookDto.getAuthorLastName(),
                 bookDto.getGenre());
+        return "redirect:/books";
+    }
+
+    @RequestMapping(
+            value = {"/books/add/{id}"},
+            method = RequestMethod.POST
+    )
+    public String updateBook(
+            Model model,
+            @ModelAttribute("bookDto") BookDto bookDto
+    ) {
+//
+//        libraryService.addBook(bookDto.getBookTitle(),
+//                bookDto.getAuthorName(),
+//                bookDto.getAuthorLastName(),
+//                bookDto.getGenre());
         return "redirect:/books";
     }
 }
