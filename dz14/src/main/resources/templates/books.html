@@ -11,10 +11,19 @@
             border: 1px solid lightgray;
             padding: 5px;
         }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-<h1>Функционал по книгам:</h1>
+<h1>Книги:</h1>
 
 <table class="books">
     <thead>
@@ -29,6 +38,8 @@
         <th>Имя автора</th>
         <th>Фамилия автора</th>
         <th>Жанр</th>
+        <th>Комментарии</th>
+        <th>Редактирование</th>
     </tr>
     </thead>
     <tbody>
@@ -37,26 +48,44 @@
         <td width="150 " th:text="${book.title}">Foo</td>
         <td width="150 " th:text="${book.author.firstName}">John</td>
         <td width="150" th:text="${book.author.lastName}">Doe</td>
-        <td width="150" th:text="${book.genre.name}">fantasy</td>
+        <td width="100" th:text="${book.genre.name}">fantasy</td>
+        <td width="150" >0</td>
+        <td width="50" >Изменить</td>
     </tr>
     </tbody>
 </table>
 <br>
-<a th:href="@{addbook}" href="addbook.html">Добавить книгу</a>
+<a th:href="@{addbook}" href="addbook.html"><h3>Добавить книгу</h3></a>
 <!--addbook.html">Добавить книгу</a>-->
 <br>
-<tr>
-    <thead>
-    <tr>
-        <th>ID</th>
-    </tr>
-    <tbody>
-    <tr>
-        <td width="30" th:field="${id}">1</td>
-    </tbody>
-    </tr>
-</thead>
-<button th:href="@{/books/delete/${id}}" type="submit">Удалить</button>
+<br>
+
+<!--<table>-->
+    <!--<thead>-->
+    <!--<tr>-->
+        <!--<th width="100">ID</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr>-->
+        <!--<td width="100" th:field="${id}"></td>-->
+    <!--</tbody>-->
+<!--</table>-->
+
+<!--<button th:href="@{/books/delete/${id}}" type="submit">Удалить</button>-->
 <!--<a href="addbook.html">Удалить</a>-->
+<!--<form id="edit-form" th:action="@{/books/delete/}+${id}" th:method="POST">-->
+<form id="edit-form" th:action="@{/books/delete/}" th:method="POST">
+    <h3>Удаление книги:</h3>
+    <div class="row">
+        <label for="bookId-input">ID:</label>
+        <!--<input id="bookTitle" type="text" th:value="${book.bookTitle}" value="1"/>-->
+        <input id="bookId-input" type="text" th:field="${bookDto.id}" value="1" />
+    </div>
+    <div class="row">
+        <button width="150" type="submit">Удалить</button>
+    </div>
+</form>
+
 </body>
 </html>

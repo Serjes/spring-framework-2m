@@ -31,17 +31,29 @@ public class PagesController {
     }
 
     @GetMapping("/books")
-    public String booksPage(Model model, int id) {
+//    public String booksPage(Model model, Integer id) {
+    public String booksPage(Model model) {
+//        Integer id = 0;
         List<Book> books = bookRepository.findAll();
         model.addAttribute("books", books);
-        model.addAttribute("id", id);
+        BookDto bookDto = new BookDto();
+        model.addAttribute("bookDto", bookDto);
+//        model.addAttribute("id", id);
         return "books";
     }
 
-    @GetMapping("/books/delete/{id}")
-    public String delete(@PathVariable("id") int id)
+//    @PostMapping("/books/delete/{id}")
+    @PostMapping("/books/delete/")
+    public String delete(
+//            @PathVariable("id") Integer id)
+//            @RequestParam("id") Integer id,
+//            @ModelAttribute("id") Integer id,
+            @ModelAttribute("bookDto") BookDto bookDto,
+//            @RequestAttribute("id") Integer id,
+            Model model)
     {
-        libraryService.delBook(id);
+        libraryService.delBook(bookDto.getId());
+//        libraryService.delBook(id);
         return "redirect:/books";
     }
 
@@ -56,22 +68,6 @@ public class PagesController {
     }
 
 
-//    @RequestMapping(
-//            value = "/person/",
-//            method = RequestMethod.POST
-//    )
-//    public @ResponseBody PersonDto create(
-//            @RequestBody PersonDto dto
-//    ) {
-//        Person account = PersonDto.toDomainObject(dto);
-//        Person accountWithId = repository.save(account);
-//        return PersonDto.toDto(accountWithId);
-//    }
-
-    //    @GetMapping("/authenticated")
-//    public String authenticatedPage() {
-//        return "authenticated";
-//    }
     @RequestMapping(
             value = {"/books/add"},
             method = RequestMethod.POST

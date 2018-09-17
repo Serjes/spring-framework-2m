@@ -1,12 +1,14 @@
 package ru.otus.dz14.shell;
 
 //import org.h2.tools.Console;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import ru.otus.dz14.service.CommentService;
 import ru.otus.dz14.service.LibraryService;
 
+@Ignore
 @ShellComponent
 public class LibraryCommands {
     private final LibraryService libraryService;

@@ -2,9 +2,9 @@ package ru.otus.dz14.service;
 
 public interface CommentService {
 
-    void add(String content, int book);
+    void add(String content, Integer book);
 
-    void listByBook(int bookId);
+    void listByBook(Integer bookId);
 
     void listAllPages();
 }

@@ -3,12 +3,17 @@ package ru.otus.dz14.domain;
 @SuppressWarnings("all")
 public class BookDto {
 
+    private Integer id;
     private String bookTitle;
     private String authorName;
     private String authorLastName;
     private String genre;
 
     public BookDto() {
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getBookTitle() {
@@ -25,6 +30,10 @@ public class BookDto {
 
     public String getGenre() {
         return genre;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setBookTitle(String bookTitle) {

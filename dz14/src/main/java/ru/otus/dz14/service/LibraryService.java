@@ -10,7 +10,7 @@ public interface LibraryService {
 
     void count();
 
-    void delBook(int id);
+    void delBook(Integer id);
 
     void printAuthorId(String name, String lastName);
 

@@ -10,7 +10,9 @@ import ru.otus.dz14.domain.Comment;
 import ru.otus.dz14.repository.BookRepository;
 import ru.otus.dz14.repository.CommentRepository;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 //@Transactional
 @Service
@@ -24,26 +26,33 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional
-    public void add(String content, int bookId) {
-        Book book = bookRepository.findById(bookId);
-        Comment comment = new Comment(content, book);
-        commentRepository.save(comment);
+    public void add(String content, Integer bookId) {
+//        Book book = bookRepository.findById(bookId);
+        Optional<Book> bookOp = bookRepository.findById(bookId);
+        if(bookOp.isPresent()){
+            Comment comment = new Comment(content, bookOp.get());
+            commentRepository.save(comment);
+        }
     }
 
     @Override
     @Transactional(readOnly = true)
-    public void listByBook(int bookId) {
-        Book book = bookRepository.findById(bookId);
-        List<Comment> comments = commentRepository.findAllByBook(book);
-        if (comments.isEmpty()) {
-            System.out.println("нет комментариев к книге \"" + book.getTitle() + "\"");
-            return;
-        }
-        System.out.println("Комментарии к книге \"" + book.getTitle() + "\":");
-        int i = 1;
-        for (Comment comment : comments) {
-            System.out.println(i + ") " + comment.getContent());
-            i++;
+    public void listByBook(Integer bookId) {
+//        Book book = bookRepository.findById(bookId);
+        Optional<Book> bookOp = bookRepository.findById(bookId);
+        if (bookOp.isPresent()){
+
+            List<Comment> comments = commentRepository.findAllByBook(bookOp.get());
+            if (comments.isEmpty()) {
+                System.out.println("нет комментариев к книге \"" + bookOp.get().getTitle() + "\"");
+                return;
+            }
+            System.out.println("Комментарии к книге \"" + bookOp.get().getTitle() + "\":");
+            int i = 1;
+            for (Comment comment : comments) {
+                System.out.println(i + ") " + comment.getContent());
+                i++;
+            }
         }
     }
 
