@@ -6,20 +6,20 @@
         body {
             padding: 50px;
         }
-        .persons, .persons td {
-            border: 1px solid lightgray;
-            padding: 5px;
-        }
+        /*.persons, .persons td {*/
+            /*border: 1px solid lightgray;*/
+            /*padding: 5px;*/
+        /*}*/
     </style>
 </head>
 <body>
 <h1>Библиотека</h1>
-<a th:href="@{books}">Функционал по книгам</a>
+<a th:href="@{/books}">Функционал по книгам</a>
 <br>
-<a th:href="@{authors}">/authors</a>
+<a th:href="@{/authors}">Авторы</a>
 <br>
-<a th:href="@{genres}">/genres</a>
+<a th:href="@{/genres}">Жанры</a>
 <br>
-<a th:href="@{comments}">Комментарии</a>
+<a th:href="@{/comments}">Комментарии</a>
 </body>
 </html>

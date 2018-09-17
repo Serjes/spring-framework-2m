@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Edit person</title>
@@ -13,9 +13,9 @@
             width: 200px;
         }
 
-        input:read-only {
-            background: lightgray;
-        }
+        /*input:read-only {*/
+            /*background: lightgray;*/
+        /*}*/
 
         .row {
             margin-top: 10px;
@@ -23,31 +23,38 @@
     </style>
 </head>
 <body>
-<form id="edit-form" th:action="@{addBook}" th:object="${book}" th:method="post" action="addbook.html">
+<!--<form id="edit-form" th:action="@{/books/add}" th:object="${bookDto}" method="POST" action="addbook.html">-->
+<!--<form id="edit-form" th:action="@{/books/add}" th:object="${bookDto}" method="POST">-->
+<form id="edit-form" th:action="@{/books/add}" th:method="POST">
+<!--<form id="edit-form" th:action="@{/addbook}" th:method="POST">-->
     <h1>Книга:</h1>
 
     <div class="row">
-        <label for="bookTitle">Название:</label>
+        <label for="bookTitle-input">Название:</label>
         <!--<input id="bookTitle" type="text" th:value="${book.bookTitle}" value="1"/>-->
-        <input id="bookTitle" type="text" th:field="*{bookTitle}"/>
+        <input id="bookTitle-input" type="text" th:field="${bookDto.bookTitle}"/>
+        <!--<input id="bookTitle-input" type="text" th:text="${books}"/>-->
     </div>
 
     <div class="row">
         <label for="authorName">Имя автора:</label>
         <!--<input id="authorName" name="namr" type="text" th:value="${book.authorName}" value="John"/>-->
-        <input id="authorName"  type="text"  th:field="*{authorName}"/>
+        <!--<input id="authorName"  type="text"  th:field="*{authorName}"/>-->
+        <input id="authorName" type="text"  th:field="${bookDto.authorName}"/>
     </div>
 
     <div class="row">
         <label for="authorLastName">Фамилия автора:</label>
         <!--<input id="authorLastName" name="namr" type="text" th:value="${book.authorLastName}" value="Doe"/>-->
-        <input id="authorLastName" type="text" th:field="*{authorLastName}"/>
+        <!--<input id="authorLastName" type="text" th:field="*{authorLastName}"/>-->
+        <input id="authorLastName" type="text" th:field="${bookDto.authorLastName}"/>
     </div>
 
     <div class="row">
         <label for="genre">Жанр:</label>
         <!--<input id="genre" name="namr" type="text" th:value="${book.genre}" value="Doe"/>-->
-        <input id="genre"  type="text" th:field="*{genre}"/>
+        <!--<input id="genre"  type="text" th:field="*{genre}"/>-->
+        <input id="genre"  type="text" th:field="${bookDto.genre}"/>
     </div>
 
     <div class="row">

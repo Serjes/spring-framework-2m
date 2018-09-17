@@ -1,5 +1,5 @@
 application:
-  version: 3.0
+  version: 5.0
 spring:
   datasource:
     url: jdbc:postgresql://188.227.18.141:5432/lib_spring_mvc
