@@ -45,12 +45,12 @@
         <td width="150" th:text="${book.author.lastName}" >Doe</td>
         <td width="100" th:text="${book.genre.name}" >fantasy</td>
         <td width="150" >0</td>
-        <td width="50"  ><a th:href="@{/addbook/id=}+${book.id}" href="addbook.html">Изменить</a></td>
+        <td width="50"  ><a th:href="@{/addbook/edit(id=${book.id})}" href="addbook.html">Изменить</a></td>
     </tr>
     </tbody>
 </table>
 <br>
-<a th:href="@{addbook}" href="addbook.html"><h3>Добавить книгу</h3></a>
+<a th:href="@{/addbook}" href="addbook.html"><h3>Добавить книгу</h3></a>
 <!--addbook.html">Добавить книгу</a>-->
 <br>
 <br>

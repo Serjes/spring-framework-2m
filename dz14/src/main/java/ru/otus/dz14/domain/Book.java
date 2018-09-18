@@ -9,7 +9,8 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", nullable = false)
     private Integer id;
 
     @Column(name="title")
@@ -47,8 +48,20 @@ public class Book {
         return title;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     @Override

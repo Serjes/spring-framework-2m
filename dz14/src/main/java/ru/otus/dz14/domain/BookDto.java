@@ -3,7 +3,9 @@ package ru.otus.dz14.domain;
 @SuppressWarnings("all")
 public class BookDto {
 
-    private Integer id;
+//    private Integer id = -1;
+    private Integer id; //= -1;
+//    private Integer id = null; //= -1;
     private String bookTitle;
     private String authorName;
     private String authorLastName;

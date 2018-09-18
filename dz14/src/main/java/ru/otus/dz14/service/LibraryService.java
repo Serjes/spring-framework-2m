@@ -4,7 +4,9 @@ public interface LibraryService {
 
     void addTemplateBook();
 
-    void addBook(String name, String author, String authorLastname, String genre);
+    void addBook(String title, String author, String authorLastname, String genre);
+
+    void updateBook(Integer id, String title, String author, String authorLastName, String genre);
 
     void listBooks();
 

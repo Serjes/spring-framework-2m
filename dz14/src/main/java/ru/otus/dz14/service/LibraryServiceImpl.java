@@ -2,6 +2,7 @@ package ru.otus.dz14.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.dz14.domain.Author;
 import ru.otus.dz14.domain.Book;
@@ -13,7 +14,7 @@ import ru.otus.dz14.repository.GenreRepository;
 import java.util.List;
 import java.util.Optional;
 
-//@Transactional
+@Transactional
 @Service
 public class LibraryServiceImpl implements LibraryService {
 
@@ -33,7 +34,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    @Transactional
+//    @Transactional(propagation = Propagation.REQUIRED)
     public void addBook(String title, String authorName, String authorLastName, String genreName) {
 //        Optional<Author> authorOptional = authorRepository.findByName(authorName);
         Optional<Author> authorOptional = authorRepository.findByFirstNameAndLastName(authorName, authorLastName);
@@ -51,7 +52,38 @@ public class LibraryServiceImpl implements LibraryService {
             genreRepository.save(genre);
         }
         Book book = new Book(title, author, genre);
+//        bookRepository.
         bookRepository.save(book);
+        System.out.println("Сохранили новую книжку");
+    }
+
+    @Override
+    public void updateBook(Integer id, String title, String authorName, String authorLastName, String genreName) {
+        Optional<Book> bookOptional = bookRepository.findById(id);
+        if (bookOptional.isPresent()) {
+            Author author = null;
+            Optional<Author> authorOptional = authorRepository.findByFirstNameAndLastName(authorName, authorLastName);
+            if (!authorOptional.isPresent()){
+                author = new Author(authorName, authorLastName);
+                authorRepository.save(author);
+            } else {
+                author = authorOptional.get();
+            }
+            Genre genre = null;
+            Optional<Genre> genreOptional = Optional.ofNullable(genreRepository.findByName(genreName));
+            if (!genreOptional.isPresent()){
+                genre = new Genre(genreName);
+                genreRepository.save(genre);
+            } else {
+                genre = genreOptional.get();
+            }
+            Book book = bookOptional.get();
+            book.setTitle(title);
+            book.setAuthor(author);
+            book.setGenre(genre);
+            bookRepository.save(book);
+        }
+
     }
 
     @Override
@@ -72,7 +104,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public void delBook(Integer id) {
         bookRepository.deleteById(id);
     }

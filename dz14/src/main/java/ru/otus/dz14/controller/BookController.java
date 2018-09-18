@@ -13,22 +13,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class PagesController {
+public class BookController {
 
     //    @Autowired
     private final BookRepository bookRepository;
     private final LibraryService libraryService;
 
     @Autowired
-    public PagesController(BookRepository bookRepository, LibraryService libraryService) {
+    public BookController(BookRepository bookRepository, LibraryService libraryService) {
         this.bookRepository = bookRepository;
         this.libraryService = libraryService;
-    }
-
-
-    @GetMapping("/")
-    public String indexPage() {
-        return "index";
     }
 
     @GetMapping("/books")
@@ -43,45 +37,10 @@ public class PagesController {
     @PostMapping("/books/delete/")
     public String delete(
             @ModelAttribute("bookDto") BookDto bookDto,
-            Model model)
-    {
+            Model model) {
         libraryService.delBook(bookDto.getId());
         return "redirect:/books";
     }
-
-
-    @GetMapping("/addbook")
-    public String addBookPage(Model model) {
-        BookDto bookDto = new BookDto();
-        model.addAttribute("bookDto", bookDto);
-//        List<Book> books = bookRepository.findAll();
-//        model.addAttribute("books", books);
-        return "addbook";
-    }
-
-    @GetMapping("/addbook/id={id}")
-    public String editBookPage(
-//            @ModelAttribute("bookDto") BookDto bookDto,
-//            @RequestParam("bookDto") BookDto bookDto,
-//            @RequestParam("id") Integer id,
-            @PathVariable("id") Integer id,
-            Model model
-    ) {
-
-        //BookDto bookDto = new BookDto();
-//        model.addAttribute("bookDto", bookDto);
-//        List<Book> books = bookRepository.findAll();
-        Optional<Book> bookOptional = bookRepository.findById(id);
-        if (bookOptional.isPresent()){
-            BookDto bookDto = BookDto.toDto(bookOptional.get());
-            model.addAttribute("bookDto", bookDto);
-        }
-//        bookOptional.ifPresent(book -> model.addAttribute("book", book));
-//        model.addAttribute("books", books);
-//        return "redirect:/books";
-        return "addbook";
-    }
-
 
     @RequestMapping(
             value = {"/books/add"},
@@ -90,26 +49,39 @@ public class PagesController {
     public String saveBook(
             Model model,
             @ModelAttribute("bookDto") BookDto bookDto
+//            @RequestParam("bookDto.bookTitle") BookDto.bookTitle
 //            @RequestBody("bookDto") BookDto bookDto
 //            @RequestAttribute("bookDto") BookDto bookDto
     ) {
 //        Book book = libraryService.
-        libraryService.addBook(bookDto.getBookTitle(),
-                bookDto.getAuthorName(),
-                bookDto.getAuthorLastName(),
-                bookDto.getGenre());
+
+//        libraryService.addBook(bookDto.getBookTitle(),
+//                bookDto.getAuthorName(),
+//                bookDto.getAuthorLastName(),
+//                bookDto.getGenre());
+//        System.out.println("===========" + bookDto.getBookTitle() + bookDto.getAuthorName()
+//                + bookDto.getAuthorLastName() + bookDto.getGenre());
+        libraryService.addBook(bookDto.getBookTitle(),  bookDto.getAuthorName(),
+                bookDto.getAuthorLastName(), bookDto.getGenre());
+
         return "redirect:/books";
     }
 
     @RequestMapping(
             value = {"/books/add/{id}"},
+//            value = {"/books/add"},
             method = RequestMethod.POST
     )
     public String updateBook(
             Model model,
-            @ModelAttribute("bookDto") BookDto bookDto
+            @ModelAttribute("bookDto") BookDto bookDto,
+            @PathVariable("id") Integer id
+//            @RequestParam("id") Integer id
     ) {
-//
+//        System.out.println("===========Update=========");
+        libraryService.updateBook(id, bookDto.getBookTitle(),
+                bookDto.getAuthorName(), bookDto.getAuthorLastName(),
+                bookDto.getGenre());
 //        libraryService.addBook(bookDto.getBookTitle(),
 //                bookDto.getAuthorName(),
 //                bookDto.getAuthorLastName(),

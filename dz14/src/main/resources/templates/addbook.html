@@ -23,9 +23,8 @@
     </style>
 </head>
 <body>
-<!--<form id="edit-form" th:action="@{/books/add}" th:object="${bookDto}" method="POST" action="addbook.html">-->
-<!--<form id="edit-form" th:action="@{/books/add}" th:object="${bookDto}" method="POST">-->
-<form id="edit-form" th:action="@{/books/add/}+(${bookDto.id}?:'')" th:object="${bookDto}" th:method="POST">
+<form id="edit-form" th:action="@{/books/add/}+(${bookDto.id}?:'')" th:object="${bookDto}" th:method="POST" action="books.html">
+<!--<form id="edit-form" th:action="@{/books/add(id=${bookDto.id})}" th:object="${bookDto}" th:method="POST" action="books.html">-->
 <!--<form id="edit-form" th:action="@{/addbook}" th:method="POST">-->
     <h1>Книга:</h1>
 
@@ -54,7 +53,7 @@
     </div>
 
     <div class="row">
-        <button type="submit">Добавить книгу</button>
+        <button type="submit">Сохранить</button>
     </div>
 </form>
 </body>
