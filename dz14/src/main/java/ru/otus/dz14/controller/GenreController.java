@@ -17,40 +17,27 @@ import java.util.List;
 public class GenreController {
 
     private final GenreRepository genreRepository;
-    private final CommentRepository commentRepository;
-    private final BookRepository bookRepository;
+//    private final CommentRepository commentRepository;
+//    private final BookRepository bookRepository;
+
 
     @Autowired
-    public GenreController(GenreRepository genreRepository, CommentRepository commentRepository, BookRepository bookRepository) {
+    public GenreController(GenreRepository genreRepository) {
         this.genreRepository = genreRepository;
-//        this.authorRepository = authorRepository;
-        this.commentRepository = commentRepository;
-        this.bookRepository = bookRepository;
     }
+
+//    @
+//    public GenreController(GenreRepository genreRepository, CommentRepository commentRepository, BookRepository bookRepository) {
+//        this.genreRepository = genreRepository;
+//        this.commentRepository = commentRepository;
+//        this.bookRepository = bookRepository;
+//    }
 
     @GetMapping("/genres")
     public String commentsPage(Model model) {
 
-//        List<Author> authors = authorRepository.findAll();
         List<Genre> genreList = genreRepository.findAll();
-//        Page<Comment> allComments = commentRepository.findAll(PageRequest.of(0, 5));
-//        int totalPages = allComments.getTotalPages();
-//        int pageNumber = 0;
-//        do{
-//            System.out.println("Страница номер " + (pageNumber + 1));
-//            for (Comment comment : allComments
-//            ) {
-//                System.out.println(comment);
-//            }
-//            totalPages--;
-//            pageNumber++;
-//            allComments = commentRepository.findAll(PageRequest.of(pageNumber, 5));
-//        }while(totalPages != 0);
-
-
         model.addAttribute("genres", genreList);
-//        BookDto bookDto = new BookDto();
-//        model.addAttribute("bookDto", bookDto);
         return "genres";
     }
 

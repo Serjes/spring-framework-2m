@@ -13,7 +13,7 @@ import ru.otus.dz14.repository.GenreRepository;
 public class IndexController {
 
     private final BookRepository bookRepository;
-    private final CommentRepository commentRepository;
+//    private final CommentRepository commentRepository;
     private final AuthorRepository authorRepository;
     private final GenreRepository genreRepository;
 
@@ -21,13 +21,13 @@ public class IndexController {
     public IndexController(
             BookRepository bookRepository,
             AuthorRepository authorRepository,
-            GenreRepository genreRepository,
-            CommentRepository commentRepository
+            GenreRepository genreRepository
+//            CommentRepository commentRepository
             ) {
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
         this.genreRepository = genreRepository;
-        this.commentRepository = commentRepository;
+//        this.commentRepository = commentRepository;
     }
 
     @GetMapping("/")
@@ -35,7 +35,7 @@ public class IndexController {
         model.addAttribute("booksCount", bookRepository.count());
         model.addAttribute("authorsCount", authorRepository.count());
         model.addAttribute("genresCount", genreRepository.count());
-        model.addAttribute("commentsCount", commentRepository.count());
+//        model.addAttribute("commentsCount", commentRepository.count());
         return "index";
     }
 }

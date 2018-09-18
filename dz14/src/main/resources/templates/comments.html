@@ -25,7 +25,8 @@
 <body>
 <a th:href="@{/}" href="index.html">Библиотека</a>
 <br>
-<h1>Комментарии:</h1>
+<h1>Комментарий к книге:</h1>
+    <!--<label type="text" th:text="${bookTitle}"></label> :</h1>-->
 
 <table class="comments">
     <thead>
@@ -33,7 +34,8 @@
         <th>ID</th>
         <th>Содержание</th>
         <th>Книга</th>
-        <th>Редактирование</th>
+        <!--<th>Редактирование</th>-->
+        <th>ID book</th>
     </tr>
     </thead>
     <tbody>
@@ -41,12 +43,13 @@
         <td width="30" th:text="${comment.id}" >1</td>
         <td width="150 " th:text="${comment.content}" >Foo</td>
         <td width="150 " th:text="${comment.book.title}" >John</td>
+        <td width="150 " th:text="${comment.book.id}" >John</td>
         <!--<td width="50"  ><a th:href="@{/addbook/edit(id=${book.id})}" href="addbook.html">Изменить</a></td>-->
     </tr>
     </tbody>
 </table>
 <br>
-<!--<a th:href="@{/addbook}" href="addbook.html"><h3>Добавить книгу</h3></a>-->
+<!--<a th:href="@{/addcomment(id=${comment.book.id})}" href="addcomment.html"><h3>Добавить комментарий</h3></a>-->
 <br>
 <br>
 

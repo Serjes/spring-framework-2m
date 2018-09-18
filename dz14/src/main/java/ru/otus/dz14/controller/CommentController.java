@@ -60,6 +60,8 @@ public class CommentController {
         if (optionalBook.isPresent()) {
             List<Comment> allByBook = commentRepository.findAllByBook(optionalBook.get());
             model.addAttribute("comments", allByBook);
+            model.addAttribute("bookTitle", optionalBook.get().getTitle());
+            model.addAttribute("bookId", optionalBook.get().getId());
         }
         return "comments";
     }

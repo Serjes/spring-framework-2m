@@ -6,15 +6,10 @@
         body {
             padding: 50px;
         }
-        /*.persons, .persons td {*/
-            /*border: 1px solid lightgray;*/
-            /*padding: 5px;*/
-        /*}*/
     </style>
 </head>
 <body>
 <h1>Библиотека</h1>
-<!--<a th:href="@{/books}">Функционал по книгам</a>-->
 <a th:href="@{/books}">Книги</a>
  (зарегистрировано на текущий момент:
 <label type="text" th:text=" ${booksCount}"></label>
@@ -30,9 +25,9 @@
 <label type="text" th:text=" ${genresCount}"></label>
 шт.)
 <br>
-<a th:href="@{/comments}">Комментарии</a>
-(
-<label type="text" th:text=" ${commentsCount}"></label>
-шт.)
+<!--<a th:href="@{/comments}">Комментарии</a>-->
+<!--(-->
+<!--<label type="text" th:text=" ${commentsCount}"></label>-->
+<!--шт.)-->
 </body>
 </html>
