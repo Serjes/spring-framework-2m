@@ -14,12 +14,25 @@
 </head>
 <body>
 <h1>Библиотека</h1>
-<a th:href="@{/books}">Функционал по книгам</a>
+<!--<a th:href="@{/books}">Функционал по книгам</a>-->
+<a th:href="@{/books}">Книги</a>
+ (зарегистрировано на текущий момент:
+<label type="text" th:text=" ${booksCount}"></label>
+ шт.)
 <br>
 <a th:href="@{/authors}">Авторы</a>
+(
+<label type="text" th:text=" ${authorsCount}"></label>
+чел.)
 <br>
 <a th:href="@{/genres}">Жанры</a>
+(
+<label type="text" th:text=" ${genresCount}"></label>
+шт.)
 <br>
 <a th:href="@{/comments}">Комментарии</a>
+(
+<label type="text" th:text=" ${commentsCount}"></label>
+шт.)
 </body>
 </html>

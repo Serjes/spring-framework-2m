@@ -49,18 +49,7 @@ public class BookController {
     public String saveBook(
             Model model,
             @ModelAttribute("bookDto") BookDto bookDto
-//            @RequestParam("bookDto.bookTitle") BookDto.bookTitle
-//            @RequestBody("bookDto") BookDto bookDto
-//            @RequestAttribute("bookDto") BookDto bookDto
     ) {
-//        Book book = libraryService.
-
-//        libraryService.addBook(bookDto.getBookTitle(),
-//                bookDto.getAuthorName(),
-//                bookDto.getAuthorLastName(),
-//                bookDto.getGenre());
-//        System.out.println("===========" + bookDto.getBookTitle() + bookDto.getAuthorName()
-//                + bookDto.getAuthorLastName() + bookDto.getGenre());
         libraryService.addBook(bookDto.getBookTitle(),  bookDto.getAuthorName(),
                 bookDto.getAuthorLastName(), bookDto.getGenre());
 
@@ -78,14 +67,9 @@ public class BookController {
             @PathVariable("id") Integer id
 //            @RequestParam("id") Integer id
     ) {
-//        System.out.println("===========Update=========");
         libraryService.updateBook(id, bookDto.getBookTitle(),
                 bookDto.getAuthorName(), bookDto.getAuthorLastName(),
                 bookDto.getGenre());
-//        libraryService.addBook(bookDto.getBookTitle(),
-//                bookDto.getAuthorName(),
-//                bookDto.getAuthorLastName(),
-//                bookDto.getGenre());
         return "redirect:/books";
     }
 }

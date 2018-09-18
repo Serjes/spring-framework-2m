@@ -24,31 +24,25 @@
 </head>
 <body>
 <form id="edit-form" th:action="@{/books/add/}+(${bookDto.id}?:'')" th:object="${bookDto}" th:method="POST" action="books.html">
-<!--<form id="edit-form" th:action="@{/books/add(id=${bookDto.id})}" th:object="${bookDto}" th:method="POST" action="books.html">-->
-<!--<form id="edit-form" th:action="@{/addbook}" th:method="POST">-->
     <h1>Книга:</h1>
 
     <div class="row">
         <label for="bookTitle-input">Название:</label>
-        <!--<input id="bookTitle-input" type="text" th:field="${bookDto.bookTitle}"/>-->
         <input id="bookTitle-input" type="text" th:field="*{bookTitle}"/>
     </div>
 
     <div class="row">
         <label for="authorName">Имя автора:</label>
-        <!--<input id="authorName" type="text"  th:field="${bookDto.authorName}"/>-->
         <input id="authorName" type="text"  th:field="*{authorName}"/>
     </div>
 
     <div class="row">
         <label for="authorLastName">Фамилия автора:</label>
-        <!--<input id="authorLastName" type="text" th:field="${bookDto.authorLastName}"/>-->
         <input id="authorLastName" type="text" th:field="*{authorLastName}"/>
     </div>
 
     <div class="row">
         <label for="genre">Жанр:</label>
-        <!--<input id="genre"  type="text" th:field="${bookDto.genre}"/>-->
         <input id="genre"  type="text" th:field="*{genre}"/>
     </div>
 

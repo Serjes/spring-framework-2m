@@ -23,6 +23,8 @@
     </style>
 </head>
 <body>
+<a th:href="@{/}" href="index.html">Библиотека</a>
+<br>
 <h1>Книги:</h1>
 
 <table class="books">
@@ -44,14 +46,13 @@
         <td width="150 " th:text="${book.author.firstName}" >John</td>
         <td width="150" th:text="${book.author.lastName}" >Doe</td>
         <td width="100" th:text="${book.genre.name}" >fantasy</td>
-        <td width="150" >0</td>
+        <td width="150" ><a th:href="@{/comments/list(id=${book.id})}" href="comments.html">Смотреть</a></td>
         <td width="50"  ><a th:href="@{/addbook/edit(id=${book.id})}" href="addbook.html">Изменить</a></td>
     </tr>
     </tbody>
 </table>
 <br>
 <a th:href="@{/addbook}" href="addbook.html"><h3>Добавить книгу</h3></a>
-<!--addbook.html">Добавить книгу</a>-->
 <br>
 <br>
 
