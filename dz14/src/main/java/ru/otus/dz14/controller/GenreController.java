@@ -20,36 +20,16 @@ public class GenreController {
 //    private final CommentRepository commentRepository;
 //    private final BookRepository bookRepository;
 
-
     @Autowired
     public GenreController(GenreRepository genreRepository) {
         this.genreRepository = genreRepository;
     }
 
-//    @
-//    public GenreController(GenreRepository genreRepository, CommentRepository commentRepository, BookRepository bookRepository) {
-//        this.genreRepository = genreRepository;
-//        this.commentRepository = commentRepository;
-//        this.bookRepository = bookRepository;
-//    }
-
     @GetMapping("/genres")
     public String commentsPage(Model model) {
-
         List<Genre> genreList = genreRepository.findAll();
         model.addAttribute("genres", genreList);
         return "genres";
     }
 
-//    @GetMapping("/comments/list")
-//    public String commentsByBookPage(
-//            @RequestParam("id") Integer id,
-//            Model model){
-//        Optional<Book> optionalBook = bookRepository.findById(id);
-//        if (optionalBook.isPresent()) {
-//            List<Comment> allByBook = commentRepository.findAllByBook(optionalBook.get());
-//            model.addAttribute("comments", allByBook);
-//        }
-//        return "comments";
-//    }
 }

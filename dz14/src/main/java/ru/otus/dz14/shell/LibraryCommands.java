@@ -83,8 +83,8 @@ public class LibraryCommands {
         commentService.listByBook(id);
     }
 
-    @ShellMethod("Показать все комментарии постранично: listcp")
-    public void listcp(){
-        commentService.listAllPages();
-    }
+//    @ShellMethod("Показать все комментарии постранично: listcp")
+//    public void listcp(){
+//        commentService.listAllPages();
+//    }
 }

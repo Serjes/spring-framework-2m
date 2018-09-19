@@ -38,6 +38,10 @@ public class Comment {
         return book;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +

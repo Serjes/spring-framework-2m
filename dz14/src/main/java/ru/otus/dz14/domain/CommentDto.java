@@ -5,15 +5,23 @@ public class CommentDto {
     private Integer id;
     private String commentContent;
     private String bookTitle;
+    private Integer bookId;
 
     public CommentDto() {
     }
 
-    public CommentDto(Integer id, String commentContent, String bookTitle) {
+    public CommentDto(Integer id, String commentContent, String bookTitle, Integer bookId) {
         this.id = id;
         this.commentContent = commentContent;
         this.bookTitle = bookTitle;
+        this.bookId = bookId;
     }
+
+//    public CommentDto(Integer id, String commentContent, String bookTitle) {
+//        this.id = id;
+//        this.commentContent = commentContent;
+//        this.bookTitle = bookTitle;
+//    }
 
 //    public CommentDto(Integer id, String commentContent) {
 //        this.id = id;
@@ -42,5 +50,13 @@ public class CommentDto {
 
     public void setBookTitle(String bookTitle) {
         this.bookTitle = bookTitle;
+    }
+
+    public Integer getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
     }
 }

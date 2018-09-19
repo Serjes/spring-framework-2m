@@ -14,7 +14,7 @@ import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
-//@Transactional
+@Transactional
 @Service
 public class CommentServiceImpl implements CommentService {
 
@@ -25,7 +25,7 @@ public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
 
     @Override
-    @Transactional
+//    @Transactional
     public void add(String content, Integer bookId) {
 //        Book book = bookRepository.findById(bookId);
         Optional<Book> bookOp = bookRepository.findById(bookId);
@@ -56,22 +56,37 @@ public class CommentServiceImpl implements CommentService {
         }
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public void listAllPages() {
+//    @Override
+//    @Transactional(readOnly = true)
+//    public void listAllPages() {
+//
+//        Page<Comment> allComments = commentRepository.findAll(PageRequest.of(0, 5));
+//        int totalPages = allComments.getTotalPages();
+//        int pageNumber = 0;
+//        do{
+//            System.out.println("Страница номер " + (pageNumber + 1));
+//            for (Comment comment : allComments
+//            ) {
+//                System.out.println(comment);
+//            }
+//            totalPages--;
+//            pageNumber++;
+//            allComments = commentRepository.findAll(PageRequest.of(pageNumber, 5));
+//        }while(totalPages != 0);
+//    }
 
-        Page<Comment> allComments = commentRepository.findAll(PageRequest.of(0, 5));
-        int totalPages = allComments.getTotalPages();
-        int pageNumber = 0;
-        do{
-            System.out.println("Страница номер " + (pageNumber + 1));
-            for (Comment comment : allComments
-            ) {
-                System.out.println(comment);
-            }
-            totalPages--;
-            pageNumber++;
-            allComments = commentRepository.findAll(PageRequest.of(pageNumber, 5));
-        }while(totalPages != 0);
+    @Override
+    public void updateComment(Integer id, String commentContent) {
+        Optional<Comment> optionalComment = commentRepository.findById(id);
+        if (optionalComment.isPresent()){
+            Comment comment = optionalComment.get();
+//            System.out.println(comment.getContent() + " id = " + comment.getId());
+            comment.setContent(commentContent);
+            commentRepository.save(comment);
+//            System.out.println("коммент update");
+        }
+//        else {
+//            System.out.println("коммент не update");
+//        }
     }
 }

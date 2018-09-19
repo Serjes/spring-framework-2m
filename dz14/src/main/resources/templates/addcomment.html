@@ -13,25 +13,35 @@
             width: 200px;
         }
 
+        input {
+            width: 300px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
         .row {
             margin-top: 10px;
         }
     </style>
 </head>
 <body>
+<h1>Комментарий к книге <u type="text" th:text="${commentDto.bookTitle}"></u></h1>
+
+<!--<h2><label type="text" th:text="${commentDto.bookTitle}"></label></h2>-->
+
 <form id="edit-form" th:action="@{/comments/add/}+(${commentDto.id}?:'')" th:object="${commentDto}" th:method="POST" action="comments.html">
-    <h1>Комментарий к книге </h1>
-        <label type="text" th:text="*{bookTitle}"></label>
 
     <div class="row">
-        <label for="commentContent-input">Содержание:</label>
+        <label for="commentContent-input">Содержание коментария:</label>
         <input id="commentContent-input" type="text" th:field="*{commentContent}"/>
     </div>
 
-    <!--<div class="row">-->
-        <!--<label for="authorName">Имя автора:</label>-->
-        <!--<input id="authorName" type="text"  th:field="*{authorName}"/>-->
-    <!--</div>-->
+    <div class="row">
+        <label for="bookId-input">ID книги:</label>
+        <input id="bookId-input" readonly="readonly" type="text"  th:field="*{bookId}" />
+    </div>
 
     <!--<div class="row">-->
         <!--<label for="authorLastName">Фамилия автора:</label>-->

@@ -6,5 +6,9 @@ public interface CommentService {
 
     void listByBook(Integer bookId);
 
-    void listAllPages();
+//    void listAllPages();
+
+//    void updateComment(Integer id, String commentContent, Integer bookId);
+
+    void updateComment(Integer id, String commentContent);
 }
