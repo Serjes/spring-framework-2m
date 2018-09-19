@@ -37,7 +37,8 @@ public class BookController {
     @PostMapping("/books/delete/")
     public String delete(
             @ModelAttribute("bookDto") BookDto bookDto,
-            Model model) {
+            Model model
+    ) {
         libraryService.delBook(bookDto.getId());
         return "redirect:/books";
     }

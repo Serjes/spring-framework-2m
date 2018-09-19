@@ -61,12 +61,17 @@ public class CommentController {
     @GetMapping("/comments/list")
     public String commentsByBookPage(
             @RequestParam("id") Integer id,
-            Model model){
+            Model model
+    ) {
         Optional<Book> optionalBook = bookRepository.findById(id);
         if (optionalBook.isPresent()) {
             List<Comment> allByBook = commentRepository.findAllByBook(optionalBook.get());
             model.addAttribute("comments", allByBook);
             model.addAttribute("bookTitle", optionalBook.get().getTitle());
+            CommentDto commentDto = new CommentDto();
+//            commentDto.setBookId(optionalBook.get().getId());
+            commentDto.setBookId(id);
+            model.addAttribute("commentDto", commentDto);
             model.addAttribute("bookId", optionalBook.get().getId());
         }
         return "comments";
@@ -100,5 +105,20 @@ public class CommentController {
         return "redirect:/comments/list?id=" + commentDto.getBookId();
 //        System.out.println(ret);
 //        return ret;
+    }
+
+    @PostMapping("/comments/delete/")
+    public String delete(
+            @ModelAttribute("commentDto") CommentDto commentDto,
+            Model model
+    ) {
+//        libraryService.delBook(bookDto.getId());
+        Optional<Comment> optionalComment = commentRepository.findById(commentDto.getId());
+        if (optionalComment.isPresent()){
+            commentRepository.delete(optionalComment.get());
+        }
+        int id = optionalComment.get().getBook().getId();
+//        return "redirect:/comments/list?id=" + commentDto.getBookId();
+        return "redirect:/comments/list?id=" + id;
     }
 }

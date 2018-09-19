@@ -8,7 +8,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   shell:
     interactive:
-      enabled: false
+      enabled: true
   jpa:
     properties:
       hibernate:

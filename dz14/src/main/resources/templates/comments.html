@@ -54,16 +54,16 @@
 <br>
 <br>
 
-<!--<form id="edit-form" th:action="@{/books/delete/}" th:method="POST">-->
-    <!--<h3>Удаление книги:</h3>-->
-    <!--<div class="row">-->
-        <!--<label for="bookId-input">ID:</label>-->
-        <!--<input id="bookId-input" type="text" th:field="${bookDto.id}" value="1" />-->
-    <!--</div>-->
-    <!--<div class="row">-->
-        <!--<button width="150" type="submit">Удалить</button>-->
-    <!--</div>-->
-<!--</form>-->
+<form id="edit-form" th:action="@{/comments/delete/}" th:method="POST">
+    <h3>Удаление комментария:</h3>
+    <div class="row">
+        <label for="commentId-input">ID:</label>
+        <input id="commentId-input" type="text" th:field="${commentDto.id}" value="1" />
+    </div>
+    <div class="row">
+        <button width="150" type="submit">Удалить</button>
+    </div>
+</form>
 
 </body>
 </html>
