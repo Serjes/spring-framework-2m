@@ -17,9 +17,6 @@
             width: 100px;
         }
 
-        .row {
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
@@ -33,7 +30,6 @@
         <th>ID</th>
         <th>Имя</th>
         <th>Фамилия</th>
-        <!--<th>Редактирование</th>-->
     </tr>
     </thead>
     <tbody>
@@ -41,7 +37,6 @@
         <td width="30" th:text="${author.id}" >1</td>
         <td width="150 " th:text="${author.firstName}" >Foo</td>
         <td width="150 " th:text="${author.lastName}" >John</td>
-        <!--<td width="50"  ><a th:href="@{/addbook/edit(id=${book.id})}" href="addbook.html">Изменить</a></td>-->
     </tr>
     </tbody>
 </table>

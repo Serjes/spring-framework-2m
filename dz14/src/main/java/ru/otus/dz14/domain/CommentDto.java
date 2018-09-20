@@ -17,17 +17,6 @@ public class CommentDto {
         this.bookId = bookId;
     }
 
-//    public CommentDto(Integer id, String commentContent, String bookTitle) {
-//        this.id = id;
-//        this.commentContent = commentContent;
-//        this.bookTitle = bookTitle;
-//    }
-
-//    public CommentDto(Integer id, String commentContent) {
-//        this.id = id;
-//        this.commentContent = commentContent;
-//    }
-
     public Integer getId() {
         return id;
     }

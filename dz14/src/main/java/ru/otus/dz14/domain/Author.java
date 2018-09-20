@@ -12,7 +12,6 @@ public class Author {
     @Column(name="id")
     private int id;
 
-//    private String name;
     @Column(name="firstName")
     private String firstName;
     @Column(name="lastName")
@@ -29,18 +28,9 @@ public class Author {
         this.lastName = lastName;
     }
 
-    //    public Author(String name) {
-//        this.name = name;
-//    }
-
     public int getId() {
         return id;
     }
-
-//    public String getName() {
-//        return name;
-//    }
-
 
     public String getFirstName() {
         return firstName;
@@ -48,5 +38,17 @@ public class Author {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

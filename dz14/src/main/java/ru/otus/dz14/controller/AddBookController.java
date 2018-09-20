@@ -25,17 +25,12 @@ public class AddBookController {
     public String addBookPage(Model model) {
         BookDto bookDto = new BookDto();
         model.addAttribute("bookDto", bookDto);
-//        List<Book> books = bookRepository.findAll();
-//        model.addAttribute("books", books);
         return "addbook";
     }
 
     @GetMapping("/addbook/edit")
     public String editBookPage(
-//            @ModelAttribute("bookDto") BookDto bookDto,
-//            @RequestParam("bookDto") BookDto bookDto,
             @RequestParam("id") Integer id,
-//            @PathVariable("id") Integer id,
             Model model
     ) {
         Optional<Book> bookOptional = bookRepository.findById(id);
@@ -43,9 +38,6 @@ public class AddBookController {
             BookDto bookDto = BookDto.toDto(bookOptional.get());
             model.addAttribute("bookDto", bookDto);
         }
-//        bookOptional.ifPresent(book -> model.addAttribute("book", book));
-//        model.addAttribute("books", books);
-//        return "redirect:/books";
         return "addbook";
     }
 }

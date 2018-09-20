@@ -29,8 +29,6 @@
 <body>
 <h1>Комментарий к книге <u type="text" th:text="${commentDto.bookTitle}"></u></h1>
 
-<!--<h2><label type="text" th:text="${commentDto.bookTitle}"></label></h2>-->
-
 <form id="edit-form" th:action="@{/comments/add/}+(${commentDto.id}?:'')" th:object="${commentDto}" th:method="POST" action="comments.html">
 
     <div class="row">
@@ -42,16 +40,6 @@
         <label for="bookId-input">ID книги:</label>
         <input id="bookId-input" readonly="readonly" type="text"  th:field="*{bookId}" />
     </div>
-
-    <!--<div class="row">-->
-        <!--<label for="authorLastName">Фамилия автора:</label>-->
-        <!--<input id="authorLastName" type="text" th:field="*{authorLastName}"/>-->
-    <!--</div>-->
-
-    <!--<div class="row">-->
-        <!--<label for="genre">Жанр:</label>-->
-        <!--<input id="genre"  type="text" th:field="*{genre}"/>-->
-    <!--</div>-->
 
     <div class="row">
         <button type="submit">Сохранить</button>

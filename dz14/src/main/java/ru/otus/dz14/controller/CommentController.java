@@ -1,13 +1,10 @@
 package ru.otus.dz14.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.otus.dz14.domain.Book;
-import ru.otus.dz14.domain.BookDto;
 import ru.otus.dz14.domain.Comment;
 import ru.otus.dz14.domain.CommentDto;
 import ru.otus.dz14.repository.BookRepository;
@@ -33,28 +30,8 @@ public class CommentController {
 
     @GetMapping("/comments")
     public String commentsPage(Model model) {
-//        List<Book> books = bookRepository.findAll();
-
-//        Page<Comment> allComments = commentRepository.findAll();
         List<Comment> allComments = commentRepository.findAll();
-//        Page<Comment> allComments = commentRepository.findAll(PageRequest.of(0, 5));
-//        int totalPages = allComments.getTotalPages();
-//        int pageNumber = 0;
-//        do{
-//            System.out.println("Страница номер " + (pageNumber + 1));
-//            for (Comment comment : allComments
-//            ) {
-//                System.out.println(comment);
-//            }
-//            totalPages--;
-//            pageNumber++;
-//            allComments = commentRepository.findAll(PageRequest.of(pageNumber, 5));
-//        }while(totalPages != 0);
-
-
         model.addAttribute("comments", allComments);
-//        BookDto bookDto = new BookDto();
-//        model.addAttribute("bookDto", bookDto);
         return "comments";
     }
 
@@ -69,7 +46,6 @@ public class CommentController {
             model.addAttribute("comments", allByBook);
             model.addAttribute("bookTitle", optionalBook.get().getTitle());
             CommentDto commentDto = new CommentDto();
-//            commentDto.setBookId(optionalBook.get().getId());
             commentDto.setBookId(id);
             model.addAttribute("commentDto", commentDto);
             model.addAttribute("bookId", optionalBook.get().getId());
@@ -82,11 +58,9 @@ public class CommentController {
             method = RequestMethod.POST
     )
     public String saveBook(
-            Model model,
             @ModelAttribute("commentDto") CommentDto commentDto
     ) {
         commentService.add(commentDto.getCommentContent(), commentDto.getBookId());
-//        System.out.println("saveBook()");
         return "redirect:/comments/list?id=" + commentDto.getBookId();
     }
 
@@ -95,30 +69,22 @@ public class CommentController {
             method = RequestMethod.POST
     )
     public String updateBook(
-            //Model model,
             @ModelAttribute("commentDto") CommentDto commentDto,
             @PathVariable("id") Integer id
-//            @RequestParam("id") Integer id
     ) {
         commentService.updateComment(id, commentDto.getCommentContent());
-//        String ret = "redirect:/comments/list?id=" + commentDto.getBookId();
         return "redirect:/comments/list?id=" + commentDto.getBookId();
-//        System.out.println(ret);
-//        return ret;
     }
 
     @PostMapping("/comments/delete/")
     public String delete(
-            @ModelAttribute("commentDto") CommentDto commentDto,
-            Model model
+            @ModelAttribute("commentDto") CommentDto commentDto
     ) {
-//        libraryService.delBook(bookDto.getId());
         Optional<Comment> optionalComment = commentRepository.findById(commentDto.getId());
         if (optionalComment.isPresent()){
             commentRepository.delete(optionalComment.get());
         }
         int id = optionalComment.get().getBook().getId();
-//        return "redirect:/comments/list?id=" + commentDto.getBookId();
         return "redirect:/comments/list?id=" + id;
     }
 }

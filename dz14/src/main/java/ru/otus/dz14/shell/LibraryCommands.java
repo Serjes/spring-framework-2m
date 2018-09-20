@@ -1,6 +1,5 @@
 package ru.otus.dz14.shell;
 
-//import org.h2.tools.Console;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -31,7 +30,6 @@ public class LibraryCommands {
     }
 
     @ShellMethod("Добавить шаблонную книгу")
-//    @ShellMethod("Add one template book")
     public void addtemp() {
         libraryService.addTemplateBook();
         System.out.println("Добавляем книгу: \"Азазель\", Акунин, детектив");
@@ -83,8 +81,4 @@ public class LibraryCommands {
         commentService.listByBook(id);
     }
 
-//    @ShellMethod("Показать все комментарии постранично: listcp")
-//    public void listcp(){
-//        commentService.listAllPages();
-//    }
 }

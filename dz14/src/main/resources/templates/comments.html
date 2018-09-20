@@ -26,8 +26,6 @@
 <a th:href="@{/}" href="index.html">Библиотека</a>
 <br>
 <h1>Комментарии к книге:</h1>
-    <!--<label type="text" th:text="${bookTitle}"></label> :</h1>-->
-
 <table class="comments">
     <thead>
     <tr>
@@ -43,8 +41,6 @@
         <td width="30" th:text="${comment.id}" ></td>
         <td width="350" th:text="${comment.content}" ></td>
         <td width="150" th:text="${comment.book.title}" ></td>
-        <!--<td width="150 " th:text="${comment.book.id}" >John</td>-->
-        <!--<td width="50"  ><a th:href="@{/addbook/edit(id=${book.id})}" href="addbook.html">Изменить</a></td>-->
         <td width="50"  ><a th:href="@{/addcomment/edit(id=${comment.id})}" href="addcomment.html">Изменить</a></td>
     </tr>
     </tbody>

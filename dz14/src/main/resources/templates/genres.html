@@ -32,21 +32,16 @@
     <tr>
         <th>ID</th>
         <th>Название жанра</th>
-        <!--<th>Книга</th>-->
-        <!--<th>Редактирование</th>-->
     </tr>
     </thead>
     <tbody>
     <tr th:each="genre : ${genres}">
         <td width="50" th:text="${genre.id}" >1</td>
         <td width="250 " th:text="${genre.name}" >Foo</td>
-        <!--<td width="150 " th:text="${comment.book.title}" >John</td>-->
-        <!--<td width="50"  ><a th:href="@{/addbook/edit(id=${book.id})}" href="addbook.html">Изменить</a></td>-->
     </tr>
     </tbody>
 </table>
 <br>
-<!--<a th:href="@{/addbook}" href="addbook.html"><h3>Добавить книгу</h3></a>-->
 <br>
 <br>
 

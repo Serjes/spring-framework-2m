@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.otus.dz14.repository.AuthorRepository;
 import ru.otus.dz14.repository.BookRepository;
-import ru.otus.dz14.repository.CommentRepository;
 import ru.otus.dz14.repository.GenreRepository;
 
 @Controller

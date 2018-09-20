@@ -15,7 +15,6 @@ import java.util.Optional;
 @Controller
 public class BookController {
 
-    //    @Autowired
     private final BookRepository bookRepository;
     private final LibraryService libraryService;
 
@@ -36,8 +35,7 @@ public class BookController {
 
     @PostMapping("/books/delete/")
     public String delete(
-            @ModelAttribute("bookDto") BookDto bookDto,
-            Model model
+            @ModelAttribute("bookDto") BookDto bookDto
     ) {
         libraryService.delBook(bookDto.getId());
         return "redirect:/books";
@@ -48,7 +46,6 @@ public class BookController {
             method = RequestMethod.POST
     )
     public String saveBook(
-            Model model,
             @ModelAttribute("bookDto") BookDto bookDto
     ) {
         libraryService.addBook(bookDto.getBookTitle(),  bookDto.getAuthorName(),
@@ -59,14 +56,12 @@ public class BookController {
 
     @RequestMapping(
             value = {"/books/add/{id}"},
-//            value = {"/books/add"},
             method = RequestMethod.POST
     )
     public String updateBook(
             Model model,
             @ModelAttribute("bookDto") BookDto bookDto,
             @PathVariable("id") Integer id
-//            @RequestParam("id") Integer id
     ) {
         libraryService.updateBook(id, bookDto.getBookTitle(),
                 bookDto.getAuthorName(), bookDto.getAuthorLastName(),

@@ -17,8 +17,6 @@ import java.util.List;
 public class GenreController {
 
     private final GenreRepository genreRepository;
-//    private final CommentRepository commentRepository;
-//    private final BookRepository bookRepository;
 
     @Autowired
     public GenreController(GenreRepository genreRepository) {

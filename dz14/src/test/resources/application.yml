@@ -1,5 +1,5 @@
 application:
-  version: 3.0t
+  version: 5.0t
 spring:
   shell:
     interactive:

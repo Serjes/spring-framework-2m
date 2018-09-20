@@ -35,36 +35,8 @@ public class AuthorController {
     public String commentsPage(Model model) {
 
         List<Author> authors = authorRepository.findAll();
-//        Page<Comment> allComments = commentRepository.findAll(PageRequest.of(0, 5));
-//        int totalPages = allComments.getTotalPages();
-//        int pageNumber = 0;
-//        do{
-//            System.out.println("Страница номер " + (pageNumber + 1));
-//            for (Comment comment : allComments
-//            ) {
-//                System.out.println(comment);
-//            }
-//            totalPages--;
-//            pageNumber++;
-//            allComments = commentRepository.findAll(PageRequest.of(pageNumber, 5));
-//        }while(totalPages != 0);
-
-
         model.addAttribute("authors", authors);
-//        BookDto bookDto = new BookDto();
-//        model.addAttribute("bookDto", bookDto);
         return "authors";
     }
 
-//    @GetMapping("/comments/list")
-//    public String commentsByBookPage(
-//            @RequestParam("id") Integer id,
-//            Model model){
-//        Optional<Book> optionalBook = bookRepository.findById(id);
-//        if (optionalBook.isPresent()) {
-//            List<Comment> allByBook = commentRepository.findAllByBook(optionalBook.get());
-//            model.addAttribute("comments", allByBook);
-//        }
-//        return "comments";
-//    }
 }

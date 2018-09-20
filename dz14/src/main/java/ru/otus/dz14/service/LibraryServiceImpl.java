@@ -34,13 +34,10 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-//    @Transactional(propagation = Propagation.REQUIRED)
     public void addBook(String title, String authorName, String authorLastName, String genreName) {
-//        Optional<Author> authorOptional = authorRepository.findByName(authorName);
         Optional<Author> authorOptional = authorRepository.findByFirstNameAndLastName(authorName, authorLastName);
         Author author;
         if (!authorOptional.isPresent()) {
-//            author = new Author(authorName);
             author = new Author(authorName, authorLastName);
             authorRepository.save(author);
         } else {
@@ -52,7 +49,6 @@ public class LibraryServiceImpl implements LibraryService {
             genreRepository.save(genre);
         }
         Book book = new Book(title, author, genre);
-//        bookRepository.
         bookRepository.save(book);
         System.out.println("Сохранили новую книжку");
     }
@@ -104,7 +100,6 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-//    @Transactional
     public void delBook(Integer id) {
         bookRepository.deleteById(id);
     }
@@ -116,7 +111,6 @@ public class LibraryServiceImpl implements LibraryService {
         String authorNotFound = authorOptional.map(a -> "author ID: " + a.getId())
                 .orElse("Такой автор не найден");
         System.out.println(authorNotFound);
-//        System.out.println("id: " + authorRepository.findByName(name).getId());
     }
 
     @Override
