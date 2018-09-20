@@ -84,19 +84,33 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     @Transactional(readOnly = true)
-    public void listBooks() {
-        List<Book> books = bookRepository.findAll();
-        for (Book book : books) {
-            System.out.println("ID:" + book.getId() + " название: \"" + book.getTitle() + "\", автор: "
-                    + book.getAuthor().getFirstName() + " " + book.getAuthor().getLastName()
-                    + ", жанр: " + book.getGenre().getName());
-        }
+    public List<Book> listBooks() {
+        return bookRepository.findAll();
+
     }
 
     @Override
     @Transactional(readOnly = true)
-    public void count() {
-        System.out.println(bookRepository.count());
+    public long count() {
+        return bookRepository.count();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public long countAuthors() {
+        return authorRepository.count();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public long countGenres() {
+        return genreRepository.count();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Book> findBookById(Integer id) {
+        return bookRepository.findById(id);
     }
 
     @Override
@@ -115,11 +129,13 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     @Transactional(readOnly = true)
-    public void listAuthors() {
-        List<Author> authors = authorRepository.findAll();
-        for (Author author : authors) {
-            System.out.println("ID:" + author.getId() + " автор: " + author.getFirstName() + " " + author.getLastName());
-        }
+    public List<Author> listAuthors() {
+        return authorRepository.findAll();
+    }
+
+    @Override
+    public List<Genre> listGenres() {
+        return genreRepository.findAll();
     }
 
 }

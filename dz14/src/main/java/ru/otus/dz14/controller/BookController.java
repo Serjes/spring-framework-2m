@@ -15,18 +15,24 @@ import java.util.Optional;
 @Controller
 public class BookController {
 
-    private final BookRepository bookRepository;
+//    private final BookRepository bookRepository;
     private final LibraryService libraryService;
 
     @Autowired
-    public BookController(BookRepository bookRepository, LibraryService libraryService) {
-        this.bookRepository = bookRepository;
+    public BookController(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 
+//    @Autowired
+//    public BookController(BookRepository bookRepository, LibraryService libraryService) {
+//        this.bookRepository = bookRepository;
+//        this.libraryService = libraryService;
+//    }
+
     @GetMapping("/books")
     public String booksPage(Model model) {
-        List<Book> books = bookRepository.findAll();
+//        List<Book> books = bookRepository.findAll();
+        List<Book> books = libraryService.listBooks();
         model.addAttribute("books", books);
         BookDto bookDto = new BookDto();
         model.addAttribute("bookDto", bookDto);

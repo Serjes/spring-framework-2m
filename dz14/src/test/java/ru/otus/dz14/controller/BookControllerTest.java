@@ -97,7 +97,7 @@ public class BookControllerTest {
     @Test
     public void booksPage() throws Exception {
         List<Book> books = Arrays.asList(book);
-        Mockito.when(bookRepository.findAll()).thenReturn(books);
+        Mockito.when(libraryService.listBooks()).thenReturn(books);
         mvc.perform(get("/books"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(matcher))

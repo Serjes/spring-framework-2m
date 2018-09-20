@@ -8,17 +8,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.otus.dz14.domain.Book;
 import ru.otus.dz14.domain.BookDto;
 import ru.otus.dz14.repository.BookRepository;
+import ru.otus.dz14.service.LibraryService;
 
 import java.util.Optional;
 
 @Controller
 public class AddBookController {
 
-    private final BookRepository bookRepository;
+    private final LibraryService libraryService;
 
     @Autowired
-    public AddBookController(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public AddBookController(LibraryService libraryService) {
+        this.libraryService = libraryService;
     }
 
     @GetMapping("/addbook")
@@ -33,7 +34,7 @@ public class AddBookController {
             @RequestParam("id") Integer id,
             Model model
     ) {
-        Optional<Book> bookOptional = bookRepository.findById(id);
+        Optional<Book> bookOptional = libraryService.findBookById(id);
         if (bookOptional.isPresent()) {
             BookDto bookDto = BookDto.toDto(bookOptional.get());
             model.addAttribute("bookDto", bookDto);

@@ -1,5 +1,13 @@
 package ru.otus.dz14.service;
 
+import ru.otus.dz14.domain.Author;
+import ru.otus.dz14.domain.Book;
+import ru.otus.dz14.domain.Comment;
+import ru.otus.dz14.domain.Genre;
+
+import java.util.List;
+import java.util.Optional;
+
 public interface LibraryService {
 
     void addTemplateBook();
@@ -8,13 +16,23 @@ public interface LibraryService {
 
     void updateBook(Integer id, String title, String author, String authorLastName, String genre);
 
-    void listBooks();
+    List<Book> listBooks();
 
-    void count();
+    List<Author> listAuthors();
+
+    List<Genre> listGenres();
+
+    long count();
+
+    long countAuthors();
+
+    long countGenres();
+
+    Optional<Book> findBookById(Integer id);
 
     void delBook(Integer id);
 
     void printAuthorId(String name, String lastName);
 
-    void listAuthors();
+//    void listAuthors();
 }

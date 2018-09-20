@@ -17,7 +17,6 @@ public class PersistenceContext {
     @Autowired
     public Environment env;
 
-//    @Bean(destroyMethod = "close")
     @Bean
     DataSource dataSource() {
         HikariConfig dataSourceConfig = new HikariConfig();

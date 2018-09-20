@@ -4,8 +4,14 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
+import ru.otus.dz14.domain.Author;
+import ru.otus.dz14.domain.Book;
+import ru.otus.dz14.domain.Comment;
 import ru.otus.dz14.service.CommentService;
 import ru.otus.dz14.service.LibraryService;
+
+import java.util.List;
+import java.util.Optional;
 
 @Ignore
 @ShellComponent
@@ -47,12 +53,18 @@ public class LibraryCommands {
 
     @ShellMethod("Показать все книги в библиотеке")
     public void list(){
-        libraryService.listBooks();
+        List<Book> books = libraryService.listBooks();
+        for (Book book : books) {
+            System.out.println("ID:" + book.getId() + " название: \"" + book.getTitle() + "\", автор: "
+                    + book.getAuthor().getFirstName() + " " + book.getAuthor().getLastName()
+                    + ", жанр: " + book.getGenre().getName());
+        }
     }
 
     @ShellMethod("Вывести количество книг в библитеке")
     public void count(){
-        libraryService.count();
+        long number = libraryService.count();
+        System.out.println(number);
     }
 
     @ShellMethod("Удалить книгу по номеру ID: del id_number")
@@ -63,7 +75,10 @@ public class LibraryCommands {
 
     @ShellMethod("Показать всех авторов книг в библиотеке")
     public void lista(){
-        libraryService.listAuthors();
+        List<Author> authors = libraryService.listAuthors();
+        for (Author author : authors) {
+            System.out.println("ID:" + author.getId() + " автор: " + author.getFirstName() + " " + author.getLastName());
+        }
     }
 
     @ShellMethod("Показать ID автора по имени: showaid name last_name")
@@ -78,7 +93,31 @@ public class LibraryCommands {
     public void listc(
             @ShellOption int id
     ){
-        commentService.listByBook(id);
+        List<Comment> comments = commentService.listCommentsByBook(id);
+
+        if (!comments.isEmpty()) {
+            System.out.println("Комментарии к книге:");
+            int i = 1;
+            for (Comment comment : comments) {
+                System.out.println(i + ") " + comment.getContent());
+                i++;
+            }
+        }
+//        Optional<Book> bookOp = bookRepository.findById(bookId);
+//        if (bookOp.isPresent()){
+//
+//            List<Comment> comments = commentRepository.findAllByBook(bookOp.get());
+//            if (comments.isEmpty()) {
+//                System.out.println("нет комментариев к книге \"" + bookOp.get().getTitle() + "\"");
+//                return;
+//            }
+//            System.out.println("Комментарии к книге \"" + bookOp.get().getTitle() + "\":");
+//            int i = 1;
+//            for (Comment comment : comments) {
+//                System.out.println(i + ") " + comment.getContent());
+//                i++;
+//            }
+//        }
     }
 
 }

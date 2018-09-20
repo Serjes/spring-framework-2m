@@ -8,21 +8,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.otus.dz14.domain.Book;
 import ru.otus.dz14.domain.Comment;
 import ru.otus.dz14.domain.CommentDto;
-import ru.otus.dz14.repository.BookRepository;
 import ru.otus.dz14.repository.CommentRepository;
+import ru.otus.dz14.service.CommentService;
+import ru.otus.dz14.service.LibraryService;
 
 import java.util.Optional;
 
 @Controller
 public class AddCommentController {
 
-    private final BookRepository bookRepository;
-    private final CommentRepository commentRepository;
+    private final CommentService commentService;
+    private final LibraryService libraryService;
 
     @Autowired
-    public AddCommentController(BookRepository bookRepository, CommentRepository commentRepository) {
-        this.bookRepository = bookRepository;
-        this.commentRepository = commentRepository;
+    public AddCommentController(CommentService commentService, LibraryService libraryService) {
+        this.commentService = commentService;
+//        this.bookRepository = bookRepository;
+//        this.commentRepository = commentRepository;
+        this.libraryService = libraryService;
     }
 
     @GetMapping("/addcomment")
@@ -31,7 +34,7 @@ public class AddCommentController {
             @RequestParam("id") Integer id
     ) {
         CommentDto commentDto = new CommentDto();
-        Optional<Book> optionalBook = bookRepository.findById(id);
+        Optional<Book> optionalBook = libraryService.findBookById(id);
         if (optionalBook.isPresent()){
             commentDto.setBookTitle(optionalBook.get().getTitle());
             commentDto.setBookId(optionalBook.get().getId());
@@ -47,7 +50,7 @@ public class AddCommentController {
             Model model
     ) {
         CommentDto commentDto = new CommentDto();
-        Optional<Comment> optionalComment = commentRepository.findById(id);
+        Optional<Comment> optionalComment = commentService.findCommentById(id);
         if(optionalComment.isPresent()) {
             commentDto.setCommentContent(optionalComment.get().getContent());
             commentDto.setBookId(optionalComment.get().getBook().getId());
