@@ -21,7 +21,6 @@ public class GenreController {
 
     @GetMapping("/genres")
     public String commentsPage(Model model) {
-//        List<Genre> genreList = genreRepository.findAll();
         List<Genre> genreList = libraryService.listGenres();
         model.addAttribute("genres", genreList);
         return "genres";

@@ -23,8 +23,6 @@ public class AddCommentController {
     @Autowired
     public AddCommentController(CommentService commentService, LibraryService libraryService) {
         this.commentService = commentService;
-//        this.bookRepository = bookRepository;
-//        this.commentRepository = commentRepository;
         this.libraryService = libraryService;
     }
 

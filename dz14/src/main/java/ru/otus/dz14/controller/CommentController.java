@@ -16,10 +16,6 @@ import java.util.Optional;
 @Controller
 public class CommentController {
 
-//    private final CommentRepository commentRepository;
-//    private final BookRepository bookRepository;
-//    private final CommentService commentService;
-
     private final CommentService commentService;
     private final LibraryService libraryService;
 
@@ -28,13 +24,6 @@ public class CommentController {
         this.commentService = commentService;
         this.libraryService = libraryService;
     }
-
-//    @Autowired
-//    public CommentController(CommentRepository commentRepository, BookRepository bookRepository, CommentService commentService) {
-//        this.commentRepository = commentRepository;
-//        this.bookRepository = bookRepository;
-//        this.commentService = commentService;
-//    }
 
     @GetMapping("/comments")
     public String commentsPage(Model model) {
@@ -50,7 +39,6 @@ public class CommentController {
     ) {
         Optional<Book> optionalBook = libraryService.findBookById(id);
         if (optionalBook.isPresent()) {
-//            List<Comment> allByBook = commentRepository.findAllByBook(optionalBook.get());
             List<Comment> allByBook = commentService.listCommentsByBook(id);
             model.addAttribute("comments", allByBook);
             model.addAttribute("bookTitle", optionalBook.get().getTitle());
@@ -89,11 +77,6 @@ public class CommentController {
     public String delete(
             @ModelAttribute("commentDto") CommentDto commentDto
     ) {
-//        Optional<Comment> optionalComment = commentRepository.findById(commentDto.getId());
-//        Optional<Comment> optionalComment = commentService.findCommentById(commentDto.getId());
-//        if (optionalComment.isPresent()){
-//            commentRepository.delete(optionalComment.get());
-//        }
         Optional<Comment> optionalComment = commentService.findCommentById(commentDto.getId());
         int id = optionalComment.get().getBook().getId();
         commentService.deleteComment(commentDto.getId());
