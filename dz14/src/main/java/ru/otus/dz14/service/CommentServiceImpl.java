@@ -45,20 +45,7 @@ public class CommentServiceImpl implements CommentService {
 
         Optional<Book> bookOp = bookRepository.findById(bookId);
         if (bookOp.isPresent()){
-
-//            List<Comment> comments = commentRepository.findAllByBook(bookOp.get());
-//            if (comments.isEmpty()) {
-//                System.out.println("нет комментариев к книге \"" + bookOp.get().getTitle() + "\"");
-//                return;
-//            }
-
             return commentRepository.findAllByBook(bookOp.get());
-//            System.out.println("Комментарии к книге \"" + bookOp.get().getTitle() + "\":");
-//            int i = 1;
-//            for (Comment comment : comments) {
-//                System.out.println(i + ") " + comment.getContent());
-//                i++;
-//            }
         }
         return null;
     }

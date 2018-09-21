@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.otus.dz14.domain.Book;
 import ru.otus.dz14.domain.Comment;
 import ru.otus.dz14.domain.CommentDto;
-import ru.otus.dz14.repository.CommentRepository;
 import ru.otus.dz14.service.CommentService;
 import ru.otus.dz14.service.LibraryService;
 
@@ -43,7 +42,7 @@ public class AddCommentController {
     }
 
     @GetMapping("/addcomment/edit")
-    public String editBookPage(
+    public String editCommentPage(
             @RequestParam("id") Integer id,
             Model model
     ) {

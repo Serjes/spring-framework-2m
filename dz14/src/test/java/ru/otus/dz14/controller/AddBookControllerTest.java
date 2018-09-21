@@ -46,11 +46,11 @@ public class AddBookControllerTest {
     public static class TestConf {
     }
 
-    BookDto bookDto;
+    private BookDto bookDto;
     private Author author;
     private Genre genre;
     private Book book;
-    List<Book> books;
+    private List<Book> books;
 
     @Before
     public void setUp() throws Exception {
@@ -61,17 +61,13 @@ public class AddBookControllerTest {
         genre.setId(1);
         book = new Book("Война и мир", author, genre);
         book.setId(1);
-//        comment = new Comment("Эпично, но слишком затянуто.", book);
         books = Arrays.asList(book);
     }
 
     @Test
     public void addBookPage() throws Exception {
-//        Mockito.when(libraryService.listBooks()).thenReturn(books);
         mvc.perform(get("/addbook"))
                 .andExpect(status().isOk());
-//                .andExpect(content().string(containsString(book.getTitle())))
-//                .andExpect(view().name("books"));
     }
 
     @Test

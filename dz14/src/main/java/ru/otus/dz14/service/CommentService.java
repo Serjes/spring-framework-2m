@@ -1,6 +1,5 @@
 package ru.otus.dz14.service;
 
-import ru.otus.dz14.domain.Book;
 import ru.otus.dz14.domain.Comment;
 
 import java.util.List;

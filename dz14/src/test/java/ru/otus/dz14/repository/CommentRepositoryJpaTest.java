@@ -14,14 +14,13 @@ import ru.otus.dz14.domain.Book;
 import ru.otus.dz14.domain.Comment;
 import ru.otus.dz14.domain.Genre;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @Transactional
-//@Transactional(propagation = Propagation.NOT_SUPPORTED)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class CommentRepositoryJpaTest {
 
@@ -34,19 +33,19 @@ public class CommentRepositoryJpaTest {
     @Test
     public void whenGetAllByBook_thenReturnComment(){
 
-//        Author author = new Author("Б.Эккель");
-//        entityManager.persist(author);
-//        Genre genre = new Genre("Информационные технологии");
-//        entityManager.persist(genre);
-//        Book book = new Book("Филиософия Java", author, genre);
-//        entityManager.persist(book);
-//
-//        Comment comment = new Comment("Написана профессиональным языком. Много кода.", book);
-//        entityManager.persist(comment);
-//        entityManager.flush();
-//
-//        ArrayList<Comment> gotComments = (ArrayList<Comment>) commentRepositoryJpa.findAllByBook(book);
-//        assertThat(gotComments.get(0).getContent())
-//                .isEqualTo(comment.getContent());
+        Author author = new Author("Брюс", "Эккель");
+        entityManager.persist(author);
+        Genre genre = new Genre("Информационные технологии");
+        entityManager.persist(genre);
+        Book book = new Book("Филиософия Java", author, genre);
+        entityManager.persist(book);
+
+        Comment comment = new Comment("Написана профессиональным языком. Много кода.", book);
+        entityManager.persist(comment);
+        entityManager.flush();
+
+        List<Comment> gotComments = commentRepositoryJpa.findAllByBook(book);
+        assertThat(gotComments.get(0).getContent())
+                .isEqualTo(comment.getContent());
     }
 }

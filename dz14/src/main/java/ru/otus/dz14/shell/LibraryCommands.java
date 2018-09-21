@@ -11,7 +11,6 @@ import ru.otus.dz14.service.CommentService;
 import ru.otus.dz14.service.LibraryService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Ignore
 @ShellComponent
@@ -103,21 +102,6 @@ public class LibraryCommands {
                 i++;
             }
         }
-//        Optional<Book> bookOp = bookRepository.findById(bookId);
-//        if (bookOp.isPresent()){
-//
-//            List<Comment> comments = commentRepository.findAllByBook(bookOp.get());
-//            if (comments.isEmpty()) {
-//                System.out.println("нет комментариев к книге \"" + bookOp.get().getTitle() + "\"");
-//                return;
-//            }
-//            System.out.println("Комментарии к книге \"" + bookOp.get().getTitle() + "\":");
-//            int i = 1;
-//            for (Comment comment : comments) {
-//                System.out.println(i + ") " + comment.getContent());
-//                i++;
-//            }
-//        }
     }
 
 }

@@ -11,7 +11,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import ru.otus.dz14.domain.*;
+import ru.otus.dz14.domain.Author;
+import ru.otus.dz14.domain.Book;
+import ru.otus.dz14.domain.Genre;
 import ru.otus.dz14.service.CommentService;
 import ru.otus.dz14.service.LibraryService;
 
@@ -19,13 +21,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(BookController.class)
-public class BookControllerTest {
+@WebMvcTest(AuthorController.class)
+public class AuthorControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -37,16 +41,14 @@ public class BookControllerTest {
     private CommentService commentService;
 
     @Configuration
-    @ComponentScan(basePackageClasses = {BookController.class})
+    @ComponentScan(basePackageClasses = {AuthorController.class})
     public static class TestConf {
     }
 
     private Author author;
     private Genre genre;
     private Book book;
-    private Comment comment;
-    private List<Book> books;
-    private BookDto bookDto;
+    private List<Author> authors;
 
     @Before
     public void setUp() throws Exception {
@@ -55,36 +57,15 @@ public class BookControllerTest {
         genre = new Genre("роман-эпопея");
         genre.setId(1);
         book = new Book("Война и мир", author, genre);
-        comment = new Comment("Эпично, но слишком затянуто.", book);
-        books = Arrays.asList(book);
-        bookDto = new BookDto(1, "Мертвые души", "Николай", "Гоголь", "поэма");
+        authors = Arrays.asList(author);
     }
 
     @Test
-    public void booksPage() throws Exception {
-        Mockito.when(libraryService.listBooks()).thenReturn(books);
-        mvc.perform(get("/books"))
+    public void commentsPage() throws Exception {
+        Mockito.when(libraryService.listAuthors()).thenReturn(authors);
+        mvc.perform(get("/authors"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString(book.getTitle())))
-                .andExpect(view().name("books"));
-    }
-
-    @Test
-    public void delete() throws Exception {
-
-        mvc.perform(post("/books/delete/").flashAttr("bookDto", bookDto))
-                .andExpect(redirectedUrl("/books"));
-
-    }
-
-    @Test
-    public void saveBook() throws Exception {
-        mvc.perform(post("/books/add")
-                .flashAttr("bookDto", bookDto))
-                .andExpect(redirectedUrl("/books"));
-    }
-
-    @Test
-    public void updateBook() {
+                .andExpect(content().string(containsString(author.getLastName())))
+                .andExpect(view().name("authors"));
     }
 }

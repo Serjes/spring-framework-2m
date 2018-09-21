@@ -1,30 +1,26 @@
 package ru.otus.dz14.repository;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-import ru.otus.dz14.domain.Author;
-import ru.otus.dz14.domain.Book;
-import ru.otus.dz14.domain.Genre;
+import ru.otus.dz14.domain.*;
 
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @Transactional
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-public class BookRepositoryJpaTest {
-
-    @Autowired
-    private TestEntityManager entityManager;
+public class BookRepositoryTest {
 
     @Autowired
     private BookRepository bookRepositoryJpa;
@@ -35,21 +31,36 @@ public class BookRepositoryJpaTest {
     @Autowired
     private AuthorRepository authorRepositoryJpa;
 
-    @Test
-    public void whenGetById_thenReturnBook(){
+    private Author author;
+    private Genre genre;
+    private Book book;
 
-        Author author = new Author("Брюс", "Эккель");
+    @Before
+    public void setUp() throws Exception {
+        author = new Author("Лев", "Толстой");
         authorRepositoryJpa.save(author);
-        Genre genre = new Genre("Информационные технологии");
+        genre = new Genre("роман-эпопея");
         genreRepositoryJpa.save(genre);
-
-        Book book = new Book("Филиософия Java", author, genre);
-        entityManager.persist(book);
-        entityManager.flush();
-
-        Optional<Book> optionalBook = bookRepositoryJpa.findById(1);
-        assertEquals(optionalBook.get().getTitle(), book.getTitle());
-
+        book = new Book("Война и мир", author, genre);
+        bookRepositoryJpa.save(book);
     }
 
+    @Test
+    public void findAll() {
+        List<Book> books = bookRepositoryJpa.findAll();
+        assertNotNull(books);
+        assertEquals(book.getTitle(), books.get(0).getTitle());
+    }
+
+    @Test
+    public void findById() {
+        Optional<Book> optionalBook = bookRepositoryJpa.findById(book.getId());
+        assertEquals(optionalBook.get().getTitle(), book.getTitle());
+    }
+
+    @Test
+    public void deleteById() {
+        bookRepositoryJpa.deleteById(book.getId());
+        assertEquals(0, bookRepositoryJpa.count());
+    }
 }

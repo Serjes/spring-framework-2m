@@ -26,6 +26,10 @@ public class Comment {
         this.book = book;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

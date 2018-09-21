@@ -11,11 +11,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.dz14.domain.Author;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-//@Transactional(propagation = Propagation.NOT_SUPPORTED)
 @Transactional
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class AuthorRepositoryJpaTest {
@@ -28,13 +29,15 @@ public class AuthorRepositoryJpaTest {
 
     @Test
     public void whenGetByName_thenReturnAuthor(){
-//        Author author = new Author("Б.Эккель");
-//        entityManager.persist(author);
-//        entityManager.flush();
-//
-//        Author gotAuthor = authorRepositoryJpa.findByName(author.getName()).get();
-//
-//        assertThat(gotAuthor.getName())
-//                .isEqualTo(author.getName());
+        Author author = new Author("Брюс", "Эккель");
+        entityManager.persist(author);
+        entityManager.flush();
+
+        Optional<Author> gotAuthor = authorRepositoryJpa.findByFirstNameAndLastName(author.getFirstName(),author.getLastName());
+
+        assertThat(gotAuthor.get().getFirstName())
+                .isEqualTo(author.getFirstName());
+        assertThat(gotAuthor.get().getLastName())
+                .isEqualTo(author.getLastName());
     }
 }

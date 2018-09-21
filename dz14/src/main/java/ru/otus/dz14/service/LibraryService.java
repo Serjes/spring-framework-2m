@@ -2,7 +2,6 @@ package ru.otus.dz14.service;
 
 import ru.otus.dz14.domain.Author;
 import ru.otus.dz14.domain.Book;
-import ru.otus.dz14.domain.Comment;
 import ru.otus.dz14.domain.Genre;
 
 import java.util.List;
@@ -34,5 +33,4 @@ public interface LibraryService {
 
     void printAuthorId(String name, String lastName);
 
-//    void listAuthors();
 }
