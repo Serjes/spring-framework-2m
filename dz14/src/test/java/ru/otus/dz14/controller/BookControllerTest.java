@@ -71,10 +71,8 @@ public class BookControllerTest {
 
     @Test
     public void delete() throws Exception {
-
         mvc.perform(post("/books/delete/").flashAttr("bookDto", bookDto))
                 .andExpect(redirectedUrl("/books"));
-
     }
 
     @Test
@@ -85,6 +83,9 @@ public class BookControllerTest {
     }
 
     @Test
-    public void updateBook() {
+    public void updateBook() throws Exception {
+        mvc.perform(post("/books/add/1")
+                .flashAttr("bookDto", bookDto))
+                .andExpect(redirectedUrl("/books"));
     }
 }

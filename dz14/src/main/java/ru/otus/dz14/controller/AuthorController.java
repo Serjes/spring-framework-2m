@@ -29,7 +29,7 @@ public class AuthorController {
     }
 
     @GetMapping("/authors")
-    public String commentsPage(Model model) {
+    public String authorsPage(Model model) {
         List<Author> authors = libraryService.listAuthors();
         model.addAttribute("authors", authors);
         return "authors";

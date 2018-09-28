@@ -25,14 +25,14 @@ public class CommentController {
         this.libraryService = libraryService;
     }
 
-    @GetMapping("/comments")
-    public String commentsPage(Model model) {
-        List<Comment> allComments = commentService.listComments();
-        model.addAttribute("comments", allComments);
-        return "comments";
-    }
+//    @GetMapping("/comments")
+//    public String commentsPage(Model model) {
+//        List<Comment> allComments = commentService.listComments();
+//        model.addAttribute("comments", allComments);
+//        return "comments";
+//    }
 
-    @GetMapping("/comments/list")
+    @GetMapping("/comments/book")
     public String commentsByBookPage(
             @RequestParam("id") Integer id,
             Model model
@@ -50,27 +50,29 @@ public class CommentController {
         return "comments";
     }
 
-    @RequestMapping(
-            value = {"/comments/add"},
-            method = RequestMethod.POST
-    )
+//    @RequestMapping(
+//            value = {"/comments/add"},
+//            method = RequestMethod.POST
+//    )
+    @PostMapping("/comments/add")
     public String saveBook(
             @ModelAttribute("commentDto") CommentDto commentDto
     ) {
         commentService.add(commentDto.getCommentContent(), commentDto.getBookId());
-        return "redirect:/comments/list?id=" + commentDto.getBookId();
+        return "redirect:/comments/book?id=" + commentDto.getBookId();
     }
 
-    @RequestMapping(
-            value = {"/comments/add/{id}"},
-            method = RequestMethod.POST
-    )
+//    @RequestMapping(
+//            value = {"/comments/add/{id}"},
+//            method = RequestMethod.POST
+//    )
+    @PostMapping("/comments/add/{id}")
     public String updateBook(
             @ModelAttribute("commentDto") CommentDto commentDto,
             @PathVariable("id") Integer id
     ) {
         commentService.updateComment(id, commentDto.getCommentContent());
-        return "redirect:/comments/list?id=" + commentDto.getBookId();
+        return "redirect:/comments/book?id=" + commentDto.getBookId();
     }
 
     @PostMapping("/comments/delete/")
@@ -80,6 +82,6 @@ public class CommentController {
         Optional<Comment> optionalComment = commentService.findCommentById(commentDto.getId());
         int id = optionalComment.get().getBook().getId();
         commentService.deleteComment(commentDto.getId());
-        return "redirect:/comments/list?id=" + id;
+        return "redirect:/comments/book?id=" + id;
     }
 }

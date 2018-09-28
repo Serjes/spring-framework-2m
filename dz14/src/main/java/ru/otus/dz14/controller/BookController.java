@@ -39,10 +39,11 @@ public class BookController {
         return "redirect:/books";
     }
 
-    @RequestMapping(
-            value = {"/books/add"},
-            method = RequestMethod.POST
-    )
+//    @RequestMapping(
+//            value = {"/books/add"},
+//            method = RequestMethod.POST
+//    )
+    @PostMapping("/books/add")
     public String saveBook(
             @ModelAttribute("bookDto") BookDto bookDto
     ) {
@@ -52,10 +53,11 @@ public class BookController {
         return "redirect:/books";
     }
 
-    @RequestMapping(
-            value = {"/books/add/{id}"},
-            method = RequestMethod.POST
-    )
+//    @RequestMapping(
+//            value = {"/books/add/{id}"},
+//            method = RequestMethod.POST
+//    )
+    @PostMapping("/books/add/{id}")
     public String updateBook(
             Model model,
             @ModelAttribute("bookDto") BookDto bookDto,
