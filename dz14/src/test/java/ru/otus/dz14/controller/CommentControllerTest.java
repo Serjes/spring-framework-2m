@@ -11,24 +11,25 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import ru.otus.dz14.domain.Author;
-import ru.otus.dz14.domain.Book;
-import ru.otus.dz14.domain.Comment;
-import ru.otus.dz14.domain.Genre;
+import ru.otus.dz14.domain.*;
 import ru.otus.dz14.service.CommentService;
 import ru.otus.dz14.service.LibraryService;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(AddCommentController.class)
-public class AddCommentControllerTest {
+@WebMvcTest(CommentController.class)
+public class CommentControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -40,7 +41,7 @@ public class AddCommentControllerTest {
     private CommentService commentService;
 
     @Configuration
-    @ComponentScan(basePackageClasses = {AddCommentController.class})
+    @ComponentScan(basePackageClasses = {CommentController.class})
     public static class TestConf {
     }
 
@@ -48,6 +49,8 @@ public class AddCommentControllerTest {
     private Author author;
     private Genre genre;
     private Book book;
+    private List<Comment> comments;
+    private CommentDto commentDto;
 
     @Before
     public void setUp() throws Exception {
@@ -59,6 +62,37 @@ public class AddCommentControllerTest {
         book.setId(1);
         comment = new Comment("Эпично, но слишком затянуто.", book);
         comment.setId(1);
+        comments = Arrays.asList(comment);
+        commentDto = new CommentDto(1, "Очень понравилось","Война и мир",1);
+    }
+
+    @Test
+    public void commentsByBookPage() throws Exception {
+        Mockito.when(libraryService.findBookById(1)).thenReturn(Optional.of(book));
+        Mockito.when(commentService.listCommentsByBook(book.getId())).thenReturn(comments);
+        mvc.perform(get("/comments?book-id=" + book.getId()))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void saveComment() throws Exception {
+        mvc.perform(post("/comments/add")
+                .flashAttr("commentDto", commentDto))
+                .andExpect(redirectedUrl("/comments?book-id=1"));
+    }
+
+    @Test
+    public void updateComment() throws Exception {
+        mvc.perform(post("/comments/add")
+                .flashAttr("commentDto", commentDto))
+                .andExpect(redirectedUrl("/comments?book-id=1"));
+    }
+
+    @Test
+    public void deleteComment() throws Exception {
+        mvc.perform(post("/comments/add")
+                .flashAttr("commentDto", commentDto))
+                .andExpect(redirectedUrl("/comments?book-id=1"));
     }
 
     @Test
