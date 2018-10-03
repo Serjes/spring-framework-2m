@@ -14,7 +14,7 @@
 
         label {
             display: inline-block;
-            width: 100px;
+            width: 200px;
         }
 
         .row {
@@ -52,20 +52,46 @@
     </tbody>
 </table>
 <br>
-<a th:href="@{/addbook}" href="addbook.html"><h3>Добавить книгу</h3></a>
-<br>
-<br>
+<!--<a th:href="@{/addbook}" href="addbook.html"><h3>Добавить книгу</h3></a>-->
+<!--<br>-->
+<!--<br>-->
 
-<form id="edit-form" th:action="@{/books/delete/}" th:method="POST">
-    <h3>Удаление книги:</h3>
+<!--<form id="edit-form" th:action="@{/books/delete/}" th:method="POST">-->
+    <!--<h3>Удаление книги:</h3>-->
+    <!--<div class="row">-->
+        <!--<label for="bookId-input">ID:</label>-->
+        <!--<input id="bookId-input" type="text" th:field="${bookDto.id}" value="1" />-->
+    <!--</div>-->
+    <!--<div class="row">-->
+        <!--<button width="150" type="submit">Удалить</button>-->
+    <!--</div>-->
+<!--</form>-->
+<form id="edit-form" th:action="@{/books/add/}+(${bookDto.id}?:'')" th:object="${bookDto}" th:method="POST" action="books.html">
+    <h3>Добавить книгу:</h3>
+
     <div class="row">
-        <label for="bookId-input">ID:</label>
-        <input id="bookId-input" type="text" th:field="${bookDto.id}" value="1" />
+        <label for="bookTitle-input">Название:</label>
+        <input id="bookTitle-input" type="text" th:field="*{bookTitle}"/>
     </div>
+
     <div class="row">
-        <button width="150" type="submit">Удалить</button>
+        <label for="authorName">Имя автора:</label>
+        <input id="authorName" type="text"  th:field="*{authorName}"/>
+    </div>
+
+    <div class="row">
+        <label for="authorLastName">Фамилия автора:</label>
+        <input id="authorLastName" type="text" th:field="*{authorLastName}"/>
+    </div>
+
+    <div class="row">
+        <label for="genre">Жанр:</label>
+        <input id="genre"  type="text" th:field="*{genre}"/>
+    </div>
+
+    <div class="row">
+        <button type="submit">Сохранить</button>
     </div>
 </form>
-
 </body>
 </html>

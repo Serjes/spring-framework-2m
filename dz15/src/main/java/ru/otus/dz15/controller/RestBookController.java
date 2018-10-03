@@ -1,34 +1,35 @@
 package ru.otus.dz15.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.otus.dz15.domain.Book;
 import ru.otus.dz15.domain.BookDto;
 import ru.otus.dz15.service.LibraryService;
 
 import java.util.List;
-import java.util.Optional;
 
-@Controller
-public class BookController {
+@RestController
+public class RestBookController {
 
     private final LibraryService libraryService;
 
     @Autowired
-    public BookController(LibraryService libraryService) {
+    public RestBookController(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 
-    @GetMapping("/books")
-    public String booksPage(Model model) {
-        List<Book> books = libraryService.listBooks();
-        model.addAttribute("books", books);
-        BookDto bookDto = new BookDto();
-        model.addAttribute("bookDto", bookDto);
-        return "books";
-    }
+//    @GetMapping("/books")
+//    public String booksPage(Model model) {
+//        List<Book> books = libraryService.listBooks();
+//        model.addAttribute("books", books);
+////        BookDto bookDto = new BookDto();
+////        model.addAttribute("bookDto", bookDto);
+//        return "books";
+//    }
 
 //    @PostMapping("/books/delete/")
 //    public String delete(
@@ -38,15 +39,16 @@ public class BookController {
 //        return "redirect:/books";
 //    }
 //
-//    @PostMapping("/books/add")
-//    public String saveBook(
-//            @ModelAttribute("bookDto") BookDto bookDto
-//    ) {
-//        libraryService.addBook(bookDto.getBookTitle(),  bookDto.getAuthorName(),
-//                bookDto.getAuthorLastName(), bookDto.getGenre());
-//
+    @PostMapping("/books")
+    public Book addBook(
+            @ModelAttribute("bookDto") BookDto bookDto
+    ) {
+        Book book = libraryService.addBook(bookDto.getBookTitle(),  bookDto.getAuthorName(),
+                bookDto.getAuthorLastName(), bookDto.getGenre());
+
 //        return "redirect:/books";
-//    }
+        return book;
+    }
 
 //    @PostMapping("/books/add/{id}")
 //    public String updateBook(

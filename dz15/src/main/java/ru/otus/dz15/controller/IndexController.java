@@ -9,18 +9,18 @@ import ru.otus.dz15.service.LibraryService;
 @Controller
 public class IndexController {
 
-    private final LibraryService libraryService;
-
-    @Autowired
-    public IndexController(LibraryService libraryService) {
-        this.libraryService = libraryService;
-    }
+//    private final LibraryService libraryService;
+//
+//    @Autowired
+//    public IndexController(LibraryService libraryService) {
+//        this.libraryService = libraryService;
+//    }
 
     @GetMapping("/")
     public String indexPage(Model model) {
-        model.addAttribute("booksCount", libraryService.count());
-        model.addAttribute("authorsCount", libraryService.countAuthors());
-        model.addAttribute("genresCount", libraryService.countGenres());
+//        model.addAttribute("booksCount", libraryService.count());
+//        model.addAttribute("authorsCount", libraryService.countAuthors());
+//        model.addAttribute("genresCount", libraryService.countGenres());
         return "index";
     }
 }

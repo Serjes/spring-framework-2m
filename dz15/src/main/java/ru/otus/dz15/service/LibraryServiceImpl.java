@@ -33,7 +33,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void addBook(String title, String authorName, String authorLastName, String genreName) {
+    public Book addBook(String title, String authorName, String authorLastName, String genreName) {
         Optional<Author> authorOptional = authorRepository.findByFirstNameAndLastName(authorName, authorLastName);
         Author author;
         if (!authorOptional.isPresent()) {
@@ -48,8 +48,9 @@ public class LibraryServiceImpl implements LibraryService {
             genreRepository.save(genre);
         }
         Book book = new Book(title, author, genre);
-        bookRepository.save(book);
-        System.out.println("Сохранили новую книжку");
+//        bookRepository.save(book);
+//        System.out.println("Сохранили новую книжку");
+        return bookRepository.save(book);
     }
 
     @Override
