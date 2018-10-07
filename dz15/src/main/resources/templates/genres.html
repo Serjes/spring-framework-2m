@@ -25,22 +25,23 @@
 <body>
 <a th:href="@{/}" href="index.html">Библиотека</a>
 <br>
-<h1>Комментарии:</h1>
-
-<table class="genres">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Название жанра</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="genre : ${genres}">
-        <td width="50" th:text="${genre.id}" >1</td>
-        <td width="250 " th:text="${genre.name}" >Foo</td>
-    </tr>
-    </tbody>
-</table>
+<div id="genresdiv">
+    <h3>Жанры:</h3>
+    <table class="genres">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название жанра</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="genre : ${genres}">
+            <td width="50" th:text="${genre.id}">1</td>
+            <td width="250 " th:text="${genre.name}">Foo</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <br>
 <br>
 <br>

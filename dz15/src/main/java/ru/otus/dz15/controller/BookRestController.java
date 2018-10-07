@@ -13,12 +13,12 @@ import ru.otus.dz15.service.LibraryService;
 import java.util.List;
 
 @RestController
-public class RestBookController {
+public class BookRestController {
 
     private final LibraryService libraryService;
 
     @Autowired
-    public RestBookController(LibraryService libraryService) {
+    public BookRestController(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 

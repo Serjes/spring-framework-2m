@@ -22,24 +22,25 @@
 <body>
 <a th:href="@{/}" href="index.html">Библиотека</a>
 <br>
-<h1>Авторы:</h1>
-
-<table class="authors">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Имя</th>
-        <th>Фамилия</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="author : ${authors}">
-        <td width="30" th:text="${author.id}" >1</td>
-        <td width="150 " th:text="${author.firstName}" >Foo</td>
-        <td width="150 " th:text="${author.lastName}" >John</td>
-    </tr>
-    </tbody>
-</table>
+<div id="authorsdiv">
+    <h3>Авторы:</h3>
+    <table class="authors">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="author : ${authors}">
+            <td width="30" th:text="${author.id}">1</td>
+            <td width="150 " th:text="${author.firstName}">Foo</td>
+            <td width="150 " th:text="${author.lastName}">John</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <br>
 <br>
 <br>

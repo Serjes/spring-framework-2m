@@ -6,7 +6,20 @@
         body {
             padding: 50px;
         }
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+        .authors, .authors td {
+            border: 1px solid lightgray;
+            padding: 5px;
+        }
+        .genres, .genres td {
+            border: 1px solid lightgray;
+            padding: 5px;
+        }
     </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <h1>Библиотека</h1>
@@ -15,15 +28,37 @@
 <!--<label type="text" th:text=" ${booksCount}"></label>-->
  <!--шт.)-->
 <br>
+<br>
 <a th:href="@{/authors}">Авторы</a>
 <!--(-->
 <!--<label type="text" th:text=" ${authorsCount}"></label>-->
 <!--чел.)-->
+<br>
+<button id="bt2">быстрый просмотр авторов</button>
+<br>
 <br>
 <a th:href="@{/genres}">Жанры</a>
 <!--(-->
 <!--<label type="text" th:text=" ${genresCount}"></label>-->
 <!--шт.)-->
 <br>
+<button id="bt1">быстрый просмотр жанров</button>
+<br>
+<br>
+<!--<th:block th:fragment="content">-->
+<!--<div th:text="${content}"></div>-->
+<!--</th:block>-->
+<div id="content"></div>
+<script>
+    /*<![CDATA[*/
+    $("#bt1").on("click", function () {
+        $("#content").load("/preview-genres #genresdiv");
+    });
+
+    $("#bt2").on("click", function () {
+        $("#content").load("/preview-authors #authorsdiv");
+    });
+    /*]]>*/
+</script>
 </body>
 </html>
