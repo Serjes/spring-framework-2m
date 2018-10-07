@@ -7,7 +7,7 @@
             padding: 50px;
         }
 
-        .books, .books td {
+        .table-books, .table-books td {
             border: 1px solid lightgray;
             padding: 5px;
         }
@@ -21,13 +21,20 @@
             margin-top: 10px;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="books.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var books = /*[[${books}]]*/ 'null';
+        /*]]>*/
+    </script>
 </head>
 <body>
 <a th:href="@{/}" href="index.html">Библиотека</a>
 <br>
 <h1>Книги:</h1>
 
-<table class="books">
+<table class="table-books">
     <thead>
     <tr>
         <th>ID</th>
@@ -37,6 +44,7 @@
         <th>Жанр</th>
         <th>Комментарии</th>
         <th>Редактирование</th>
+        <th>Удаление</th>
     </tr>
     </thead>
     <tbody>
@@ -48,6 +56,7 @@
         <td width="100" th:text="${book.genre.name}" >fantasy</td>
         <td width="150" ><a th:href="@{/comments(book-id=${book.id})}" href="comments.html">Смотреть/добавить</a></td>
         <td width="50"  ><a th:href="@{/addbook/edit(id=${book.id})}" href="addbook.html">Изменить</a></td>
+        <td width="50"  ><a th:href="@{/book(id=${book.id})}" th:method="DELETE">Х</a></td>
     </tr>
     </tbody>
 </table>
@@ -66,27 +75,28 @@
         <!--<button width="150" type="submit">Удалить</button>-->
     <!--</div>-->
 <!--</form>-->
-<form id="edit-form" th:action="@{/books/add/}+(${bookDto.id}?:'')" th:object="${bookDto}" th:method="POST" action="books.html">
+<!--<form id="edit-form" th:action="@{/books/add/}+(${bookDto.id}?:'')" th:object="${bookDto}" th:method="POST" action="books.html">-->
+<form id="adding-form" action="books.html">
     <h3>Добавить книгу:</h3>
 
     <div class="row">
         <label for="bookTitle-input">Название:</label>
-        <input id="bookTitle-input" type="text" th:field="*{bookTitle}"/>
+        <input id="bookTitle-input" type="text" />
     </div>
 
     <div class="row">
         <label for="authorName">Имя автора:</label>
-        <input id="authorName" type="text"  th:field="*{authorName}"/>
+        <input id="authorName" type="text"  />
     </div>
 
     <div class="row">
         <label for="authorLastName">Фамилия автора:</label>
-        <input id="authorLastName" type="text" th:field="*{authorLastName}"/>
+        <input id="authorLastName" type="text" />
     </div>
 
     <div class="row">
         <label for="genre">Жанр:</label>
-        <input id="genre"  type="text" th:field="*{genre}"/>
+        <input id="genre"  type="text" />
     </div>
 
     <div class="row">

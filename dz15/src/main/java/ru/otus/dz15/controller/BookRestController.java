@@ -2,10 +2,7 @@ package ru.otus.dz15.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.otus.dz15.domain.Book;
 import ru.otus.dz15.domain.BookDto;
 import ru.otus.dz15.service.LibraryService;
@@ -40,14 +37,15 @@ public class BookRestController {
 //    }
 //
     @PostMapping("/books")
-    public Book addBook(
-            @ModelAttribute("bookDto") BookDto bookDto
+    public List<Book> addBook(
+//            @ModelAttribute("bookDto") BookDto bookDto
+            @RequestBody BookDto bookDto
     ) {
         Book book = libraryService.addBook(bookDto.getBookTitle(),  bookDto.getAuthorName(),
                 bookDto.getAuthorLastName(), bookDto.getGenre());
-
+        List<Book> books = libraryService.listBooks();
 //        return "redirect:/books";
-        return book;
+        return books;
     }
 
 //    @PostMapping("/books/add/{id}")
