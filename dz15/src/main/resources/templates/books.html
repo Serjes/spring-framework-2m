@@ -27,6 +27,9 @@
         /*<![CDATA[*/
         var books = /*[[${books}]]*/ 'null';
         /*]]>*/
+        // window.onload = {
+        //
+        // }
     </script>
 </head>
 <body>
@@ -34,33 +37,35 @@
 <br>
 <h1>Книги:</h1>
 
-<table class="table-books">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Название</th>
-        <th>Имя автора</th>
-        <th>Фамилия автора</th>
-        <th>Жанр</th>
-        <th>Комментарии</th>
-        <th>Редактирование</th>
-        <th>Удаление</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="book : ${books}">
-        <td width="30" th:text="${book.id}" >1</td>
-        <td width="150 " th:text="${book.title}" >Foo</td>
-        <td width="150 " th:text="${book.author.firstName}" >John</td>
-        <td width="150" th:text="${book.author.lastName}" >Doe</td>
-        <td width="100" th:text="${book.genre.name}" >fantasy</td>
-        <td width="150" ><a th:href="@{/comments(book-id=${book.id})}" href="comments.html">Смотреть/добавить</a></td>
-        <td width="50"  ><a th:href="@{/addbook/edit(id=${book.id})}" href="addbook.html">Изменить</a></td>
-        <td width="50"  ><a th:href="@{/book(id=${book.id})}" th:method="DELETE">Х</a></td>
-    </tr>
-    </tbody>
-</table>
+<!--<table class="table-books">-->
+    <!--<thead>-->
+    <!--<tr>-->
+        <!--<th>ID</th>-->
+        <!--<th>Название</th>-->
+        <!--<th>Имя автора</th>-->
+        <!--<th>Фамилия автора</th>-->
+        <!--<th>Жанр</th>-->
+        <!--<th>Комментарии</th>-->
+        <!--<th>Редактирование</th>-->
+        <!--<th>Удаление</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr th:each="book : ${books}">-->
+        <!--<td width="30" th:text="${book.id}" >1</td>-->
+        <!--<td width="150 " th:text="${book.title}" >Foo</td>-->
+        <!--<td width="150 " th:text="${book.author.firstName}" >John</td>-->
+        <!--<td width="150" th:text="${book.author.lastName}" >Doe</td>-->
+        <!--<td width="100" th:text="${book.genre.name}" >fantasy</td>-->
+        <!--<td width="150" ><a th:href="@{/comments(book-id=${book.id})}" href="comments.html">Смотреть/добавить</a></td>-->
+        <!--<td width="50"  ><a th:href="@{/addbook/edit(id=${book.id})}" href="addbook.html">Изменить</a></td>-->
+        <!--<td width="50"  ><a th:href="@{/book(id=${book.id})}" th:method="DELETE">Х</a></td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+<!--</table>-->
+<!--<br>-->
 <br>
+<div id="bookTable"></div>
 <!--<a th:href="@{/addbook}" href="addbook.html"><h3>Добавить книгу</h3></a>-->
 <!--<br>-->
 <!--<br>-->

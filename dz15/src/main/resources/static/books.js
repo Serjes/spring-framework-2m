@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    $('#bookTable').load("/books-table");
     $("#adding-form").submit(function (event) {
         event.preventDefault();
         adding_book_submit();
@@ -35,6 +36,8 @@ function adding_book_submit(){
             // document.getElementById("books").onload;
             // var jsonBooks = JSON.stringify(data);
             // $('#table-books').html(json);
+            // $('#bookTable').load("/books-table #table-books");
+            $('#bookTable').load("/books-table");
 
             console.log("SUCCESS : ", data);
             // $("#btn-search").prop("disabled", false);
