@@ -36,7 +36,7 @@ public class BookRestController {
 //        return "redirect:/books";
 //    }
 //
-    @PostMapping("/books")
+    @PostMapping("/api/books")
     public List<Book> addBook(
 //            @ModelAttribute("bookDto") BookDto bookDto
             @RequestBody BookDto bookDto
@@ -46,6 +46,25 @@ public class BookRestController {
         List<Book> books = libraryService.listBooks();
 //        return "redirect:/books";
         return books;
+    }
+
+    @DeleteMapping("/api/books/{id}")
+    public Book delBook(
+            @RequestBody BookDto bookDto
+//            @RequestParam Integer id
+//            @PathVariable("id") Integer id
+//            @PathVariable("id") String id
+    ) {
+//        Book book = libraryService.addBook(bookDto.getBookTitle(),  bookDto.getAuthorName(),
+//                bookDto.getAuthorLastName(), bookDto.getGenre());
+//        List<Book> books = libraryService.listBooks();
+//        return "redirect:/books";
+//        System.out.println(id);
+//        System.out.println(bookDto.getId());
+//        Integer integerId = Integer.valueOf(id);
+        libraryService.delBook(bookDto.getId());
+        Book book = new Book();
+        return book;
     }
 
 //    @PostMapping("/books/add/{id}")

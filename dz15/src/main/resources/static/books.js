@@ -22,7 +22,7 @@ function adding_book_submit(){
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/books",
+        url: "/api/books",
         data: JSON.stringify(addingFormData),
         dataType: 'json',
         cache: false,
