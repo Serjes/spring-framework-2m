@@ -119,6 +119,11 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
+    public void delAuthor(Integer id) {
+        authorRepository.deleteById(id);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public void printAuthorId(String name, String lastName) {
         Optional<Author> authorOptional = authorRepository.findByFirstNameAndLastName(name, lastName);

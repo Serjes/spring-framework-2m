@@ -70,7 +70,7 @@ function deleteBook(id) {
     // alert(id);
     var bookData = {
             id : id
-        }
+        };
 
     $.ajax({
         type: "DELETE",

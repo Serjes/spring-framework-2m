@@ -15,7 +15,7 @@ function adding_book_submit(){
         authorLastName :  $("#authorLastName").val(),
         genre : $("#genre").val(),
         author : $("#author").val()
-    }
+    };
 
     $("#adding-form").prop("disabled", true);
 

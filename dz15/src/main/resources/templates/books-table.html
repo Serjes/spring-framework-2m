@@ -33,7 +33,7 @@
         <th>Имя автора</th>
         <th>Фамилия автора</th>
         <th>Жанр</th>
-        <th>Комментарии</th>
+        <!--<th>Комментарии</th>-->
         <th>Редактирование</th>
         <th>Удаление</th>
     </tr>
@@ -45,7 +45,7 @@
         <td width="150 " th:text="${book.author.firstName}" >John</td>
         <td width="150" th:text="${book.author.lastName}" >Doe</td>
         <td width="100" th:text="${book.genre.name}" >fantasy</td>
-        <td width="150" ><a th:href="@{/comments(book-id=${book.id})}" href="comments.html">Смотреть/добавить</a></td>
+        <!--<td width="150" ><a th:href="@{/comments(book-id=${book.id})}" href="comments.html">Смотреть/добавить</a></td>-->
         <td width="50"  ><a th:href="@{/addbook/edit(id=${book.id})}" href="addbook.html">Изменить</a></td>
         <td width="50"  ><a th:href="'javascript:deleteBook(' + ${book.id} + ');'">Х</a>
         </td>

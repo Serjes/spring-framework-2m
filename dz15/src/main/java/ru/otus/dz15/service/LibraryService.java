@@ -31,6 +31,8 @@ public interface LibraryService {
 
     void delBook(Integer id);
 
+    void delAuthor(Integer id);
+
     void printAuthorId(String name, String lastName);
 
 }
