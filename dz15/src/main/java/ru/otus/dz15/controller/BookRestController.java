@@ -37,7 +37,8 @@ public class BookRestController {
 //    }
 //
     @PostMapping("/api/books")
-    public List<Book> addBook(
+//    public List<Book> addBook(
+    public Book addBook(
 //            @ModelAttribute("bookDto") BookDto bookDto
             @RequestBody BookDto bookDto
     ) {
@@ -45,7 +46,8 @@ public class BookRestController {
                 bookDto.getAuthorLastName(), bookDto.getGenre());
         List<Book> books = libraryService.listBooks();
 //        return "redirect:/books";
-        return books;
+//        return books;
+        return book;
     }
 
     @DeleteMapping("/api/books/{id}")

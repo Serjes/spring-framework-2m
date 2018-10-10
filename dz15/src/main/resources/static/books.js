@@ -64,10 +64,6 @@ function adding_book_submit(){
 
 function editing_book_submit() {
 
-    // var delFormData = {
-    //     id: $("#authorId").val()
-    // };
-
     var editingFormData = {
         bookTitle :  $("#bookTitle-input").val(),
         authorName: $("#authorName").val(),
@@ -76,7 +72,6 @@ function editing_book_submit() {
         author : $("#author").val()
     };
     // $("#del-form").prop("disabled", true);
-
     $.ajax({
         type: "PUT",
         contentType: "application/json",
@@ -87,16 +82,16 @@ function editing_book_submit() {
         success: function (data) {
             // alert("ok");
             console.log("SUCCESS : ", data);
-            // $('#authorTable').load("/authors-table");
-
             // $("#editing-form").prop("disabled", false);
             $('#bookTable').load("/books-table");
-            // $('#editTable').load("");
+            $('#editTable').load("/blankeditor");
+            // $(document).
+            // document.getElementById("editTable").innerText("OK");
 
         },
         error: function (e) {
             console.log("ERROR : ", e);
-            // alert("not Ok");
+            alert("проблема с сохранением");
             // $("#btn-search").prop("disabled", false);
             // $("#del-form").prop("disabled", false);
 

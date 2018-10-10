@@ -56,4 +56,11 @@ public class TablesController {
         model.addAttribute("book", book.get());
         return "editor";
     }
+
+    @GetMapping("/blankeditor")
+    public String blankPage(Model model) {
+//        List<Book> books = libraryService.listBooks();
+//        model.addAttribute("books", books);
+        return "editor-blank";
+    }
 }
