@@ -10,13 +10,11 @@ public class PreviewController {
 
     @GetMapping("/preview-genres")
     public String testGenresPage(Model model){
-//        return "test2";
-        return "redirect:/genres";
+        return "redirect:/genres-table";
     }
 
     @GetMapping("/preview-authors")
     public String testAuthorPage(Model model){
-//        return "test2";
-        return "redirect:/authors";
+        return "redirect:/authors-table";
     }
 }

@@ -14,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import ru.otus.dz15.domain.Author;
 import ru.otus.dz15.domain.Book;
 import ru.otus.dz15.domain.Genre;
-import ru.otus.dz15.service.CommentService;
 import ru.otus.dz15.service.LibraryService;
 
 import java.util.Arrays;
@@ -36,8 +35,8 @@ public class AuthorControllerTest {
     @MockBean
     private LibraryService libraryService;
 
-    @MockBean
-    private CommentService commentService;
+//    @MockBean
+//    private CommentService commentService;
 
     @Configuration
     @ComponentScan(basePackageClasses = {AuthorController.class})

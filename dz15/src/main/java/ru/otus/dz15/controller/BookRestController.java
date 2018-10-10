@@ -67,6 +67,23 @@ public class BookRestController {
         return book;
     }
 
+    @PutMapping("/api/books/{id}")
+    public Book updateBook(
+            @RequestBody BookDto bookDto,
+            @PathVariable("id") Integer id
+//            @RequestParam Integer id
+//            @PathVariable("id") Integer id
+//            @PathVariable("id") String id
+    ) {
+//        libraryService.delBook(bookDto.getId());
+//        System.out.println("EDIT");
+        Book book = libraryService.updateBook(id, bookDto.getBookTitle(),
+                bookDto.getAuthorName(), bookDto.getAuthorLastName(),
+                bookDto.getGenre());
+//        Book book = new Book();
+        return book;
+    }
+
 //    @PostMapping("/books/add/{id}")
 //    public String updateBook(
 //            Model model,

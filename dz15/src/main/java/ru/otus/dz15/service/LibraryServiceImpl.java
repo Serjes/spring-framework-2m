@@ -54,7 +54,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void updateBook(Integer id, String title, String authorName, String authorLastName, String genreName) {
+    public Book updateBook(Integer id, String title, String authorName, String authorLastName, String genreName) {
         Optional<Book> bookOptional = bookRepository.findById(id);
         if (bookOptional.isPresent()) {
             Author author = null;
@@ -77,8 +77,9 @@ public class LibraryServiceImpl implements LibraryService {
             book.setTitle(title);
             book.setAuthor(author);
             book.setGenre(genre);
-            bookRepository.save(book);
+            return bookRepository.save(book);
         }
+        return null;
 
     }
 
@@ -121,6 +122,11 @@ public class LibraryServiceImpl implements LibraryService {
     @Override
     public void delAuthor(Integer id) {
         authorRepository.deleteById(id);
+    }
+
+    @Override
+    public void delGenre(Integer id) {
+        genreRepository.deleteById(id);
     }
 
     @Override

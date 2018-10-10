@@ -13,7 +13,7 @@ public interface LibraryService {
 
     Book addBook(String title, String author, String authorLastname, String genre);
 
-    void updateBook(Integer id, String title, String author, String authorLastName, String genre);
+    Book updateBook(Integer id, String title, String author, String authorLastName, String genre);
 
     List<Book> listBooks();
 
@@ -32,6 +32,8 @@ public interface LibraryService {
     void delBook(Integer id);
 
     void delAuthor(Integer id);
+
+    void delGenre(Integer id);
 
     void printAuthorId(String name, String lastName);
 

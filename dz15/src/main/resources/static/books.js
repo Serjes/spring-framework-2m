@@ -5,6 +5,10 @@ $(document).ready(function () {
         event.preventDefault();
         adding_book_submit();
     });
+    $("#editing-form").submit(function (event) {
+        event.preventDefault();
+        editing_book_submit();
+    });
 });
 
 function adding_book_submit(){
@@ -53,6 +57,48 @@ function adding_book_submit(){
             console.log("ERROR : ", e);
             // $("#btn-search").prop("disabled", false);
             $("#adding-form").prop("disabled", false);
+
+        }
+    });
+}
+
+function editing_book_submit() {
+
+    // var delFormData = {
+    //     id: $("#authorId").val()
+    // };
+
+    var editingFormData = {
+        bookTitle :  $("#bookTitle-input").val(),
+        authorName: $("#authorName").val(),
+        authorLastName :  $("#authorLastName").val(),
+        genre : $("#genre").val(),
+        author : $("#author").val()
+    };
+    // $("#del-form").prop("disabled", true);
+
+    $.ajax({
+        type: "PUT",
+        contentType: "application/json",
+        url: "/api/books/" + $("#id").val(),
+        data: JSON.stringify(editingFormData),
+        dataType: 'json',
+        cache: false,
+        success: function (data) {
+            // alert("ok");
+            console.log("SUCCESS : ", data);
+            // $('#authorTable').load("/authors-table");
+
+            // $("#editing-form").prop("disabled", false);
+            $('#bookTable').load("/books-table");
+            // $('#editTable').load("");
+
+        },
+        error: function (e) {
+            console.log("ERROR : ", e);
+            // alert("not Ok");
+            // $("#btn-search").prop("disabled", false);
+            // $("#del-form").prop("disabled", false);
 
         }
     });

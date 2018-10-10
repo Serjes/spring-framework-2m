@@ -23,8 +23,8 @@ public class Book {
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
-    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Comment> comments;
+//    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, orphanRemoval = true)
+//    private List<Comment> comments;
 
     public Book() {
     }

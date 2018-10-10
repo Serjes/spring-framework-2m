@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+    <!--<script type="text/javascript" src="editor.js"></script>-->
+    <script type="text/javascript" src="books.js"></script>
+</head>
+<body>
+<form id="editing-form" action="/api/book.html">
+    <h3>Изменить данные о книге:</h3>
+
+    <div class="row">
+        <label for="bookTitle-input">Название:</label>
+        <input id="bookTitle-input" type="text" th:value="${book.title}"/>
+    </div>
+
+    <div class="row">
+        <label for="authorName">Имя автора:</label>
+        <input id="authorName" type="text"  th:value="${book.author.firstName}"/>
+    </div>
+
+    <div class="row">
+        <label for="authorLastName">Фамилия автора:</label>
+        <input id="authorLastName" type="text" th:value="${book.author.lastName}"/>
+    </div>
+
+    <div class="row">
+        <label for="genre">Жанр:</label>
+        <input id="genre"  type="text" th:value="${book.genre.name}"/>
+    </div>
+
+    <div class="row">
+        <label for="id">ID:</label>
+        <input id="id"  type="text" th:value="${book.id}" readonly="readonly"/>
+    </div>
+
+    <div class="row">
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+</body>
+</html>

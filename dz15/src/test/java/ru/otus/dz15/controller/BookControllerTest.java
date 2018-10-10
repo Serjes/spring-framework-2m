@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.otus.dz15.domain.*;
-import ru.otus.dz15.service.CommentService;
 import ru.otus.dz15.service.LibraryService;
 
 import java.util.Arrays;
@@ -35,8 +34,8 @@ public class BookControllerTest {
     @MockBean
     private LibraryService libraryService;
 
-    @MockBean
-    private CommentService commentService;
+//    @MockBean
+//    private CommentService commentService;
 
     @Configuration
     @ComponentScan(basePackageClasses = {BookController.class})
@@ -46,7 +45,7 @@ public class BookControllerTest {
     private Author author;
     private Genre genre;
     private Book book;
-    private Comment comment;
+//    private Comment comment;
     private List<Book> books;
     private BookDto bookDto;
 
@@ -58,7 +57,7 @@ public class BookControllerTest {
         genre.setId(1);
         book = new Book("Война и мир", author, genre);
         book.setId(1);
-        comment = new Comment("Эпично, но слишком затянуто.", book);
+//        comment = new Comment("Эпично, но слишком затянуто.", book);
         books = Arrays.asList(book);
         bookDto = new BookDto(1, "Мертвые души", "Николай", "Гоголь", "поэма");
     }

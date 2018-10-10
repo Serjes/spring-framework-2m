@@ -7,7 +7,7 @@
             padding: 50px;
         }
 
-        .authors, .authors td {
+        .genres, .genres td {
             border: 1px solid lightgray;
             padding: 5px;
         }
@@ -24,26 +24,43 @@
 <body>
 <!--<a th:href="@{/}" href="index.html">Библиотека</a>-->
 <!--<br>-->
-<!--<h3>Авторы:</h3>-->
-<div id="authorsdiv">
-    <table class="authors">
+<div id="genresdiv">
+
+    <table class="genres">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Имя</th>
-            <th>Фамилия</th>
+            <th>Название жанра</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="author : ${authors}">
-            <td width="30" th:text="${author.id}">1</td>
-            <td width="150 " th:text="${author.firstName}">Foo</td>
-            <td width="150 " th:text="${author.lastName}">John</td>
+        <tr th:each="genre : ${genres}">
+            <td width="50" th:text="${genre.id}">1</td>
+            <td width="250 " th:text="${genre.name}">Foo</td>
         </tr>
         </tbody>
     </table>
 </div>
-<br>
+<!--<div id="authorsdiv">-->
+    <!--<h3>Авторы:</h3>-->
+    <!--<table class="authors">-->
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<th>ID</th>-->
+            <!--<th>Имя</th>-->
+            <!--<th>Фамилия</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr th:each="author : ${authors}">-->
+            <!--<td width="30" th:text="${author.id}">1</td>-->
+            <!--<td width="150 " th:text="${author.firstName}">Foo</td>-->
+            <!--<td width="150 " th:text="${author.lastName}">John</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+<!--</div>-->
+<!--<br>-->
 <!--<form id="del-form" action="/api/authors.html">-->
     <!--<h3>Удаление автора:</h3>-->
     <!--<div class="row">-->

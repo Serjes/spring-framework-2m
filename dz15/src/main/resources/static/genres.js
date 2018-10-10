@@ -1,16 +1,16 @@
 $(document).ready(function () {
 
-    $('#authorTable').load("/authors-table");
+    $('#genreTable').load("/genres-table");
     $("#del-form").submit(function (event) {
         event.preventDefault();
-        deleting_author_submit();
+        deleting_genre_submit();
     });
 });
 
-function deleting_author_submit() {
+function deleting_genre_submit() {
 
     var delFormData = {
-        id: $("#authorId").val()
+        id: $("#genreId").val()
     };
 
     // $("#del-form").prop("disabled", true);
@@ -18,20 +18,20 @@ function deleting_author_submit() {
     $.ajax({
         type: "DELETE",
         contentType: "application/json",
-        url: "/api/authors/" + $("#authorId").val(),
+        url: "/api/genres/" + $("#genreId").val(),
         data: JSON.stringify(delFormData),
         dataType: 'json',
         cache: false,
         success: function (data) {
             // alert("ok");
             console.log("SUCCESS : ", data);
-            $('#authorTable').load("/authors-table");
+            $('#genreTable').load("/genres-table");
 
             $("#del-form").prop("disabled", false);
         },
         error: function (e) {
             console.log("ERROR : ", e);
-            alert("not Ok");
+            // alert("not Ok");
             // $("#btn-search").prop("disabled", false);
             $("#del-form").prop("disabled", false);
 

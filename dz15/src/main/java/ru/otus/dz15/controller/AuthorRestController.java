@@ -21,27 +21,10 @@ public class AuthorRestController {
         this.libraryService = libraryService;
     }
 
-//    @GetMapping("/authors")
-//    public String authorsPage(Model model) {
-//        List<Author> authors = libraryService.listAuthors();
-//        model.addAttribute("authors", authors);
-//        return "authors";
-//    }
-
     @DeleteMapping("/api/authors/{id}")
     public Author delAuthor(
-//            @RequestBody BookDto bookDto,
-//            @RequestBody String id
-//            @RequestParam Integer id
             @PathVariable("id") Integer id
-//            @PathVariable String id
-//            @PathVariable("id") String id
     ) {
-//        System.out.println(id);
-//        System.out.println(bookDto.getId());
-//        System.out.println(bookDto.getId());
-//        Integer integerId = Integer.valueOf(id);
-//        libraryService.delBook(bookDto.getId());
         libraryService.delAuthor(id);
         Author author = new Author();
         return author;
