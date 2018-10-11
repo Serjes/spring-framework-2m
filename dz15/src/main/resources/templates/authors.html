@@ -27,25 +27,6 @@
 <h3>Авторы:</h3>
 <br>
 <div id="authorTable"></div>
-
-<!--<div id="authorsdiv">-->
-    <!--<table class="authors">-->
-        <!--<thead>-->
-        <!--<tr>-->
-            <!--<th>ID</th>-->
-            <!--<th>Имя</th>-->
-            <!--<th>Фамилия</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--<tr th:each="author : ${authors}">-->
-            <!--<td width="30" th:text="${author.id}">1</td>-->
-            <!--<td width="150 " th:text="${author.firstName}">Foo</td>-->
-            <!--<td width="150 " th:text="${author.lastName}">John</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-    <!--</table>-->
-<!--</div>-->
 <br>
 <form id="del-form" action="/api/authors.html">
     <h3>Удаление автора:</h3>
@@ -57,7 +38,6 @@
         <button width="150" type="submit">Удалить</button>
     </div>
 </form>
-<!--<form id="edit-form" th:action="@{/books/add/}+(${bookDto.id}?:'')" th:object="${bookDto}" th:method="POST" action="books.html">-->
 <br>
 <br>
 <br>

@@ -48,8 +48,6 @@ public class LibraryServiceImpl implements LibraryService {
             genreRepository.save(genre);
         }
         Book book = new Book(title, author, genre);
-//        bookRepository.save(book);
-//        System.out.println("Сохранили новую книжку");
         return bookRepository.save(book);
     }
 

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import ru.otus.dz15.domain.Author;
 import ru.otus.dz15.domain.Genre;
 import ru.otus.dz15.service.LibraryService;
 

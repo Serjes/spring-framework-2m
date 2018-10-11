@@ -14,12 +14,9 @@ import java.util.List;
 @ShellComponent
 public class LibraryCommands {
     private final LibraryService libraryService;
-//    private final CommentService commentService;
 
-//    public LibraryCommands(LibraryService libraryService, CommentService commentService) {
     public LibraryCommands(LibraryService libraryService) {
         this.libraryService = libraryService;
-//        this.commentService = commentService;
     }
 
     @ShellMethod("Добавить книгу в библиотеку: add book_title --author-name author_name author_last_name --genre genre_name")
@@ -39,15 +36,6 @@ public class LibraryCommands {
         System.out.println("Добавляем книгу: \"Азазель\", Акунин, детектив");
         return;
     }
-
-//    @ShellMethod("Добавить комментарий для книги по номеру ID: addc id_book --content text")
-//    public void addc(
-//            @ShellOption int id,
-//            @ShellOption String content
-//    ){
-//        System.out.println("Добавляем комментарий: \"" + content + "\"" );
-//        commentService.add(content, id);
-//    }
 
     @ShellMethod("Показать все книги в библиотеке")
     public void list(){
@@ -86,21 +74,5 @@ public class LibraryCommands {
     ){
         libraryService.printAuthorId(name, lastName);
     }
-
-//    @ShellMethod("Показать все комментарии по ID книги: listc id_book")
-//    public void listc(
-//            @ShellOption int id
-//    ){
-//        List<Comment> comments = commentService.listCommentsByBook(id);
-//
-//        if (!comments.isEmpty()) {
-//            System.out.println("Комментарии к книге:");
-//            int i = 1;
-//            for (Comment comment : comments) {
-//                System.out.println(i + ") " + comment.getContent());
-//                i++;
-//            }
-//        }
-//    }
 
 }

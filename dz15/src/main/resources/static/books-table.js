@@ -10,17 +10,14 @@ function deleteBook(id) {
         data: JSON.stringify(bookData),
         dataType: 'json',
         cache: false,
-        // timeout: 600000,
         success: function (data) {
 
-            // alert("OK");
             $('#bookTable').load("/books-table");
-
             console.log("SUCCESS : ", data);
         },
         error: function (e) {
+            alert("проблема с удалением");
             console.log("ERROR : ", e);
-            // alert("not Ok");
         }
     });
 }

@@ -27,9 +27,6 @@
         /*<![CDATA[*/
         var books = /*[[${books}]]*/ 'null';
         /*]]>*/
-        // window.onload = {
-        //
-        // }
     </script>
 </head>
 <body>
@@ -40,21 +37,6 @@
 <div id="editTable"></div>
 <br>
 <div id="bookTable"></div>
-<!--<a th:href="@{/addbook}" href="addbook.html"><h3>Добавить книгу</h3></a>-->
-<!--<br>-->
-<!--<br>-->
-
-<!--<form id="edit-form" th:action="@{/books/delete/}" th:method="POST">-->
-    <!--<h3>Удаление книги:</h3>-->
-    <!--<div class="row">-->
-        <!--<label for="bookId-input">ID:</label>-->
-        <!--<input id="bookId-input" type="text" th:field="${bookDto.id}" value="1" />-->
-    <!--</div>-->
-    <!--<div class="row">-->
-        <!--<button width="150" type="submit">Удалить</button>-->
-    <!--</div>-->
-<!--</form>-->
-<!--<form id="edit-form" th:action="@{/books/add/}+(${bookDto.id}?:'')" th:object="${bookDto}" th:method="POST" action="books.html">-->
 <form id="adding-form" action="/api/books.html">
     <h3>Добавить книгу:</h3>
 

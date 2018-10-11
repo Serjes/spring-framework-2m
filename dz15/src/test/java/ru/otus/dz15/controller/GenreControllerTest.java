@@ -61,9 +61,9 @@ public class GenreControllerTest {
     @Test
     public void commentsPage() throws Exception {
         Mockito.when(libraryService.listGenres()).thenReturn(genres);
-        mvc.perform(get("/genres"))
+        mvc.perform(get("/genres-table"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(genre.getName())))
-                .andExpect(view().name("genres"));
+                .andExpect(view().name("genres-table"));
     }
 }

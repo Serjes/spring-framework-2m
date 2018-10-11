@@ -9,7 +9,6 @@ import ru.otus.dz15.domain.BookDto;
 import ru.otus.dz15.service.LibraryService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class BookController {
@@ -30,53 +29,4 @@ public class BookController {
         return "books";
     }
 
-//    @PostMapping("/books/delete/")
-//    public String delete(
-//            @ModelAttribute("bookDto") BookDto bookDto
-//    ) {
-//        libraryService.delBook(bookDto.getId());
-//        return "redirect:/books";
-//    }
-//
-//    @PostMapping("/books/add")
-//    public String saveBook(
-//            @ModelAttribute("bookDto") BookDto bookDto
-//    ) {
-//        libraryService.addBook(bookDto.getBookTitle(),  bookDto.getAuthorName(),
-//                bookDto.getAuthorLastName(), bookDto.getGenre());
-//
-//        return "redirect:/books";
-//    }
-
-//    @PostMapping("/books/add/{id}")
-//    public String updateBook(
-//            Model model,
-//            @ModelAttribute("bookDto") BookDto bookDto,
-//            @PathVariable("id") Integer id
-//    ) {
-//        libraryService.updateBook(id, bookDto.getBookTitle(),
-//                bookDto.getAuthorName(), bookDto.getAuthorLastName(),
-//                bookDto.getGenre());
-//        return "redirect:/books";
-//    }
-//
-//    @GetMapping("/addbook")
-//    public String addBookPage(Model model) {
-//        BookDto bookDto = new BookDto();
-//        model.addAttribute("bookDto", bookDto);
-//        return "addbook";
-//    }
-//
-//    @GetMapping("/addbook/edit")
-//    public String editBookPage(
-//            @RequestParam("id") Integer id,
-//            Model model
-//    ) {
-//        Optional<Book> bookOptional = libraryService.findBookById(id);
-//        if (bookOptional.isPresent()) {
-//            BookDto bookDto = BookDto.toDto(bookOptional.get());
-//            model.addAttribute("bookDto", bookDto);
-//        }
-//        return "addbook";
-//    }
 }

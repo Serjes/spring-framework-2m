@@ -13,8 +13,6 @@ function deleting_author_submit() {
         id: $("#authorId").val()
     };
 
-    // $("#del-form").prop("disabled", true);
-
     $.ajax({
         type: "DELETE",
         contentType: "application/json",
@@ -23,7 +21,6 @@ function deleting_author_submit() {
         dataType: 'json',
         cache: false,
         success: function (data) {
-            // alert("ok");
             console.log("SUCCESS : ", data);
             $('#authorTable').load("/authors-table");
 
@@ -31,8 +28,7 @@ function deleting_author_submit() {
         },
         error: function (e) {
             console.log("ERROR : ", e);
-            alert("not Ok");
-            // $("#btn-search").prop("disabled", false);
+            alert("проблема с удалением");
             $("#del-form").prop("disabled", false);
 
         }

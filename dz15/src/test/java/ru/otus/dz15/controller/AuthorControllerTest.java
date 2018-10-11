@@ -61,9 +61,9 @@ public class AuthorControllerTest {
     @Test
     public void commentsPage() throws Exception {
         Mockito.when(libraryService.listAuthors()).thenReturn(authors);
-        mvc.perform(get("/authors"))
+        mvc.perform(get("/authors-table"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(author.getLastName())))
-                .andExpect(view().name("authors"));
+                .andExpect(view().name("authors-table"));
     }
 }
