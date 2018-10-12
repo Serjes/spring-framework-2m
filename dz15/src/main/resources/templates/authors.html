@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <style type="text/css">
         body {
-            padding: 50px;
+            padding: 100px;
         }
 
         .authors, .authors td {
@@ -21,13 +21,14 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="authors.js"></script>
 </head>
-<body>
+<p>
+<p>
 <a th:href="@{/}" href="index.html">Библиотека</a>
-<br>
+</p>
 <h3>Авторы:</h3>
-<br>
+<p>
 <div id="authorTable"></div>
-<br>
+</p>
 <form id="del-form" action="/api/authors.html">
     <h3>Удаление автора:</h3>
     <div class="row">
@@ -38,8 +39,5 @@
         <button width="150" type="submit">Удалить</button>
     </div>
 </form>
-<br>
-<br>
-<br>
 </body>
 </html>

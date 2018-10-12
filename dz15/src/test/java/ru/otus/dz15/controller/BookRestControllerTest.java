@@ -54,8 +54,7 @@ public class BookRestControllerTest {
     @Test
     public void addBook() throws Exception {
         this.mockMvc.perform(post("/api/books").contentType(MediaType.APPLICATION_JSON)
-                .content(objectToStringJSON(bookDto))
-//                .content("\"{\"id\" : \"1\"}\"")
+                .content("{\"id\" : \"1\"}")
         )
 //                .andExpect(jsonPath("$.identifier", equalTo("123")))
                 .andExpect(status().isOk());
@@ -69,8 +68,4 @@ public class BookRestControllerTest {
     public void updateBook() {
     }
 
-    private static String objectToStringJSON(Object object) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(object);
-    }
 }

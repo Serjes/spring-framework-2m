@@ -30,34 +30,35 @@
     </script>
 </head>
 <body>
-<a th:href="@{/}" href="index.html">Библиотека</a>
-<br>
+<p>
+    <a th:href="@{/}" href="index.html">Библиотека</a>
+</p>
 <h1>Книги:</h1>
-<br>
+<p>
 <div id="editTable"></div>
-<br>
+</p>
 <div id="bookTable"></div>
 <form id="adding-form" action="/api/books.html">
     <h3>Добавить книгу:</h3>
 
     <div class="row">
         <label for="bookTitle-input">Название:</label>
-        <input id="bookTitle-input" type="text" />
+        <input id="bookTitle-input" type="text"/>
     </div>
 
     <div class="row">
         <label for="authorName">Имя автора:</label>
-        <input id="authorName" type="text"  />
+        <input id="authorName" type="text"/>
     </div>
 
     <div class="row">
         <label for="authorLastName">Фамилия автора:</label>
-        <input id="authorLastName" type="text" />
+        <input id="authorLastName" type="text"/>
     </div>
 
     <div class="row">
         <label for="genre">Жанр:</label>
-        <input id="genre"  type="text" />
+        <input id="genre" type="text"/>
     </div>
 
     <div class="row">
