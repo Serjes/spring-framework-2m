@@ -35,9 +35,6 @@ public class AuthorControllerTest {
     @MockBean
     private LibraryService libraryService;
 
-//    @MockBean
-//    private CommentService commentService;
-
     @Configuration
     @ComponentScan(basePackageClasses = {AuthorController.class})
     public static class TestConf {

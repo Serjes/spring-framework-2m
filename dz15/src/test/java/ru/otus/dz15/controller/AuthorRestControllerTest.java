@@ -14,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import ru.otus.dz15.domain.Author;
 import ru.otus.dz15.service.LibraryService;
 
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
