@@ -3,7 +3,7 @@ package ru.otus.dz15.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.otus.dz15.domain.Book;
-import ru.otus.dz15.domain.BookDto;
+import ru.otus.dz15.dto.BookDto;
 import ru.otus.dz15.service.LibraryService;
 
 import java.util.List;
@@ -20,11 +20,13 @@ public class BookRestController {
 
     @PostMapping("/api/books")
     public Book addBook(
+//    public BookDto addBook(
             @RequestBody BookDto bookDto
     ) {
         Book book = libraryService.addBook(bookDto.getBookTitle(),  bookDto.getAuthorName(),
                 bookDto.getAuthorLastName(), bookDto.getGenre());
-        List<Book> books = libraryService.listBooks();
+//        List<Book> books = libraryService.listBooks();
+//        return BookDto.toDto(book);
         return book;
     }
 

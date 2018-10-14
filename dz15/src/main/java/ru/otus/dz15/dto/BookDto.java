@@ -1,4 +1,6 @@
-package ru.otus.dz15.domain;
+package ru.otus.dz15.dto;
+
+import ru.otus.dz15.domain.Book;
 
 @SuppressWarnings("all")
 public class BookDto {
@@ -61,6 +63,7 @@ public class BookDto {
     }
 
     public static BookDto toDto(Book book){
-        return new BookDto(book.getId(), book.getTitle(), book.getAuthor().getFirstName(), book.getAuthor().getLastName(), book.getGenre().getName());
+        return new BookDto(book.getId(), book.getTitle(), book.getAuthor().getFirstName(),
+                book.getAuthor().getLastName(), book.getGenre().getName());
     }
 }

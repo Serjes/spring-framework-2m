@@ -1,27 +1,33 @@
 package ru.otus.dz15.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.otus.dz15.domain.Author;
 import ru.otus.dz15.domain.Book;
-import ru.otus.dz15.domain.BookDto;
+import ru.otus.dz15.domain.Genre;
+import ru.otus.dz15.dto.BookDto;
 import ru.otus.dz15.service.LibraryService;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 
-import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+
 
 //@JsonTest
 @RunWith(SpringRunner.class)
@@ -30,9 +36,6 @@ public class BookRestControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-//    @Autowired
-//    private JacksonTester<BookDto> json;
 
     @MockBean
     private LibraryService libraryService;
@@ -43,29 +46,63 @@ public class BookRestControllerTest {
     }
 
     private Book book;
-    private BookDto bookDto;
+    private Book updatedBook;
+//    private BookDto bookDto;
 
     @Before
     public void setUp() throws Exception {
-        book = new Book();
-        bookDto = new BookDto();
+//        book = new Book();
+//        bookDto = new BookDto();
+        Author author = new Author("Лев", "Толстой");
+        author.setId(1);
+        Genre genre = new Genre("роман-эпопея");
+        genre.setId(1);
+        book = new Book("Война и мир", author, genre);
+        book.setId(1);
+        genre.setName("роман");
+        updatedBook = new Book("Анна Каренина", author, genre);
     }
 
     @Test
     public void addBook() throws Exception {
+
+
+//        given().willReturn(book);
+        when(libraryService.addBook("Война и мир","Лев", "Толстой", "роман-эпопея")).thenReturn(book);
         this.mockMvc.perform(post("/api/books").contentType(MediaType.APPLICATION_JSON)
-                .content("{\"id\" : \"1\"}")
+//                .content("{\"id\" : \"1\"}")
+                .content("{\"bookTitle\":\"Война и мир\",\"authorName\":\"Лев\",\"authorLastName\":\"Толстой\",\"genre\":\"роман-эпопея\"}")
         )
 //                .andExpect(jsonPath("$.identifier", equalTo("123")))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value(book.getTitle()))
+                .andDo(print())
+                .andExpect(content()
+//                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON_UTF8_VALUE));
+    }
+
+    @Test
+    public void delBook() throws Exception {
+        this.mockMvc.perform(delete("/api/books/{id}", book.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"id\" : \"1\"}")
+        )
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void delBook() {
-    }
-
-    @Test
-    public void updateBook() {
+    public void updateBook() throws Exception {
+//        book.setTitle("Анна Каренина");
+        when(libraryService.updateBook(1,"Анна Каренина","Лев", "Толстой", "роман")).thenReturn(updatedBook);
+        this.mockMvc.perform(put("/api/books/{id}", 1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"bookTitle\":\"Анна Каренина\",\"authorName\":\"Лев\",\"authorLastName\":\"Толстой\",\"genre\":\"роман\"}")
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value(updatedBook.getTitle()))
+                .andExpect(content()
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON_UTF8_VALUE));
     }
 
 }

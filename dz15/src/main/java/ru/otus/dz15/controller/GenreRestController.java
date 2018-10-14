@@ -8,12 +8,12 @@ import ru.otus.dz15.domain.Genre;
 import ru.otus.dz15.service.LibraryService;
 
 @RestController
-public class GenresRestController {
+public class GenreRestController {
 
     private final LibraryService libraryService;
 
     @Autowired
-    public GenresRestController(LibraryService libraryService) {
+    public GenreRestController(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 
