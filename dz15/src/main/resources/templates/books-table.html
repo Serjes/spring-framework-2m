@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .table-books, .table-books td {
+            border: 1px solid lightgray;
+            padding: 5px;
+        }
+
+        label {
+            display: inline-block;
+            width: 200px;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+    <script type="text/javascript" src="books-table.js"></script>
+</head>
+<body>
+<table class="table-books">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Имя автора</th>
+        <th>Фамилия автора</th>
+        <th>Жанр</th>
+        <th>Редактирование</th>
+        <th>Удаление</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td width="30" th:text="${book.id}" th:id="book" >1</td>
+        <td width="150 " th:text="${book.title}" >Foo</td>
+        <td width="150 " th:text="${book.author.firstName}" >John</td>
+        <td width="150" th:text="${book.author.lastName}" >Doe</td>
+        <td width="100" th:text="${book.genre.name}" >fantasy</td>
+        <td width="50"  ><a th:href="'javascript:editBook(' + ${book.id} + ');'" >Изменить</a></td>
+        <td width="50"  ><a th:href="'javascript:deleteBook(' + ${book.id} + ');'">Х</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
