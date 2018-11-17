@@ -3,12 +3,13 @@ application:
 spring:
   datasource:
     url: jdbc:postgresql://188.227.18.141:5432/lib_spring_mvc
+#    url: jdbc:postgresql://postgres:5432/lib_spring_mvc
     username: temp_user
     password: temp_pas
     driver-class-name: org.postgresql.Driver
   shell:
     interactive:
-      enabled: true
+      enabled: none
   jpa:
     properties:
       hibernate:
