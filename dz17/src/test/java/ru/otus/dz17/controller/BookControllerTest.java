@@ -17,23 +17,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(BookController.class)
 public class BookControllerTest {
 
-    @Autowired
-    private MockMvc mvc;
-
-    @MockBean
-    private LibraryService libraryService;
-
-    @Configuration
-    @ComponentScan(basePackageClasses = {BookController.class})
-    public static class TestConf {
-    }
-
-
-    @Test
-    public void booksPage() throws Exception {
-        mvc.perform(get("/books"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("books"));
-    }
+//    @Autowired
+//    private MockMvc mvc;
+//
+//    @MockBean
+//    private LibraryService libraryService;
+//
+//    @Configuration
+//    @ComponentScan(basePackageClasses = {BookController.class})
+//    public static class TestConf {
+//    }
+//
+//
+//    @Test
+//    public void booksPage() throws Exception {
+//        mvc.perform(get("/books"))
+//                .andExpect(status().isOk())
+//                .andExpect(view().name("books"));
+//    }
 
 }

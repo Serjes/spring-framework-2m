@@ -20,33 +20,33 @@ import static org.junit.Assert.assertEquals;
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class BookRepositoryJpaTest {
 
-    @Autowired
-    private TestEntityManager entityManager;
-
-    @Autowired
-    private BookRepository bookRepositoryJpa;
-
-    @Autowired
-    private GenreRepository genreRepositoryJpa;
-
-    @Autowired
-    private AuthorRepository authorRepositoryJpa;
-
-    @Test
-    public void whenGetById_thenReturnBook(){
-
-        Author author = new Author("Брюс", "Эккель");
-        authorRepositoryJpa.save(author);
-        Genre genre = new Genre("Информационные технологии");
-        genreRepositoryJpa.save(genre);
-
-        Book book = new Book("Филиософия Java", author, genre);
-        entityManager.persist(book);
-        entityManager.flush();
-
-        Optional<Book> optionalBook = bookRepositoryJpa.findById(1);
-        assertEquals(optionalBook.get().getTitle(), book.getTitle());
-
-    }
+//    @Autowired
+//    private TestEntityManager entityManager;
+//
+//    @Autowired
+//    private BookRepository bookRepositoryJpa;
+//
+//    @Autowired
+//    private GenreRepository genreRepositoryJpa;
+//
+//    @Autowired
+//    private AuthorRepository authorRepositoryJpa;
+//
+//    @Test
+//    public void whenGetById_thenReturnBook(){
+//
+//        Author author = new Author("Брюс", "Эккель");
+//        authorRepositoryJpa.save(author);
+//        Genre genre = new Genre("Информационные технологии");
+//        genreRepositoryJpa.save(genre);
+//
+//        Book book = new Book("Филиософия Java", author, genre);
+//        entityManager.persist(book);
+//        entityManager.flush();
+//
+//        Optional<Book> optionalBook = bookRepositoryJpa.findById(1);
+//        assertEquals(optionalBook.get().getTitle(), book.getTitle());
+//
+//    }
 
 }

@@ -6,9 +6,9 @@ spring:
       enabled: none
   data:
     mongodb:
-      authentication-database: admin
+#      authentication-database: admin
       host: 188.227.18.141
       port: 27017
       database: reactlib
-      username: reactuser
-      password: liblib
+#      username: reactuser
+#      password: liblib

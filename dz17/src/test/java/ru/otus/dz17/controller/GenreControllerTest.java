@@ -25,38 +25,38 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(GenreController.class)
 public class GenreControllerTest {
 
-    @Autowired
-    private MockMvc mvc;
-
-    @MockBean
-    private LibraryService libraryService;
-
-    @Configuration
-    @ComponentScan(basePackageClasses = {AuthorController.class})
-    public static class TestConf {
-    }
-
-    private Author author;
-    private Genre genre;
-    private Book book;
-    private List<Genre> genres;
-
-    @Before
-    public void setUp() throws Exception {
-        author = new Author("Лев", "Толстой");
-        author.setId(1);
-        genre = new Genre("роман-эпопея");
-        genre.setId(1);
-        book = new Book("Война и мир", author, genre);
-        genres = Arrays.asList(genre);
-    }
-
-    @Test
-    public void commentsPage() throws Exception {
-        Mockito.when(libraryService.listGenres()).thenReturn(genres);
-        mvc.perform(get("/genres-table"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString(genre.getName())))
-                .andExpect(view().name("genres-table"));
-    }
+//    @Autowired
+//    private MockMvc mvc;
+//
+//    @MockBean
+//    private LibraryService libraryService;
+//
+//    @Configuration
+//    @ComponentScan(basePackageClasses = {AuthorController.class})
+//    public static class TestConf {
+//    }
+//
+//    private Author author;
+//    private Genre genre;
+//    private Book book;
+//    private List<Genre> genres;
+//
+//    @Before
+//    public void setUp() throws Exception {
+//        author = new Author("Лев", "Толстой");
+//        author.setId(1);
+//        genre = new Genre("роман-эпопея");
+//        genre.setId(1);
+//        book = new Book("Война и мир", author, genre);
+//        genres = Arrays.asList(genre);
+//    }
+//
+//    @Test
+//    public void commentsPage() throws Exception {
+//        Mockito.when(libraryService.listGenres()).thenReturn(genres);
+//        mvc.perform(get("/genres-table"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string(containsString(genre.getName())))
+//                .andExpect(view().name("genres-table"));
+//    }
 }

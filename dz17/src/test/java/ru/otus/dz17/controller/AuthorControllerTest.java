@@ -11,6 +11,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.otus.dz17.domain.Author;
+import ru.otus.dz17.domain.Book;
+import ru.otus.dz17.domain.Genre;
+import ru.otus.dz17.service.LibraryService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,38 +29,38 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(AuthorController.class)
 public class AuthorControllerTest {
 
-    @Autowired
-    private MockMvc mvc;
-
-    @MockBean
-    private LibraryService libraryService;
-
-    @Configuration
-    @ComponentScan(basePackageClasses = {AuthorController.class})
-    public static class TestConf {
-    }
-
-    private Author author;
-    private Genre genre;
-    private Book book;
-    private List<Author> authors;
-
-    @Before
-    public void setUp() throws Exception {
-        author = new Author("Лев", "Толстой");
-        author.setId(1);
-        genre = new Genre("роман-эпопея");
-        genre.setId(1);
-        book = new Book("Война и мир", author, genre);
-        authors = Arrays.asList(author);
-    }
-
-    @Test
-    public void commentsPage() throws Exception {
-        Mockito.when(libraryService.listAuthors()).thenReturn(authors);
-        mvc.perform(get("/authors-table"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString(author.getLastName())))
-                .andExpect(view().name("authors-table"));
-    }
+//    @Autowired
+//    private MockMvc mvc;
+//
+//    @MockBean
+//    private LibraryService libraryService;
+//
+//    @Configuration
+//    @ComponentScan(basePackageClasses = {AuthorController.class})
+//    public static class TestConf {
+//    }
+//
+//    private Author author;
+//    private Genre genre;
+//    private Book book;
+//    private List<Author> authors;
+//
+//    @Before
+//    public void setUp() throws Exception {
+//        author = new Author("Лев", "Толстой");
+//        author.setId(1);
+//        genre = new Genre("роман-эпопея");
+//        genre.setId(1);
+//        book = new Book("Война и мир", author, genre);
+//        authors = Arrays.asList(author);
+//    }
+//
+//    @Test
+//    public void commentsPage() throws Exception {
+//        Mockito.when(libraryService.listAuthors()).thenReturn(authors);
+//        mvc.perform(get("/authors-table"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string(containsString(author.getLastName())))
+//                .andExpect(view().name("authors-table"));
+//    }
 }

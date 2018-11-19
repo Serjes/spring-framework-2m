@@ -22,45 +22,45 @@ import static org.junit.Assert.*;
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class BookRepositoryTest {
 
-    @Autowired
-    private BookRepository bookRepositoryJpa;
-
-    @Autowired
-    private GenreRepository genreRepositoryJpa;
-
-    @Autowired
-    private AuthorRepository authorRepositoryJpa;
-
-    private Author author;
-    private Genre genre;
-    private Book book;
-
-    @Before
-    public void setUp() throws Exception {
-        author = new Author("Лев", "Толстой");
-        authorRepositoryJpa.save(author);
-        genre = new Genre("роман-эпопея");
-        genreRepositoryJpa.save(genre);
-        book = new Book("Война и мир", author, genre);
-        bookRepositoryJpa.save(book);
-    }
-
-    @Test
-    public void findAll() {
-        List<Book> books = bookRepositoryJpa.findAll();
-        assertNotNull(books);
-        assertEquals(book.getTitle(), books.get(0).getTitle());
-    }
-
-    @Test
-    public void findById() {
-        Optional<Book> optionalBook = bookRepositoryJpa.findById(book.getId());
-        assertEquals(optionalBook.get().getTitle(), book.getTitle());
-    }
-
-    @Test
-    public void deleteById() {
-        bookRepositoryJpa.deleteById(book.getId());
-        assertEquals(0, bookRepositoryJpa.count());
-    }
+//    @Autowired
+//    private BookRepository bookRepositoryJpa;
+//
+//    @Autowired
+//    private GenreRepository genreRepositoryJpa;
+//
+//    @Autowired
+//    private AuthorRepository authorRepositoryJpa;
+//
+//    private Author author;
+//    private Genre genre;
+//    private Book book;
+//
+//    @Before
+//    public void setUp() throws Exception {
+//        author = new Author("Лев", "Толстой");
+//        authorRepositoryJpa.save(author);
+//        genre = new Genre("роман-эпопея");
+//        genreRepositoryJpa.save(genre);
+//        book = new Book("Война и мир", author, genre);
+//        bookRepositoryJpa.save(book);
+//    }
+//
+//    @Test
+//    public void findAll() {
+//        List<Book> books = bookRepositoryJpa.findAll();
+//        assertNotNull(books);
+//        assertEquals(book.getTitle(), books.get(0).getTitle());
+//    }
+//
+//    @Test
+//    public void findById() {
+//        Optional<Book> optionalBook = bookRepositoryJpa.findById(book.getId());
+//        assertEquals(optionalBook.get().getTitle(), book.getTitle());
+//    }
+//
+//    @Test
+//    public void deleteById() {
+//        bookRepositoryJpa.deleteById(book.getId());
+//        assertEquals(0, bookRepositoryJpa.count());
+//    }
 }

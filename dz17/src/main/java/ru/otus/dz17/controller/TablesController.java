@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import reactor.core.publisher.Flux;
+import ru.otus.dz17.domain.Book;
 import ru.otus.dz17.service.LibraryService;
 
 import java.util.List;
@@ -20,39 +22,39 @@ public class TablesController {
         this.libraryService = libraryService;
     }
 
-    @GetMapping("/books-table")
-    public String booksTablePage(Model model) {
-        List<Book> books = libraryService.listBooks();
-        model.addAttribute("books", books);
-        return "books-table";
-    }
-
-    @GetMapping("/authors-table")
-    public String authorsTablePage(Model model) {
-        List<Author> authors = libraryService.listAuthors();
-        model.addAttribute("authors", authors);
-        return "authors-table";
-    }
-
-    @GetMapping("/genres-table")
-    public String genresTablePage(Model model) {
-        List<Genre> genreList = libraryService.listGenres();
-        model.addAttribute("genres", genreList);
-        return "genres-table";
-    }
-
-    @GetMapping("/editor/{id}")
-    public String booksEditorPage(
-            @PathVariable("id") Integer id,
-            Model model
-    ) {
-        Optional<Book> book = libraryService.findBookById(id);
-        model.addAttribute("book", book.get());
-        return "editor";
-    }
-
-    @GetMapping("/blankeditor")
-    public String blankPage(Model model) {
-        return "editor-blank";
-    }
+//    @GetMapping("/books-table")
+//    public String booksTablePage(Model model) {
+//        Flux<Book> books = libraryService.listBooks();
+//        model.addAttribute("books", books);
+//        return "books-table";
+//    }
+//
+//    @GetMapping("/authors-table")
+//    public String authorsTablePage(Model model) {
+//        List<Author> authors = libraryService.listAuthors();
+//        model.addAttribute("authors", authors);
+//        return "authors-table";
+//    }
+//
+//    @GetMapping("/genres-table")
+//    public String genresTablePage(Model model) {
+//        List<Genre> genreList = libraryService.listGenres();
+//        model.addAttribute("genres", genreList);
+//        return "genres-table";
+//    }
+//
+//    @GetMapping("/editor/{id}")
+//    public String booksEditorPage(
+//            @PathVariable("id") Integer id,
+//            Model model
+//    ) {
+//        Optional<Book> book = libraryService.findBookById(id);
+//        model.addAttribute("book", book.get());
+//        return "editor";
+//    }
+//
+//    @GetMapping("/blankeditor")
+//    public String blankPage(Model model) {
+//        return "editor-blank";
+//    }
 }

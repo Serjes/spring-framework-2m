@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class GenreController {
 
-    private final LibraryService libraryService;
-
-    @Autowired
-    public GenreController(LibraryService libraryService) {
-        this.libraryService = libraryService;
-    }
-
-    @GetMapping("/genres")
-    public String genresPage(Model model) {
-        return "genres";
-    }
+//    private final LibraryService libraryService;
+//
+//    @Autowired
+//    public GenreController(LibraryService libraryService) {
+//        this.libraryService = libraryService;
+//    }
+//
+//    @GetMapping("/genres")
+//    public String genresPage(Model model) {
+//        return "genres";
+//    }
 
 }

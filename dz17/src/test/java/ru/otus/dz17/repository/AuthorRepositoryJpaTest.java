@@ -20,23 +20,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class AuthorRepositoryJpaTest {
 
-    @Autowired
-    private TestEntityManager entityManager;
-
-    @Autowired
-    private AuthorRepository authorRepositoryJpa;
-
-    @Test
-    public void whenGetByName_thenReturnAuthor(){
-        Author author = new Author("Брюс", "Эккель");
-        entityManager.persist(author);
-        entityManager.flush();
-
-        Optional<Author> gotAuthor = authorRepositoryJpa.findByFirstNameAndLastName(author.getFirstName(),author.getLastName());
-
-        assertThat(gotAuthor.get().getFirstName())
-                .isEqualTo(author.getFirstName());
-        assertThat(gotAuthor.get().getLastName())
-                .isEqualTo(author.getLastName());
-    }
+//    @Autowired
+//    private TestEntityManager entityManager;
+//
+//    @Autowired
+//    private AuthorRepository authorRepositoryJpa;
+//
+//    @Test
+//    public void whenGetByName_thenReturnAuthor(){
+//        Author author = new Author("Брюс", "Эккель");
+//        entityManager.persist(author);
+//        entityManager.flush();
+//
+//        Optional<Author> gotAuthor = authorRepositoryJpa.findByFirstNameAndLastName(author.getFirstName(),author.getLastName());
+//
+//        assertThat(gotAuthor.get().getFirstName())
+//                .isEqualTo(author.getFirstName());
+//        assertThat(gotAuthor.get().getLastName())
+//                .isEqualTo(author.getLastName());
+//    }
 }

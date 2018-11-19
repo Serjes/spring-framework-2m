@@ -18,22 +18,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class GenreRepositoryJpaTest {
 
-    @Autowired
-    private TestEntityManager entityManager;
-
-    @Autowired
-    private GenreRepository genreRepositoryJpa;
-
-    @Test
-    public void whenGetByName_thenReturnGenre(){
-        Genre genre = new Genre("Информационные технологии");
-        entityManager.persist(genre);
-        entityManager.flush();
-
-        Genre gotGenre = genreRepositoryJpa.findByName(genre.getName());
-
-        assertThat(gotGenre.getName())
-                .isEqualTo(genre.getName());
-    }
+//    @Autowired
+//    private TestEntityManager entityManager;
+//
+//    @Autowired
+//    private GenreRepository genreRepositoryJpa;
+//
+//    @Test
+//    public void whenGetByName_thenReturnGenre(){
+//        Genre genre = new Genre("Информационные технологии");
+//        entityManager.persist(genre);
+//        entityManager.flush();
+//
+//        Genre gotGenre = genreRepositoryJpa.findByName(genre.getName());
+//
+//        assertThat(gotGenre.getName())
+//                .isEqualTo(genre.getName());
+//    }
 
 }

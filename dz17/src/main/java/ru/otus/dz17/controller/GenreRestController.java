@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GenreRestController {
 
-    private final LibraryService libraryService;
-
-    @Autowired
-    public GenreRestController(LibraryService libraryService) {
-        this.libraryService = libraryService;
-    }
-
-    @DeleteMapping("/api/genres/{id}")
-    public Genre delGenre(
-            @PathVariable("id") Integer id
-    ) {
-        libraryService.delGenre(id);
-        Genre genre = new Genre();
-        return genre;
-    }
+//    private final LibraryService libraryService;
+//
+//    @Autowired
+//    public GenreRestController(LibraryService libraryService) {
+//        this.libraryService = libraryService;
+//    }
+//
+//    @DeleteMapping("/api/genres/{id}")
+//    public Genre delGenre(
+//            @PathVariable("id") Integer id
+//    ) {
+//        libraryService.delGenre(id);
+//        Genre genre = new Genre();
+//        return genre;
+//    }
 
 }
