@@ -25,9 +25,9 @@ public class MongoConfig extends AbstractMongoConfiguration {
                 new ServerAddress(env.getRequiredProperty("spring.data.mongodb.host"),
                 Integer.valueOf(env.getRequiredProperty("spring.data.mongodb.port")))),
                 Collections.singletonList(
-                        MongoCredential.createCredential(env.getRequiredProperty("spring.data.mongodb.username"),
-                                "admin", env.getRequiredProperty("spring.data.mongodb.password").toCharArray())));
-        //MongoCredential.createCredential("sergya", "admin", "otusotus".toCharArray())));
+//                        MongoCredential.createCredential(env.getRequiredProperty("spring.data.mongodb.username"),
+//                                "admin", env.getRequiredProperty("spring.data.mongodb.password").toCharArray())));
+        MongoCredential.createCredential("sergya", "admin", "otusotus".toCharArray())));
     }
 
     @Override

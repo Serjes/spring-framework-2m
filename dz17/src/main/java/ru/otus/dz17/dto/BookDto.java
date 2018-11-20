@@ -69,7 +69,13 @@ public class BookDto {
 //    }
 
     public static BookDto toDto(Book book){
-        return new BookDto(book.getId(), book.getTittle(), book.getAuthor().getFirstName(),
-                book.getAuthor().getLastName(), book.getGenre().getName());
+//        System.out.println(book.getId() + book.getTittle());
+        System.out.println(book.toString());
+//        System.out.println(book.getId() + book.getTittle() +  book.getAuthor().getFirstName() +
+//                book.getAuthor().getLastName() + book.getGenre().getName());
+//        return new BookDto(book.getId(), book.getTittle(), book.getAuthor().getFirstName(),
+//                book.getAuthor().getLastName(), book.getGenre().getName());
+        return new BookDto(book.getId(), book.getTittle(), "aaaaaaaa",
+                "bbbbbbbb", "cccccccc");
     }
 }

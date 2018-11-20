@@ -67,14 +67,22 @@ public class LibraryServiceImpl implements LibraryService {
 //        Mono.justOrEmpty(genreRepository.findByName(genreName)).or(new Author(authorName, authorLastName))
 
 //        return Mono.zip(
-//                (Mono.justOrEmpty(new Author(authorName, authorLastName))).or(authorRepository.findByFirstNameAndLastName(authorName, authorLastName)),
-//                (Mono.justOrEmpty(new Genre(genreName))).or(genreRepository.findByName(genreName)),
+//                (authorRepository.findByFirstNameAndLastName(authorName, authorLastName)).or(Mono.just(new Author(authorName, authorLastName))),
+//                (genreRepository.findByName(genreName)).or(Mono.just(new Genre(genreName))),
+//                (author, genre) -> new Book(tittle, author, genre)
+//        ).flatMap(book -> bookRepository.save(book));
+
+//        return Mono.zip(
+//                authorRepository.findByFirstNameAndLastName(authorName, authorLastName),
+//                genreRepository.findByName(genreName),
 //                (author, genre) -> new Book(tittle, author, genre)
 //        ).flatMap(book -> bookRepository.save(book));
 
         return Mono.zip(
-                authorRepository.findByFirstNameAndLastName(authorName, authorLastName),
-                genreRepository.findByName(genreName),
+                (authorRepository.findByFirstNameAndLastName(authorName, authorLastName))
+                        .or(authorRepository.save(new Author(authorName, authorLastName))),
+                (genreRepository.findByName(genreName))
+                        .or(genreRepository.save(new Genre(genreName))),
                 (author, genre) -> new Book(tittle, author, genre)
         ).flatMap(book -> bookRepository.save(book));
 

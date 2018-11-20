@@ -34,6 +34,15 @@ public class BookRestController {
 //    {
 //        return Flux.fromStream(libraryService.listBooks().map(BookDto::toDto));
 //    }
+    @GetMapping("/books")
+    public Flux<BookDto> ListAllBooks(){
+//        return libraryService.listBooks().flatMap(book -> {
+//
+//           return Mono.just(BookDto.toDto(book));
+//        });
+        return libraryService.listBooks().map(BookDto::toDto);
+//        return Flux.fromStream(libraryService.listBooks().toStream().map(BookDto::toDto));
+    }
 //
 //    @DeleteMapping("/api/books/{id}")
 //    public Book delBook(

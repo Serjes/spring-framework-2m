@@ -12,22 +12,30 @@ import ru.otus.dz17.service.LibraryService;
 import java.util.List;
 
 @Controller
-public class BookController {
+public class BooksPageController {
 //
     private final LibraryService libraryService;
 
     @Autowired
-    public BookController(LibraryService libraryService) {
+    public BooksPageController(LibraryService libraryService) {
         this.libraryService = libraryService;
     }
 
-    @GetMapping("/books")
+    @GetMapping("/books-page")
     public String booksPage(Model model) {
-        Flux<Book> books = libraryService.listBooks();
-        model.addAttribute("books", books);
+//        Flux<Book> books = libraryService.listBooks();
+//        model.addAttribute("books", books);
         BookDto bookDto = new BookDto();
         model.addAttribute("bookDto", bookDto);
         return "books";
     }
 
+//    @GetMapping("/books-index")
+//    public String booksIndex(Model model) {
+////        Flux<Book> books = libraryService.listBooks();
+////        model.addAttribute("books", books);
+////        BookDto bookDto = new BookDto();
+////        model.addAttribute("bookDto", bookDto);
+//        return "books-index";
+//    }
 }

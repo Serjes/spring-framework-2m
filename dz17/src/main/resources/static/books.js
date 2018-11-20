@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-    $('#bookTable').load("/books-table");
+    // $('#bookTable').load("/books-table");
+    createBookTable();
     $("#adding-form").submit(function (event) {
         event.preventDefault();
         adding_book_submit();
@@ -73,6 +74,25 @@ function editing_book_submit() {
             console.log("ERROR : ", e);
             alert("проблема с сохранением");
 
+        }
+    });
+}
+
+function createBookTable() {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/books",
+        dataType: "json",
+        cache: false,
+        success: function (result) {
+            // addToLog("Запрашиваем список авторов");
+            createBooksTable(result);
+            // addToLog("Список авторов успешно загружен!");
+        },
+        error: function (err) {
+            // addToLog("Ошибка " + err);
+            alert("проблема с таблицей");
         }
     });
 }
