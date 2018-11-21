@@ -27,11 +27,11 @@ public class MongoConfig extends AbstractReactiveMongoConfiguration {
     @Value("${spring.data.mongodb.port}")
     private Integer port;
 
-    @Value("${spring.data.mongodb.username}")
-    private String username;
-
-    @Value("${spring.data.mongodb.port}")
-    private Integer password;
+//    @Value("${spring.data.mongodb.username}")
+//    private String username;
+//
+//    @Value("${spring.data.mongodb.port}")
+//    private Integer password;
 
 //    @Override
 //    public MongoClient reactiveMongoClient() {

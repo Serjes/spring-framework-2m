@@ -99,8 +99,8 @@ function createRowByBook(book) {
     return tr;
 }
 
-// function addAuthorToTable(author) {
-//     var tbody = document.getElementsByTagName("tbody");
-//     var tr = createRowByBook(author);
-//     tbody.item(0).appendChild(tr);
-// }
+function addBookToTable(book) {
+    var tbody = document.getElementsByTagName("tbody");
+    var tr = createRowByBook(book);
+    tbody.item(tbody.length).appendChild(tr);
+}

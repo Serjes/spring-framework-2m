@@ -7,8 +7,8 @@ import reactor.core.publisher.Mono;
 import ru.otus.dz17.domain.Book;
 //import java.util.Optional;
 
-//public interface BookRepository extends ReactiveMongoRepository<Book, String> {
-public interface BookRepository extends ReactiveCrudRepository<Book, String> {
+public interface BookRepository extends ReactiveMongoRepository<Book, String> {
+//public interface BookRepository extends ReactiveCrudRepository<Book, String> {
 
     Flux<Book> findAll();
 

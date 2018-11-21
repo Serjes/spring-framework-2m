@@ -79,20 +79,34 @@ public class LibraryServiceImpl implements LibraryService {
 //        ).flatMap(book -> bookRepository.save(book));
 
         return Mono.zip(
-                (authorRepository.findByFirstNameAndLastName(authorName, authorLastName))
-                        .or(authorRepository.save(new Author(authorName, authorLastName))),
-                (genreRepository.findByName(genreName))
-                        .or(genreRepository.save(new Genre(genreName))),
+//                (authorRepository.findByFirstNameAndLastName(authorName, authorLastName)),
+////                        .or(authorRepository.save(new Author(authorName, authorLastName))),
+//                (genreRepository.findByName(genreName)),
+//                        .or(genreRepository.save(new Genre(genreName))),
+                authorRepository.save(new Author(authorName, authorLastName)),
+                genreRepository.save(new Genre(genreName)),
                 (author, genre) -> new Book(tittle, author, genre)
         ).flatMap(book -> bookRepository.save(book));
+
+//        Mono<Author> authorMono = authorRepository.findByFirstNameAndLastName(authorName, authorLastName);
+//
+//        Mono<Genre> genreMono = genreRepository.findByName(genreName);
+//
+//        return Mono.zip(
+//                authorMono.or(authorRepository.save(new Author(authorName, authorLastName))),
+//                genreMono.or(genreRepository.save(new Genre(genreName))),
+//                (author, genre) -> new Book(tittle, author, genre)
+//        ).flatMap(book -> bookRepository.save(book));
 
     }
 
     @Override
     public Flux<Book> listBooks() {
-//        Flux<Book> books = bookRepository.findAll();
-//        return books;
-        return bookRepository.findAll();
+        Flux<Book> books = bookRepository.findAll();
+//        System.out.println("service listBooks: " + books.elementAt(0).block().toString());
+//        System.out.println("service listBooks: " + books.elementAt(0).toString());
+        return books;
+//        return bookRepository.findAll();
 //        System.out.println("Все книги находящиеся в библиотеке:");
 //        printBooks(books);
     }
@@ -138,6 +152,24 @@ public class LibraryServiceImpl implements LibraryService {
 //        for (Author author : authors) {
 //            System.out.println("Автор: " + author.getFirstName() + " " + author.getLastName());
 //        }
+//    }
+
+//    public Mono<Book> saveWithAuthorsAndGenres(Book book) {
+//        if (book.getAuthors() == null) {
+//            book.setAuthors(new ArrayList<>());
+//        }
+//        if (book.getGenres() == null) {
+//            book.setGenres(new ArrayList<>());
+//        }
+//        Mono<List<Genre>> genresFlux = Flux.fromStream(book.getGenres().stream()).flatMap(genreDao::save).collectList();
+//        Mono<List<Author>> authorsFlux = Flux.fromStream(book.getAuthors().stream()).flatMap(authorDao::save).collectList();
+//        Mono<Book> bookMono = Flux.combineLatest(genresFlux, authorsFlux, (genres, authors) -> {
+//            book.setGenres(genres);
+//            book.setAuthors(authors);
+//            return book;
+//        }).elementAt(0).flatMap(bookDao::save);
+//
+//        return bookMono;
 //    }
 
 }

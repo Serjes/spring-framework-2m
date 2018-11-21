@@ -20,13 +20,15 @@ public class BookRestController {
         this.libraryService = libraryService;
     }
 
-    @PostMapping("/api/books")
-    public Mono<Book> addBook(
+    @PostMapping("/books")
+    public Mono<BookDto> addBook(
             @RequestBody BookDto bookDto
     ) {
         Mono<Book> bookMono = libraryService.addBook(bookDto.getBookTitle(),  bookDto.getAuthorName(),
                 bookDto.getAuthorLastName(), bookDto.getGenre());
-        return bookMono;
+//        return bookMono.flatMap(BookDto::toDto);
+//        return bookMono.flatMap(book -> Mono.create(BookDto.toDto(book)));
+        return bookMono.map(BookDto::toDto);
     }
 
 //    @GetMapping("/books")
