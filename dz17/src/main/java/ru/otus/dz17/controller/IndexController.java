@@ -12,13 +12,4 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/preview-genres")
-    public String testGenresPage(Model model){
-        return "redirect:/genres-table";
-    }
-
-    @GetMapping("/preview-authors")
-    public String testAuthorPage(Model model){
-        return "redirect:/authors-table";
-    }
 }

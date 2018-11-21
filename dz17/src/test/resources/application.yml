@@ -1,14 +1,6 @@
 application:
-  version: 6.0t
-#spring:
-#  shell:
-#    interactive:
-#      enabled: false
-#  datasource:
-#    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
-#    driver-class-name: org.h2.Driver
-#    username: sa
-#    password:
-#h2:
-#  console:
-#    enabled: true
+  version: 0.1t
+spring:
+  data:
+    mongodb:
+      port: 0

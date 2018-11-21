@@ -1,18 +1,17 @@
 $(document).ready(function () {
 
-    // $('#bookTable').load("/books-table");
     createBookTable();
     $("#adding-form").submit(function (event) {
         event.preventDefault();
-        adding_book_submit();
+        addingBookSubmit();
     });
     $("#editing-form").submit(function (event) {
         event.preventDefault();
-        editing_book_submit();
+        editingBookSubmit();
     });
 });
 
-function adding_book_submit(){
+function addingBookSubmit(){
 
     var addingFormData = {
         bookTitle :  $("#bookTitle-input").val(),
@@ -33,7 +32,6 @@ function adding_book_submit(){
         cache: false,
         success: function (data) {
 
-            // $('#bookTable').load("/books-table");
             addBookToTable(data);
             console.log("SUCCESS : ", data);
             $("#adding-form").prop("disabled", false);
@@ -49,7 +47,7 @@ function adding_book_submit(){
     });
 }
 
-function editing_book_submit() {
+function editingBookSubmit() {
 
     var editingFormData = {
         bookTitle :  $("#bookTitle-input").val(),
@@ -87,12 +85,9 @@ function createBookTable() {
         dataType: "json",
         cache: false,
         success: function (result) {
-            // addToLog("Запрашиваем список авторов");
             createBooksTable(result);
-            // addToLog("Список авторов успешно загружен!");
         },
         error: function (err) {
-            // addToLog("Ошибка " + err);
             alert("проблема с таблицей");
         }
     });
@@ -202,17 +197,13 @@ function createRowByBook(book) {
 
 function addBookToTable(book) {
     var tbody = document.getElementsByTagName("tbody");
-    // var tbody = document.getElementById("bookTable");
     var tr = createRowByBook(book);
-    // alert(tr);
-    // tbody.item(tbody.length).appendChild(tr);
     tbody.item(0).appendChild(tr);
 }
 
 function deleteBook(id){
     var formData = {
         id : $("#ID" + id).val(),
-        // lastname : $("#inputLastname" + id).val()
     }
 
     $.ajax({
@@ -223,15 +214,11 @@ function deleteBook(id){
         dataType : "json",
         cache: false,
         success : function(data) {
-            // addToLog("Автор обновлен!");
             var booksTableDiv = document.getElementById("bookTable");
             booksTableDiv.innerHTML = '';
-            // alert("Удалено");
             createBookTable();
         },
         error : function(err) {
-            // addToLog(e.responseText);
-            // alert("проблема с удалением");
             var booksTableDiv = document.getElementById("bookTable");
             booksTableDiv.innerHTML = '';
             createBookTable();
@@ -239,27 +226,3 @@ function deleteBook(id){
     });
 }
 
-
-// function deleteBook(id) {
-//     var bookData = {
-//         id : id
-//     };
-//
-//     $.ajax({
-//         type: "DELETE",
-//         contentType: "application/json",
-//         url: "/api/books/{" + id +"}",
-//         data: JSON.stringify(bookData),
-//         dataType: 'json',
-//         cache: false,
-//         success: function (data) {
-//
-//             $('#bookTable').load("/books-table");
-//             console.log("SUCCESS : ", data);
-//         },
-//         error: function (e) {
-//             alert("проблема с удалением");
-//             console.log("ERROR : ", e);
-//         }
-//     });
-// }

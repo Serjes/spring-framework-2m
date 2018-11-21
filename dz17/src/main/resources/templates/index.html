@@ -11,16 +11,6 @@
             display: inline-block;
             width: 100px;
         }
-
-        .authors, .authors td {
-            border: 1px solid lightgray;
-            padding: 5px;
-        }
-
-        .genres, .genres td {
-            border: 1px solid lightgray;
-            padding: 5px;
-        }
     </style>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
@@ -29,24 +19,5 @@
 <p>
     <a th:href="@{/books-page}">Книги</a>
 </p>
-<p>
-    <a th:href="@{/authors}">Авторы</a>
-    <br>
-    <button id="bt2">быстрый просмотр авторов</button>
-</p>
-<p>
-    <a th:href="@{/genres}">Жанры</a>
-    <br>
-    <button id="bt1">быстрый просмотр жанров</button>
-</p>
-<div id="content"></div>
-<script>
-    $("#bt1").on("click", function () {
-        $("#content").load("/preview-genres #genresdiv");
-    });
-    $("#bt2").on("click", function () {
-        $("#content").load("/preview-authors #authorsdiv");
-    });
-</script>
 </body>
 </html>
