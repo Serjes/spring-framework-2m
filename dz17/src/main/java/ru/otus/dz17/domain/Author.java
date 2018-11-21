@@ -23,7 +23,7 @@ public class Author {
     @Field("lasttName")
     private String lastName;
 //    @DBRef
-    private List<Book> books = new ArrayList<>();
+//    private List<Book> books = new ArrayList<>();
 
 //    public Author() {
 //    }

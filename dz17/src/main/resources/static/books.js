@@ -100,7 +100,7 @@ function createBookTable() {
 
 
 function createBooksTable(booksData) {
-    var authorsTableDiv = document.getElementById("bookTable");
+    var booksTableDiv = document.getElementById("bookTable");
 
     var table = document.createElement("table");
     table.setAttribute("id", "books-Table");
@@ -114,7 +114,7 @@ function createBooksTable(booksData) {
     });
     table.appendChild(tbody);
 
-    authorsTableDiv.appendChild(table);
+    booksTableDiv.appendChild(table);
 }
 
 function createHeadTable() {
@@ -137,7 +137,7 @@ function createHeadTable() {
     thGenre.innerHTML = "Жанр";
     tr.appendChild(thGenre);
     var thAction = document.createElement("th");
-    thAction.innerHTML = "Редактирование";
+    thAction.innerHTML = "Удаление";
     tr.appendChild(thAction);
     thead.appendChild(tr);
 
@@ -189,10 +189,10 @@ function createRowByBook(book) {
 
     var tdButton = document.createElement("td");
     var button = document.createElement("button");
-    var textButton = document.createTextNode("Edit");
+    var textButton = document.createTextNode("X");
     button.appendChild(textButton);
     button.onclick = function(){
-        editAuthor(book["id"]);
+        deleteBook(book["id"]);
     };
     tdButton.appendChild(button);
     tr.appendChild(tdButton);
@@ -208,3 +208,58 @@ function addBookToTable(book) {
     // tbody.item(tbody.length).appendChild(tr);
     tbody.item(0).appendChild(tr);
 }
+
+function deleteBook(id){
+    var formData = {
+        id : $("#ID" + id).val(),
+        // lastname : $("#inputLastname" + id).val()
+    }
+
+    $.ajax({
+        type : "DELETE",
+        contentType : "application/json",
+        url : "/books/{" + id +"}",
+        data : JSON.stringify(formData),
+        dataType : "json",
+        cache: false,
+        success : function(data) {
+            // addToLog("Автор обновлен!");
+            var booksTableDiv = document.getElementById("bookTable");
+            booksTableDiv.innerHTML = '';
+            // alert("Удалено");
+            createBookTable();
+        },
+        error : function(err) {
+            // addToLog(e.responseText);
+            // alert("проблема с удалением");
+            var booksTableDiv = document.getElementById("bookTable");
+            booksTableDiv.innerHTML = '';
+            createBookTable();
+        }
+    });
+}
+
+
+// function deleteBook(id) {
+//     var bookData = {
+//         id : id
+//     };
+//
+//     $.ajax({
+//         type: "DELETE",
+//         contentType: "application/json",
+//         url: "/api/books/{" + id +"}",
+//         data: JSON.stringify(bookData),
+//         dataType: 'json',
+//         cache: false,
+//         success: function (data) {
+//
+//             $('#bookTable').load("/books-table");
+//             console.log("SUCCESS : ", data);
+//         },
+//         error: function (e) {
+//             alert("проблема с удалением");
+//             console.log("ERROR : ", e);
+//         }
+//     });
+// }

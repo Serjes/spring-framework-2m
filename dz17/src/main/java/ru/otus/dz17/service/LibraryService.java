@@ -16,7 +16,7 @@ public interface LibraryService {
 
 //    void count();
 //
-//    void delBook(int id);
+    Mono<Void> delBook(String id);
 //
 //    void printAuthorId(String name, String lastName);
 //

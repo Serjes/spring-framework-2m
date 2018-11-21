@@ -134,12 +134,18 @@ public class LibraryServiceImpl implements LibraryService {
 //        System.out.println(bookRepository.count());
 //    }
 //
-//    @Override
-//    @Transactional
-//    public void delBook(int number) {
-//        List<Book> books = bookRepository.findAll();
-//        bookRepository.delete(books.get(number - 1));
-//    }
+    @Override
+    public Mono<Void> delBook(String id) {
+//        Flux<Book> books = bookRepository.findAll();
+//        bookRepository.delete(books.elementAt().get(number - 1));
+//        bookRepository.delete(book);
+
+        Mono<Book> bookMono = bookRepository.findById(id);
+        Book book = bookMono.block();
+//        System.out.println(book.toString());
+        return bookRepository.delete(book);
+//        return authorRepository.deleteById(id);
+    }
 //
 //    @Override
 //    public void printAuthorId(String name, String lastName) {

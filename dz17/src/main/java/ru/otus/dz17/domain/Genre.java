@@ -24,7 +24,7 @@ public class Genre {
     @Field("name")
     private String name;
 //    @DBRef
-    private Set<Book> books = new HashSet<>();
+//    private Set<Book> books = new HashSet<>();
 
 //    public Genre() {
 //    }
