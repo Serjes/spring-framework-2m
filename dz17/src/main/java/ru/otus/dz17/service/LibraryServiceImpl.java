@@ -28,12 +28,10 @@ public class LibraryServiceImpl implements LibraryService {
     public Mono<Book> addBook(String tittle, String authorName, String authorLastName, String genreName) {
 
         return Mono.zip(
-//                (authorRepository.findByFirstNameAndLastName(authorName, authorLastName)),
-////                        .or(authorRepository.save(new Author(authorName, authorLastName))),
-//                (genreRepository.findByName(genreName)),
-//                        .or(genreRepository.save(new Genre(genreName))),
-                authorRepository.save(new Author(authorName, authorLastName)),
-                genreRepository.save(new Genre(genreName)),
+                (authorRepository.findByFirstNameAndLastName(authorName, authorLastName))
+                        .switchIfEmpty(authorRepository.save(new Author(authorName, authorLastName))),
+                (genreRepository.findByName(genreName))
+                        .switchIfEmpty(genreRepository.save(new Genre(genreName))),
                 (author, genre) -> new Book(tittle, author, genre)
         ).flatMap(book -> bookRepository.save(book));
 
@@ -47,9 +45,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public Mono<Void> delBook(String id) {
-        Mono<Book> bookMono = bookRepository.findById(id);
-        Book book = bookMono.block();
-        return bookRepository.delete(book);
+        return bookRepository.deleteById(id);
     }
 
 }
