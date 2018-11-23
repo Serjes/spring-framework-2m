@@ -1,0 +1,11 @@
+application:
+  version: 0.1
+spring:
+  shell:
+    interactive:
+      enabled: none
+  data:
+    mongodb:
+      host: 188.227.18.141
+      port: 27017
+      database: reactlib

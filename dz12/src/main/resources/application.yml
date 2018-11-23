@@ -9,6 +9,6 @@ spring:
       database: lib
       username: temp_user
       password: temp_pas
-#  shell:
-#    interactive:
-#      enabled: true
+  shell:
+    interactive:
+      enabled: true
